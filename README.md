@@ -20,6 +20,14 @@ This project investigates whether better visual representations and more reliabl
 - How sensitive are results to frame sampling, model choice, and adaptation strategy?
 
 ## Proposed Approach
+prompt modifications, finetune the vlm:
+potential prompt mods:
+give the vlm a format it must follow for its output to make sure it doesn't miss stuff (ex. Speaker face: … Speaker body: … Other people present: … What others are doing: … Physical contact between anyone: … Where the speaker is looking: … ) → dr goldwasser what their prompt was for vlm
+Openai built in vs our own loop for formatting 
+Back and forth between LLM and VLM: 
+LLM-asks-VLM questioning (ChatCaptioner-style). The LLM reads the first description and asks targeted follow-ups: “What are the people in front of Phoebe doing?” 
+Calibrated voting (VIBE-style). Run several pipelines and combine their answers, weighting each by its accuracy on a small calibration set. 
+For prompt attach last k messages along with summary of conversation?  (ask goldwasser about this if its possible to do this with vibe dataset)
 
 ### Visual Encoder Comparison
 
