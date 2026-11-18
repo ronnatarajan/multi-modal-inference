@@ -150,6 +150,36 @@ Full bibliographic references and links remain to be added after confirming the 
 - [ ] Compare model adaptation and calibrated voting.
 - [ ] Report results, costs, and failure analysis.
 
-## Setup and Results
+## Setup
 
-Installation instructions, runnable examples, and results will be added as the implementation develops.
+Run these on a Scholar GPU node.
+
+1. Clone the repo and run setup. This installs the Python environment and downloads Qwen2.5-Omni-7B (~22 GB). It takes about 10–20 minutes.
+
+   ```bash
+   git clone <repo-url>
+   cd multi-modal-inference
+   bash scripts/setup.sh
+   ```
+
+   Everything large is saved to your scratch folder, not home (home has a 25 GB limit).
+
+2. Download `vibe.zip` from the [VIBE dataset page](https://huggingface.co/datasets/taniarini/vibe/tree/main) (you may need to log in and accept the terms first). Unzip it and put the `vibe` folder in the repo's main folder.
+
+3. Test that it works:
+
+   ```bash
+   .venv/bin/python scripts/smoke_test.py
+   ```
+
+   It should describe a video clip and print `SMOKE TEST PASSED`.
+
+Notes:
+
+- Load the model in code with `from qwen_omni import load_model, GENERATION_KWARGS`. Don't call `from_pretrained` directly, because it hangs on Scholar's GB10 nodes.
+- Run `source scripts/env.sh` before installing packages or downloading other models, so they go to scratch.
+- Scratch deletes files that go unused for a long time. If the model or `.venv` goes missing, run `bash scripts/setup.sh` again.
+
+## Results
+
+Results will be added as the implementation develops.

@@ -1,0 +1,10 @@
+# Large files live on scratch; these are just local symlinks to them (see scripts/setup.sh)
+.venv
+models/
+
+# VIBE dataset: too large for git and contains answer labels
+vibe/
+
+__pycache__/
+*.pyc
+.DS_Store

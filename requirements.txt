@@ -1,0 +1,24 @@
+# Install with:  bash scripts/setup.sh   (recommended: keeps everything on scratch)
+# or manually:   uv pip install -r requirements.txt --index-strategy unsafe-best-match
+#
+# PyTorch's CUDA 13.0 builds live on PyTorch's own index, not PyPI. They support both
+# x86_64 and aarch64, including Scholar's NVIDIA GB10 nodes.
+--extra-index-url https://download.pytorch.org/whl/cu130
+
+torch==2.9.1+cu130
+torchvision==0.24.1
+
+# Qwen2.5-Omni model code + loading
+transformers==4.57.1
+accelerate==1.11.0
+huggingface_hub[hf_xet]==0.36.0
+
+# Video/audio preprocessing for Omni (frame + audio extraction from clips).
+# Versions below are pinned on purpose. Newer ones break qwen-omni-utils:
+#   librosa 1.0 can't read audio from mp4; av 17+ breaks torchvision's video reader.
+qwen-omni-utils==0.0.8
+librosa==0.11.0
+audioread==3.0.1
+av==16.1.0
+soundfile==0.13.1
+imageio-ffmpeg==0.6.0   # bundled ffmpeg binary (Scholar has none); setup.sh links it into .venv/bin
