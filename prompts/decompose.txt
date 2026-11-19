@@ -1,0 +1,11 @@
+### Task Overview
+You will be given a description of a video clip with one main speaker. Rewrite the
+description as a list of simple assertion statements.
+### Task Guidelines
+- Each assertion states exactly one observation (e.g. "The speaker looks away.").
+- Keep the description's meaning. Do not add, remove, or interpret anything.
+- Include what the speaker says as an assertion.
+- Write one assertion per line, starting with "- ".
+### Description
+{description}
+### Assertions

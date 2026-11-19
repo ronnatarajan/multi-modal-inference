@@ -1,0 +1,24 @@
+### Task Overview
+You are a socially intelligent body language expert. Your task is to interpret a
+person's body language. You will be given observations from a video clip with one
+main speaker and asked which interpretation of their body language is better.
+Follow the Task Guidelines and the Response Format.
+### Task Guidelines
+- You are given observations from a video clip with one main speaker.
+- You are given one fact about the speaker's body language, and two possible
+interpretations of that body language.
+- Think out loud about which interpretation is better given the observations from
+the video (2-3 sentences).
+- Finally, give your answer according to the Response Format.
+### Response Format
+Thinking out loud: <your thoughts about which interpretation is better (2-3
+sentences)>
+Answer: <A OR B>
+### Observations from the Video Clip
+{assertions}
+### Fact
+{fact_text}
+### Interpretations
+A. {inference_A}
+B. {inference_B}
+### Response

@@ -1,0 +1,14 @@
+### Task Overview
+You are given a short video clip from a TV show, with audio. There is one main speaker.
+Describe what happens in the clip, focusing on the main speaker.
+### Task Guidelines
+- Decide who the main speaker is from the mouth movements of the people in the foreground.
+- Without using any adjectives or emotions, describe the changes in the facial features
+(eyebrows, forehead, eyes, nose, cheeks, mouth and lips) and the body language (arms,
+hands, legs, torso) of the main speaker. Do not interpret what they mean.
+- Describe what else happens in the clip.
+- Quote what the speaker says.
+- Output only these two parts.
+### Response Format
+Speech: "<the speaker's exact words>"
+Description: <what happens in the clip>

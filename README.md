@@ -166,7 +166,13 @@ Run these on a Scholar GPU node.
 
 2. Download `vibe.zip` from the [VIBE dataset page](https://huggingface.co/datasets/taniarini/vibe/tree/main) (you may need to log in and accept the terms first). Unzip it and put the `vibe` folder in the repo's main folder.
 
-3. Test that it works:
+3. Add your GPT-OSS key: [genai.rcac.purdue.edu](https://genai.rcac.purdue.edu/) → Profile → Settings → Account → Secret. Then:
+
+   ```bash
+   cp .env.example .env   # paste the key after RCAC_API_KEY=
+   ```
+
+4. Test that it works:
 
    ```bash
    .venv/bin/python scripts/smoke_test.py
@@ -179,6 +185,27 @@ Notes:
 - Load the model in code with `from qwen_omni import load_model, GENERATION_KWARGS`. Don't call `from_pretrained` directly, because it hangs on Scholar's GB10 nodes.
 - Run `source scripts/env.sh` before installing packages or downloading other models, so they go to scratch.
 - Scratch deletes files that go unused for a long time. If the model or `.venv` goes missing, run `bash scripts/setup.sh` again.
+
+## Pipeline
+
+- `qwen_omni.py`: loads Qwen2.5-Omni-7B (the VLM).
+- `llm.py`: calls GPT-OSS-120B (the LLM).
+- `pipeline.py`: the three steps.
+  - `describe()`: inital VLM call, the VLM watches the clip (video + audio) and describes it.
+  - `decompose()`: LLM spliting the description into claims.
+  - `decide()`: Final VLM call to perform the task, no video input
+  - `parse_answer()`: pulls A or B out of the reply.
+- `run_baseline.py`: runs `describe` → `decompose` → `decide` over VIBE (one description per video), saves one line per question to `results/`, and prints accuracy.
+- `prompts/`: one prompt per step. The describe prompt is picked with `--describe`.
+
+### Describe prompt
+
+We combined VIBE's Level 1 face and body prompts (from its emotion-prediction experiment) into one prompt and added speech. Speech only shows up if the prompt ends with a response format that has a `Speech: "..."` slot; a plain "quote what the speaker says" instruction is ignored.
+
+Two candidates (which should we use?):
+
+- [`prompts/describe_speaker_focused.txt`](prompts/describe_speaker_focused.txt): speaker-focused. Fewer assertions, but less room for hallucination. Sample: [`results/describe_speaker_focused.jsonl`](results/describe_speaker_focused.jsonl)
+- [`prompts/describe_speaker_and_surroundings.txt`](prompts/describe_speaker_and_surroundings.txt): speaker + surroundings. More assertions, and more room for hallucination. Sample: [`results/describe_speaker_and_surroundings.jsonl`](results/describe_speaker_and_surroundings.jsonl)
 
 ## Results
 

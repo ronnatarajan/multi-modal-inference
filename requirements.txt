@@ -22,3 +22,6 @@ audioread==3.0.1
 av==16.1.0
 soundfile==0.13.1
 imageio-ffmpeg==0.6.0   # bundled ffmpeg binary (Scholar has none); setup.sh links it into .venv/bin
+
+# GPT-OSS-120B calls to the RCAC GenAI server (llm.py)
+requests==2.34.2
