@@ -1,0 +1,238 @@
+{"qid": "video_2_0", "video": "video_2.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_2_1", "video": "video_2.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_2_2", "video": "video_2.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_2_3", "video": "video_2.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt", "confusion/uncertainty"], "negated": false}
+{"qid": "video_6_0", "video": "video_6.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["sadness"], "negated": false}
+{"qid": "video_6_1", "video": "video_6.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["calm/relaxed"], "negated": false}
+{"qid": "video_8_0", "video": "video_8.mp4", "show": "The Big Bang Theory", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_9_0", "video": "video_9.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["disgust/contempt"], "negated": false}
+{"qid": "video_9_1", "video": "video_9.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["disgust/contempt"], "negated": false}
+{"qid": "video_14_0", "video": "video_14.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["sadness", "fear/anxiety"], "negated": false}
+{"qid": "video_14_1", "video": "video_14.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_14_2", "video": "video_14.mp4", "show": "The Big Bang Theory", "cue": "voice/speech", "emotions": ["sadness"], "negated": false}
+{"qid": "video_14_3", "video": "video_14.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_14_4", "video": "video_14.mp4", "show": "The Big Bang Theory", "cue": "voice/speech", "emotions": ["sadness"], "negated": false}
+{"qid": "video_18_0", "video": "video_18.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_19_0", "video": "video_19.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_20_0", "video": "video_20.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis", "calm/relaxed"], "negated": true}
+{"qid": "video_21_0", "video": "video_21.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_22_0", "video": "video_22.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["joy", "calm/relaxed"], "negated": false}
+{"qid": "video_23_0", "video": "video_23.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": false}
+{"qid": "video_26_0", "video": "video_26.mp4", "show": "The Big Bang Theory", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_26_1", "video": "video_26.mp4", "show": "The Big Bang Theory", "cue": "voice/speech", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_28_0", "video": "video_28.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["joy", "intensity/emphasis"], "negated": true}
+{"qid": "video_35_0", "video": "video_35.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_35_1", "video": "video_35.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness", "intensity/emphasis"], "negated": false}
+{"qid": "video_36_0", "video": "video_36.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_36_1", "video": "video_36.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_36_2", "video": "video_36.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_36_3", "video": "video_36.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_36_4", "video": "video_36.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_37_0", "video": "video_37.mp4", "show": "Friends", "cue": "gaze", "emotions": ["engagement/attention"], "negated": true}
+{"qid": "video_45_0", "video": "video_45.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["confusion/uncertainty"], "negated": false}
+{"qid": "video_45_1", "video": "video_45.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": false}
+{"qid": "video_48_0", "video": "video_48.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "sadness"], "negated": false}
+{"qid": "video_48_1", "video": "video_48.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_48_2", "video": "video_48.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_48_3", "video": "video_48.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_48_4", "video": "video_48.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_52_0", "video": "video_52.mp4", "show": "The Big Bang Theory", "cue": "smile/laugh", "emotions": ["anger", "disgust/contempt", "calm/relaxed"], "negated": false}
+{"qid": "video_52_1", "video": "video_52.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["anger", "disgust/contempt"], "negated": false}
+{"qid": "video_59_0", "video": "video_59.mp4", "show": "The Big Bang Theory", "cue": "smile/laugh", "emotions": ["disgust/contempt"], "negated": false}
+{"qid": "video_59_1", "video": "video_59.mp4", "show": "The Big Bang Theory", "cue": "smile/laugh", "emotions": ["disgust/contempt", "joy"], "negated": false}
+{"qid": "video_59_2", "video": "video_59.mp4", "show": "The Big Bang Theory", "cue": "smile/laugh", "emotions": ["disgust/contempt"], "negated": false}
+{"qid": "video_59_3", "video": "video_59.mp4", "show": "The Big Bang Theory", "cue": "posture/movement", "emotions": ["disgust/contempt", "engagement/attention"], "negated": false}
+{"qid": "video_60_0", "video": "video_60.mp4", "show": "Friends", "cue": "face", "emotions": ["joy"], "negated": false}
+{"qid": "video_60_1", "video": "video_60.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_60_2", "video": "video_60.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "intensity/emphasis"], "negated": false}
+{"qid": "video_61_0", "video": "video_61.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["sadness"], "negated": false}
+{"qid": "video_64_0", "video": "video_64.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_72_0", "video": "video_72.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_72_1", "video": "video_72.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "intensity/emphasis"], "negated": true}
+{"qid": "video_73_0", "video": "video_73.mp4", "show": "Friends", "cue": "gaze", "emotions": ["engagement/attention"], "negated": true}
+{"qid": "video_73_1", "video": "video_73.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["other"], "negated": false}
+{"qid": "video_76_0", "video": "video_76.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_77_0", "video": "video_77.mp4", "show": "Friends", "cue": "gaze", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_84_0", "video": "video_84.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_84_1", "video": "video_84.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_84_2", "video": "video_84.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_84_3", "video": "video_84.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_84_4", "video": "video_84.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["other"], "negated": false}
+{"qid": "video_87_0", "video": "video_87.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger", "sadness"], "negated": false}
+{"qid": "video_89_0", "video": "video_89.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["other"], "negated": false}
+{"qid": "video_89_1", "video": "video_89.mp4", "show": "Friends", "cue": "face", "emotions": ["joy"], "negated": true}
+{"qid": "video_92_0", "video": "video_92.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_92_1", "video": "video_92.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_92_2", "video": "video_92.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": false}
+{"qid": "video_94_0", "video": "video_94.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["anger"], "negated": false}
+{"qid": "video_99_0", "video": "video_99.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_105_0", "video": "video_105.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["joy"], "negated": true}
+{"qid": "video_106_0", "video": "video_106.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_112_0", "video": "video_112.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_112_1", "video": "video_112.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": true}
+{"qid": "video_114_0", "video": "video_114.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["sadness", "joy", "confusion/uncertainty"], "negated": false}
+{"qid": "video_114_1", "video": "video_114.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["sadness", "calm/relaxed"], "negated": false}
+{"qid": "video_147_0", "video": "video_147.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety", "surprise", "joy"], "negated": false}
+{"qid": "video_147_1", "video": "video_147.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "surprise", "joy", "intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_148_0", "video": "video_148.mp4", "show": "The Big Bang Theory", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_148_1", "video": "video_148.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_148_2", "video": "video_148.mp4", "show": "The Big Bang Theory", "cue": "voice/speech", "emotions": ["anger", "sadness"], "negated": false}
+{"qid": "video_150_0", "video": "video_150.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["joy", "calm/relaxed"], "negated": true}
+{"qid": "video_150_1", "video": "video_150.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "calm/relaxed"], "negated": true}
+{"qid": "video_150_2", "video": "video_150.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": true}
+{"qid": "video_157_0", "video": "video_157.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": true}
+{"qid": "video_157_1", "video": "video_157.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "calm/relaxed"], "negated": true}
+{"qid": "video_157_2", "video": "video_157.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_157_3", "video": "video_157.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_157_4", "video": "video_157.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "calm/relaxed"], "negated": true}
+{"qid": "video_160_0", "video": "video_160.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_160_1", "video": "video_160.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_160_2", "video": "video_160.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_160_3", "video": "video_160.mp4", "show": "Friends", "cue": "gaze", "emotions": ["other"], "negated": false}
+{"qid": "video_168_0", "video": "video_168.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_168_1", "video": "video_168.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_168_2", "video": "video_168.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": false}
+{"qid": "video_169_0", "video": "video_169.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["other"], "negated": false}
+{"qid": "video_169_1", "video": "video_169.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "joy", "confusion/uncertainty"], "negated": false}
+{"qid": "video_177_0", "video": "video_177.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "engagement/attention"], "negated": true}
+{"qid": "video_193_0", "video": "video_193.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "joy"], "negated": false}
+{"qid": "video_206_0", "video": "video_206.mp4", "show": "Friends", "cue": "gaze", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_206_1", "video": "video_206.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": true}
+{"qid": "video_206_2", "video": "video_206.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": true}
+{"qid": "video_206_3", "video": "video_206.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_206_4", "video": "video_206.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["anger", "disgust/contempt", "sadness", "fear/anxiety", "surprise", "joy", "intensity/emphasis"], "negated": true}
+{"qid": "video_207_0", "video": "video_207.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": true}
+{"qid": "video_207_1", "video": "video_207.mp4", "show": "Friends", "cue": "gaze", "emotions": ["sadness"], "negated": true}
+{"qid": "video_208_0", "video": "video_208.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": true}
+{"qid": "video_208_1", "video": "video_208.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_213_0", "video": "video_213.mp4", "show": "Friends", "cue": "gaze", "emotions": ["anger", "intensity/emphasis"], "negated": true}
+{"qid": "video_215_0", "video": "video_215.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_215_1", "video": "video_215.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["surprise", "joy", "intensity/emphasis"], "negated": false}
+{"qid": "video_215_2", "video": "video_215.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "intensity/emphasis"], "negated": false}
+{"qid": "video_215_3", "video": "video_215.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["other"], "negated": false}
+{"qid": "video_217_0", "video": "video_217.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety", "engagement/attention"], "negated": false}
+{"qid": "video_222_0", "video": "video_222.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_222_1", "video": "video_222.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_222_2", "video": "video_222.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_224_0", "video": "video_224.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_227_0", "video": "video_227.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_232_0", "video": "video_232.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_232_1", "video": "video_232.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_233_0", "video": "video_233.mp4", "show": "Friends", "cue": "gaze", "emotions": ["joy", "intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_233_1", "video": "video_233.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_236_0", "video": "video_236.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": true}
+{"qid": "video_236_1", "video": "video_236.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": true}
+{"qid": "video_236_2", "video": "video_236.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy", "calm/relaxed"], "negated": true}
+{"qid": "video_240_0", "video": "video_240.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_240_1", "video": "video_240.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness", "fear/anxiety"], "negated": false}
+{"qid": "video_243_0", "video": "video_243.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["other"], "negated": false}
+{"qid": "video_244_0", "video": "video_244.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "confusion/uncertainty"], "negated": false}
+{"qid": "video_249_0", "video": "video_249.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["other"], "negated": false}
+{"qid": "video_249_1", "video": "video_249.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_249_2", "video": "video_249.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["other"], "negated": false}
+{"qid": "video_249_3", "video": "video_249.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["joy", "calm/relaxed"], "negated": false}
+{"qid": "video_253_0", "video": "video_253.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_253_1", "video": "video_253.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["intensity/emphasis", "calm/relaxed"], "negated": false}
+{"qid": "video_258_0", "video": "video_258.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_258_1", "video": "video_258.mp4", "show": "Friends", "cue": "face", "emotions": ["joy"], "negated": false}
+{"qid": "video_258_2", "video": "video_258.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_267_0", "video": "video_267.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["joy"], "negated": true}
+{"qid": "video_269_0", "video": "video_269.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_269_1", "video": "video_269.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_269_2", "video": "video_269.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_269_3", "video": "video_269.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["joy", "calm/relaxed"], "negated": false}
+{"qid": "video_273_0", "video": "video_273.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_273_1", "video": "video_273.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_273_2", "video": "video_273.mp4", "show": "Friends", "cue": "gaze", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_273_3", "video": "video_273.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_274_0", "video": "video_274.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": true}
+{"qid": "video_278_0", "video": "video_278.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "confusion/uncertainty"], "negated": false}
+{"qid": "video_278_1", "video": "video_278.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": true}
+{"qid": "video_280_0", "video": "video_280.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety", "engagement/attention"], "negated": true}
+{"qid": "video_280_1", "video": "video_280.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_280_2", "video": "video_280.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_282_0", "video": "video_282.mp4", "show": "Friends", "cue": "gaze", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_282_1", "video": "video_282.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "fear/anxiety"], "negated": false}
+{"qid": "video_282_2", "video": "video_282.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_282_3", "video": "video_282.mp4", "show": "Friends", "cue": "gaze", "emotions": ["anger", "intensity/emphasis"], "negated": false}
+{"qid": "video_286_0", "video": "video_286.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "intensity/emphasis"], "negated": false}
+{"qid": "video_286_1", "video": "video_286.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_286_2", "video": "video_286.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_290_0", "video": "video_290.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_290_1", "video": "video_290.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_290_2", "video": "video_290.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_294_0", "video": "video_294.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_294_1", "video": "video_294.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_294_2", "video": "video_294.mp4", "show": "Friends", "cue": "face", "emotions": ["joy", "intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_298_0", "video": "video_298.mp4", "show": "Friends", "cue": "gaze", "emotions": ["joy", "engagement/attention"], "negated": false}
+{"qid": "video_298_1", "video": "video_298.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_298_2", "video": "video_298.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["joy", "engagement/attention"], "negated": false}
+{"qid": "video_298_3", "video": "video_298.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_299_0", "video": "video_299.mp4", "show": "Friends", "cue": "gaze", "emotions": ["sadness"], "negated": true}
+{"qid": "video_306_0", "video": "video_306.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_306_1", "video": "video_306.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["other"], "negated": false}
+{"qid": "video_306_2", "video": "video_306.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_308_0", "video": "video_308.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["calm/relaxed"], "negated": false}
+{"qid": "video_319_0", "video": "video_319.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "intensity/emphasis"], "negated": false}
+{"qid": "video_319_1", "video": "video_319.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_319_2", "video": "video_319.mp4", "show": "Friends", "cue": "face", "emotions": ["anger"], "negated": false}
+{"qid": "video_319_3", "video": "video_319.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_319_4", "video": "video_319.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["anger"], "negated": false}
+{"qid": "video_322_0", "video": "video_322.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_322_1", "video": "video_322.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_322_2", "video": "video_322.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "sadness"], "negated": false}
+{"qid": "video_323_0", "video": "video_323.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": true}
+{"qid": "video_323_1", "video": "video_323.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_330_0", "video": "video_330.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "joy"], "negated": false}
+{"qid": "video_333_0", "video": "video_333.mp4", "show": "Friends", "cue": "gaze", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_334_0", "video": "video_334.mp4", "show": "Friends", "cue": "face", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_334_1", "video": "video_334.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_338_0", "video": "video_338.mp4", "show": "Friends", "cue": "face", "emotions": ["confusion/uncertainty"], "negated": false}
+{"qid": "video_338_1", "video": "video_338.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_338_2", "video": "video_338.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness"], "negated": false}
+{"qid": "video_338_3", "video": "video_338.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_338_4", "video": "video_338.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety"], "negated": false}
+{"qid": "video_349_0", "video": "video_349.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety", "engagement/attention"], "negated": false}
+{"qid": "video_349_1", "video": "video_349.mp4", "show": "Friends", "cue": "face", "emotions": ["sadness", "fear/anxiety"], "negated": false}
+{"qid": "video_349_2", "video": "video_349.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["sadness"], "negated": false}
+{"qid": "video_351_0", "video": "video_351.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_351_1", "video": "video_351.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_351_2", "video": "video_351.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_359_0", "video": "video_359.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["anger", "surprise"], "negated": false}
+{"qid": "video_359_1", "video": "video_359.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_359_2", "video": "video_359.mp4", "show": "The Big Bang Theory", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_368_0", "video": "video_368.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_368_1", "video": "video_368.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_368_2", "video": "video_368.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "sadness"], "negated": true}
+{"qid": "video_368_3", "video": "video_368.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_368_4", "video": "video_368.mp4", "show": "Friends", "cue": "hands/gesture", "emotions": ["surprise", "confusion/uncertainty"], "negated": false}
+{"qid": "video_378_0", "video": "video_378.mp4", "show": "Friends", "cue": "gaze", "emotions": ["joy"], "negated": false}
+{"qid": "video_378_1", "video": "video_378.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_379_0", "video": "video_379.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_379_1", "video": "video_379.mp4", "show": "Friends", "cue": "voice/speech", "emotions": ["joy", "calm/relaxed"], "negated": false}
+{"qid": "video_383_0", "video": "video_383.mp4", "show": "Friends", "cue": "gaze", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_383_1", "video": "video_383.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_383_2", "video": "video_383.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety", "engagement/attention"], "negated": false}
+{"qid": "video_383_3", "video": "video_383.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_393_0", "video": "video_393.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": true}
+{"qid": "video_393_1", "video": "video_393.mp4", "show": "Friends", "cue": "face", "emotions": ["anger", "sadness", "fear/anxiety"], "negated": false}
+{"qid": "video_398_0", "video": "video_398.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_398_1", "video": "video_398.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["joy"], "negated": false}
+{"qid": "video_398_2", "video": "video_398.mp4", "show": "Friends", "cue": "smile/laugh", "emotions": ["other"], "negated": false}
+{"qid": "video_398_3", "video": "video_398.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["other"], "negated": false}
+{"qid": "video_398_4", "video": "video_398.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["calm/relaxed"], "negated": false}
+{"qid": "video_409_0", "video": "video_409.mp4", "show": "Friends", "cue": "gaze", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_409_1", "video": "video_409.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_409_2", "video": "video_409.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_409_3", "video": "video_409.mp4", "show": "Friends", "cue": "gaze", "emotions": ["surprise"], "negated": false}
+{"qid": "video_409_4", "video": "video_409.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise"], "negated": false}
+{"qid": "video_413_0", "video": "video_413.mp4", "show": "Friends", "cue": "face", "emotions": ["fear/anxiety", "surprise"], "negated": false}
+{"qid": "video_413_1", "video": "video_413.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_417_0", "video": "video_417.mp4", "show": "Friends", "cue": "face", "emotions": ["other"], "negated": false}
+{"qid": "video_419_0", "video": "video_419.mp4", "show": "Friends", "cue": "face", "emotions": ["joy", "engagement/attention"], "negated": false}
+{"qid": "video_419_1", "video": "video_419.mp4", "show": "Friends", "cue": "face", "emotions": ["surprise", "engagement/attention"], "negated": false}
+{"qid": "video_428_0", "video": "video_428.mp4", "show": "The Big Bang Theory", "cue": "posture/movement", "emotions": ["intensity/emphasis", "engagement/attention"], "negated": false}
+{"qid": "video_428_1", "video": "video_428.mp4", "show": "The Big Bang Theory", "cue": "voice/speech", "emotions": ["anger"], "negated": true}
+{"qid": "video_430_0", "video": "video_430.mp4", "show": "Friends", "cue": "face", "emotions": ["intensity/emphasis"], "negated": false}
+{"qid": "video_430_1", "video": "video_430.mp4", "show": "Friends", "cue": "posture/movement", "emotions": ["engagement/attention"], "negated": false}
+{"qid": "video_430_2", "video": "video_430.mp4", "show": "Friends", "cue": "gaze", "emotions": ["joy"], "negated": true}
