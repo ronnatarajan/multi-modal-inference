@@ -4,6 +4,46 @@ Exploring how visual, audio, and textual information can improve social percepti
 
 > **Status:** Research planning. This README describes proposed experiments; it does not report completed implementations or results.
 
+## Running the baseline
+
+Baseline: Qwen3-Omni-30B watches each clip (video + audio) and describes it → GPT-OSS-120B splits the description into single observations → Qwen3-Omni picks A or B. The model runs on vLLM on Scholar's **GB10 (spark) nodes**. All the Scholar-specific fixes are already in the code, so these steps should just work.
+
+**One-time setup** (on a spark node, ~15 min, everything goes to your scratch):
+
+1. `bash scripts/setup.sh`: installs the pinned environment, links the model weights, and verifies their checksums. By default it uses the team's shared read-only copy of the weights on Scholar scratch (`/scratch/scholar/park1643/multi-modal-inference/models/Qwen3-Omni-30B-A3B-Instruct`), so there's no download.
+   - **Backup: download your own copy** (66 GB, to your scratch). Use this if the shared copy is unreachable (setup does it automatically then), gone, or fails the checksum:
+     ```bash
+     SHARED_MODEL_DIR= bash scripts/setup.sh
+     ```
+     It downloads the same pinned revision, so results are identical either way.
+2. `cp .env.example .env` and put your RCAC GenAI key in it (used for the decompose step).
+3. Put the VIBE data in `vibe/` (`vibe_task.jsonl` + `videos/`). It's not in git.
+
+**Each session:**
+
+```bash
+bash scripts/start.sh --limit 15   # loads the model in a tmux session (~5.5 min)
+tmux attach -t vlm                 # watch it; detach with Ctrl-b then d (it keeps running)
+```
+
+When it says `Ready.`, type prompt files at `describe>`:
+
+```
+describe> prompts/describe_speaker_focused.txt       # runs the first 15 questions
+describe> prompts/describe_speaker_focused.txt 50    # this run only: first 50
+describe> q                                          # quit when you're done for the day
+```
+
+- Prompt files (`describe_*.txt`, `decompose.txt`, `decide.txt`) are re-read on every run: edit, then run again. Python changes need a restart.
+- Results go to `results/<prompt name>.jsonl` (`_2`, `_3`, … for reruns, never overwritten), with a copy of the exact prompt in `results/<name>.prompt.txt`.
+- Speed: ~5 s per clip when batched (was ~5 min with HF transformers).
+
+**Keep the model loaded all session.** On the GB10 nodes, memory isn't freed when the model exits, so a second load on the same node fails (`Only N GB GPU memory free`). If that happens, or after any crash, start a new OnDemand session. That's why `start.sh` keeps one copy loaded in tmux instead of reloading per run.
+
+**Reproducibility check** (optional, in a fresh session; it uses up that session's memory): `.venv/bin/python scripts/smoke_test.py` must print `Alone vs batched identical: True` and fingerprint **`dcd85083db0cab17`**. A different fingerprint means your setup differs from everyone else's: weights, package versions, or not a GB10.
+
+Using Claude Code? `CLAUDE.md` tells it how to drive the tmux session for you.
+
 ## Motivation
 
 Social reasoning depends on subtle cues: facial expressions, body language, gaze, interactions between people, and changes over time. A video description can omit an important cue, introduce an unsupported detail, or assign the wrong meaning to something that is visible. These errors can affect the downstream model's answer.
