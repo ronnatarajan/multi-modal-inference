@@ -5,13 +5,16 @@ model outputs, using a fixed seed (577), so rerunning gives the same set.
 
 ## Files
 
-- `videos.txt`: the 100 chosen videos.
+Laid out like `vibe/`:
+
+- `videos/`: the 100 chosen clips, copied unchanged from `vibe/videos/`.
 - `vibe_task.jsonl`: their 238 questions, in the same format as `vibe/vibe_task.jsonl`.
+- `video_ids.txt`: the 100 chosen video file names.
 - `tags.jsonl`: the tags used for the spread (show, cue type, meaning, negated) for each question.
 - `english_videos.json`: the 275 English videos and the show each one is from.
 - `sample.py` and `tags.py`: the selection code.
 
-To regenerate (from the repo root, with `vibe/` in place):
+To regenerate everything, including `videos/` (from the repo root, with `vibe/` in place):
 
 ```bash
 .venv/bin/python data/sampled100/sample.py vibe data/sampled100/english_videos.json data/sampled100

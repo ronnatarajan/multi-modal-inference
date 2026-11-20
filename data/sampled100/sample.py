@@ -5,7 +5,7 @@ Inputs are the dataset only: vibe/vibe_task.jsonl text, plus the language/show o
 
 Usage (from the repo root):  .venv/bin/python data/sampled100/sample.py vibe data/sampled100/english_videos.json data/sampled100
 """
-import collections, json, math, random, sys
+import collections, json, math, random, shutil, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -87,7 +87,11 @@ for k in full:
 
 if not dry:
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "videos.txt").write_text("\n".join(chosen) + "\n")
+    (out_dir / "video_ids.txt").write_text("\n".join(chosen) + "\n")
+    # Same layout as vibe/: videos/ next to vibe_task.jsonl.
+    (out_dir / "videos").mkdir(exist_ok=True)
+    for v in chosen:
+        shutil.copy2(vibe / "videos" / v, out_dir / "videos" / v)
     keep = ("task_id", "video", "fact", "inference_A", "inference_B", "answer")
     with open(out_dir / "vibe_task.jsonl", "w") as f:
         for q in questions:
