@@ -1,11 +1,8 @@
-### Task Overview
-You will be given a video clip, with audio, with one main speaker.
-### Task Guidelines
-- Without using any adjectives or emotions, describe the changes in the facial features
-(eyebrows, forehead, eyes, nose, cheeks, mouth and lips) and the body language (arms,
-hands, legs, torso) of the main speaker. Do not interpret what they mean.
-- Quote what the speaker says.
-- Output only these two parts.
-### Response Format
-Speech: "<the speaker's exact words>"
-Description: <the changes in the speaker's face and body, and what else happens in the clip>
+You are given a short video clip from a TV show. There is one main speaker. Throughout the video, think out loud about the mouth movements of the people in the foreground. Based on this, decide who the main speaker is.
+
+Quote what the speaker says.
+
+In 3-4 sentences, without using any adjectives or emotions, describe the changes in the facial features (eyebrows, forehead, eyes, nose, cheeks, mouth and lips.) of the identified speaker. Do not interpret what they mean.
+
+In 3-4 sentences, without using any adjectives or emotions, describe the changes in the body language (arms, hands, legs, torso) of the identified speaker. Do not interpret what they mean.
+
