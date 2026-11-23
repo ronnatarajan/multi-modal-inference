@@ -2,7 +2,10 @@
 for you to type a describe prompt file; run as many as you like without reloading.
 
 Start it with:  bash scripts/start.sh        (runs this inside tmux so it survives disconnects)
-or directly:    .venv/bin/python run_baseline.py [--limit N]
+or directly:    .venv/bin/python run_baseline.py [--limit N] [--data DIR]
+
+--data picks the dataset folder (vibe_task.jsonl + videos/), default vibe/. For the main test set:
+    bash scripts/start.sh --data data/sampled100
 
 Then at the prompt:
     describe> prompts/describe_speaker_focused.txt          # run it on the first N questions
@@ -16,7 +19,8 @@ Why stay open: loading takes ~5.5 min, and on Scholar's GB10 nodes the memory is
 when the model exits, so a second load on the same node fails. Keep this running all session.
 
 Each run writes results/<prompt name>.jsonl (then _2, _3, ... if it already exists) plus a copy of
-the exact prompt text used, results/<same name>.prompt.txt.
+the exact prompt text used, results/<same name>.prompt.txt. With --data other than vibe/, results go in
+results/<dataset folder name>/ instead (e.g. results/sampled100/).
 """
 import argparse
 import json
@@ -28,11 +32,10 @@ from pipeline import decide_request, decompose, describe_request, parse_answer
 from qwen_omni import MODEL_NAME, generate, load_llm
 
 ROOT = Path(__file__).resolve().parent
-OUT_DIR = ROOT / "results"
 
 
-def load_items():
-    items = [json.loads(line) for line in open(ROOT / "vibe/vibe_task.jsonl")]
+def load_items(data_dir):
+    items = [json.loads(line) for line in open(data_dir / "vibe_task.jsonl")]
     # task_id is the video id, shared by all questions on that video, so give each question its own id.
     per_video = {}
     for item in items:
@@ -42,23 +45,23 @@ def load_items():
     return items
 
 
-def new_out_path(prompt_path):
-    """results/<name>.jsonl, or <name>_2.jsonl, _3, ... so earlier runs are never overwritten."""
-    path = OUT_DIR / f"{prompt_path.stem}.jsonl"
+def new_out_path(out_dir, prompt_path):
+    """<out_dir>/<name>.jsonl, or <name>_2.jsonl, _3, ... so earlier runs are never overwritten."""
+    path = out_dir / f"{prompt_path.stem}.jsonl"
     k = 2
     while path.exists():
-        path = OUT_DIR / f"{prompt_path.stem}_{k}.jsonl"
+        path = out_dir / f"{prompt_path.stem}_{k}.jsonl"
         k += 1
     return path
 
 
-def run_experiment(llm, processor, items, prompt_path):
+def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir):
     describe_prompt = prompt_path.read_text()
     videos = list(dict.fromkeys(item["video"] for item in items))  # unique, in order
     t_start = time.time()
 
     # 1. Describe every clip (VLM, video + audio), one batch.
-    requests = [describe_request(processor, ROOT / "vibe/videos" / v, describe_prompt) for v in videos]
+    requests = [describe_request(processor, data_dir / "videos" / v, describe_prompt) for v in videos]
     descriptions = dict(zip(videos, generate(llm, requests)))
     print(f"Described {len(videos)} clips in {time.time() - t_start:.0f}s", flush=True)
 
@@ -73,7 +76,7 @@ def run_experiment(llm, processor, items, prompt_path):
     replies = generate(llm, [decide_request(processor, assertions[item["video"]], item) for item in items])
     print(f"Decided {len(items)} questions in {time.time() - t0:.0f}s", flush=True)
 
-    out_path = new_out_path(prompt_path)
+    out_path = new_out_path(out_dir, prompt_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.with_suffix(".prompt.txt").write_text(describe_prompt)
     rel_prompt = str(prompt_path.relative_to(ROOT)) if prompt_path.is_relative_to(ROOT) else str(prompt_path)
@@ -101,8 +104,15 @@ def run_experiment(llm, processor, items, prompt_path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=None, help="default number of questions per run (default: all)")
+    parser.add_argument("--data", default="vibe", help="dataset folder with vibe_task.jsonl + videos/ (default: vibe)")
     args = parser.parse_args()
-    all_items = load_items()
+    data_dir = Path(args.data) if Path(args.data).is_absolute() else ROOT / args.data
+    if not (data_dir / "vibe_task.jsonl").is_file():
+        raise SystemExit(f"No vibe_task.jsonl in {data_dir}")
+    out_dir = ROOT / "results" if data_dir.resolve() == (ROOT / "vibe").resolve() else ROOT / "results" / data_dir.name
+    all_items = load_items(data_dir)
+    print(f"Dataset: {data_dir.relative_to(ROOT) if data_dir.is_relative_to(ROOT) else data_dir} "
+          f"({len(all_items)} questions) -> results in {out_dir.relative_to(ROOT)}/", flush=True)
 
     t0 = time.time()
     llm, processor = load_llm()
@@ -132,7 +142,7 @@ def main():
                 continue
             limit = int(parts[1])
         try:
-            run_experiment(llm, processor, all_items[:limit], prompt_path)
+            run_experiment(llm, processor, all_items[:limit], prompt_path, data_dir, out_dir)
         except KeyboardInterrupt:
             print("\nRun stopped. Model is still loaded.")
         except Exception as e:  # e.g. RCAC API down: report it and keep the model loaded

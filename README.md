@@ -23,6 +23,8 @@ Baseline: Qwen3-Omni-30B watches each clip (video + audio) and describes it → 
 
 ```bash
 bash scripts/start.sh --limit 15   # loads the model in a tmux session (~5.5 min)
+# or, on the main test set (data/sampled100, 238 questions):
+bash scripts/start.sh --data data/sampled100
 tmux attach -t vlm                 # watch it; detach with Ctrl-b then d (it keeps running)
 ```
 
@@ -35,7 +37,7 @@ describe> q                                          # quit when you're done for
 ```
 
 - Prompt files (`describe_*.txt`, `decompose.txt`, `decide.txt`) are re-read on every run: edit, then run again. Python changes need a restart.
-- Results go to `results/<prompt name>.jsonl` (`_2`, `_3`, … for reruns, never overwritten), with a copy of the exact prompt in `results/<name>.prompt.txt`.
+- Results go to `results/<prompt name>.jsonl` (`_2`, `_3`, … for reruns, never overwritten), with a copy of the exact prompt in `results/<name>.prompt.txt`. Runs with `--data data/sampled100` go to `results/sampled100/` instead.
 - Speed: ~5 s per clip when batched (was ~5 min with HF transformers).
 
 **Keep the model loaded all session.** On the GB10 nodes, memory isn't freed when the model exits, so a second load on the same node fails (`Only N GB GPU memory free`). If that happens, or after any crash, start a new OnDemand session. That's why `start.sh` keeps one copy loaded in tmux instead of reloading per run.
