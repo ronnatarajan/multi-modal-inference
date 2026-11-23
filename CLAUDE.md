@@ -27,7 +27,7 @@ The model takes ~5.5 min to load, and on GB10 nodes **its memory is not freed wh
 Five people run this and must get identical outputs. Don't change sampling, `VLLM_BATCH_INVARIANT`,
 prefix caching, pinned versions (`requirements.txt`), the weights revision (`scripts/env.sh`), or the
 frame sampling without telling the user: any of these changes everyone's results. `scripts/smoke_test.py`
-must print fingerprint `dcd85083db0cab17` (see README).
+must print fingerprint `00a0f821ec7552e2` (see README).
 
 ## GB10 failure modes already solved (don't rediscover them)
 

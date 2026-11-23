@@ -12,7 +12,8 @@ from qwen_omni import build_request
 
 PROMPTS = Path(__file__).resolve().parent / "prompts"
 
-N_FRAMES = 30     # frames sampled per clip; short clips use all their frames instead (see n_frames)
+N_FRAMES = 36     # frames per clip; short clips use all their frames instead (see n_frames). 36 so temporal
+                  # prompting can split it evenly into 1, 2 or 3 segments of even (paired) frame counts
 USE_AUDIO = True  # give the clip's audio to VLM call 1
 
 

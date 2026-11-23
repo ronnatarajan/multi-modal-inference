@@ -40,7 +40,7 @@ describe> q                                          # quit when you're done for
 
 **Keep the model loaded all session.** On the GB10 nodes, memory isn't freed when the model exits, so a second load on the same node fails (`Only N GB GPU memory free`). If that happens, or after any crash, start a new OnDemand session. That's why `start.sh` keeps one copy loaded in tmux instead of reloading per run.
 
-**Reproducibility check** (optional, in a fresh session; it uses up that session's memory): `.venv/bin/python scripts/smoke_test.py` must print `Alone vs batched identical: True` and fingerprint **`dcd85083db0cab17`**. A different fingerprint means your setup differs from everyone else's: weights, package versions, or not a GB10.
+**Reproducibility check** (optional, in a fresh session; it uses up that session's memory): `.venv/bin/python scripts/smoke_test.py` must print `Alone vs batched identical: True` and fingerprint **`00a0f821ec7552e2`** (36 frames, current `prompts/describe_speaker_focused.txt`; editing that prompt or the frame count changes it). A different fingerprint means your setup differs from everyone else's: weights, package versions, or not a GB10.
 
 Using Claude Code? `CLAUDE.md` tells it how to drive the tmux session for you.
 
