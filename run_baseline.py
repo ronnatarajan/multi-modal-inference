@@ -29,7 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from pipeline import decide_request, decompose, describe_request, parse_answer
-from qwen_omni import MODEL_NAME, generate, load_llm
+from qwen_omni import MODEL_NAME, generate, generate_in_chunks, load_llm
 
 ROOT = Path(__file__).resolve().parent
 
@@ -60,9 +60,9 @@ def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir):
     videos = list(dict.fromkeys(item["video"] for item in items))  # unique, in order
     t_start = time.time()
 
-    # 1. Describe every clip (VLM, video + audio), one batch.
-    requests = [describe_request(processor, data_dir / "videos" / v, describe_prompt) for v in videos]
-    descriptions = dict(zip(videos, generate(llm, requests)))
+    # 1. Describe every clip (VLM, video + audio), in chunks of clips to keep RAM flat (see qwen_omni.CHUNK).
+    descriptions = dict(zip(videos, generate_in_chunks(
+        llm, videos, lambda v: describe_request(processor, data_dir / "videos" / v, describe_prompt))))
     print(f"Described {len(videos)} clips in {time.time() - t_start:.0f}s", flush=True)
 
     # 2. Decompose (GPT-OSS on RCAC). Few threads: the server allows 20 calls/min and ask_llm retries on 429.

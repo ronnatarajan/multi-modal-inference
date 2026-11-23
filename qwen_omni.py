@@ -138,3 +138,19 @@ def generate(llm, requests):
     """Run a list of requests as one batch; returns the reply texts in the same order."""
     outputs = llm.generate(requests, SAMPLING)
     return [o.outputs[0].text.strip() for o in outputs]
+
+
+# A clip request holds ~245 MB of float32 frames (36 frames at 560x1008), and vLLM makes a processed copy of
+# it, so building every clip's request up front grows ~0.5 GB per clip. The OnDemand job's RAM limit is ~63 GB
+# (shared with everything else in the session), and a 100-clip run was OOM-killed that way. Chunks keep memory
+# flat. Outputs are unchanged (VLLM_BATCH_INVARIANT), and vLLM runs at most max_num_seqs=8 at a time anyway.
+CHUNK = 32
+
+
+def generate_in_chunks(llm, items, make_request, chunk=CHUNK):
+    """Like generate(), but builds and runs the requests `chunk` items at a time.
+    `make_request(item)` builds one request; returns the reply texts in the order of `items`."""
+    replies = []
+    for i in range(0, len(items), chunk):
+        replies += generate(llm, [make_request(item) for item in items[i:i + chunk]])
+    return replies
