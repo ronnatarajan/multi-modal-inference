@@ -21,6 +21,8 @@ The model takes ~5.5 min to load, and on GB10 nodes **its memory is not freed wh
 - Never kill session `vlm`, Ctrl-C the loader, or start a second model load on the same node. To stop for
   the day, send `q`. If startup prints `Only N GB GPU memory free`, tell the user to start a new OnDemand session.
 - Prompt and `.txt` edits apply on the next run without restarting; Python edits need a restart (= new session).
+- Temporal prompting (`experiments/temporal/`): `bash experiments/temporal/start.sh` uses the same session `vlm` and
+  rules; its prompt is `temporal>` and runs are `<prompt file> m=<2|3> [limit=N] [min=S]` (see its README).
 
 ## Reproducibility (the team's top requirement)
 

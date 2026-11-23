@@ -1,0 +1,5 @@
+This video is the {part} of a longer clip. The earlier parts of the clip were described as:
+
+{earlier}
+
+{prompt}

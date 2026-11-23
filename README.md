@@ -44,6 +44,8 @@ describe> q                                          # quit when you're done for
 
 **Reproducibility check** (optional, in a fresh session; it uses up that session's memory): `.venv/bin/python scripts/smoke_test.py` must print `Alone vs batched identical: True` and fingerprint **`00a0f821ec7552e2`** (36 frames, current `prompts/describe_speaker_focused.txt`; editing that prompt or the frame count changes it). A different fingerprint means your setup differs from everyone else's: weights, package versions, or not a GB10.
 
+**Other methods** live in `experiments/`, each with its own README, runner and results, and reuse the shared model code. Temporal change prompting: [`experiments/temporal/`](experiments/temporal/README.md).
+
 Using Claude Code? `CLAUDE.md` tells it how to drive the tmux session for you.
 
 ## Motivation
