@@ -8,39 +8,85 @@ Exploring how visual, audio, and textual information can improve social percepti
 
 Baseline: Qwen3-Omni-30B watches each clip (video + audio) and describes it → GPT-OSS-120B splits the description into single observations → Qwen3-Omni picks A or B. The model runs on vLLM on Scholar's **GB10 (spark) nodes**. All the Scholar-specific fixes are already in the code, so these steps should just work.
 
-**One-time setup** (on a spark node, ~15 min, everything goes to your scratch):
+### Mac terminal workflow for Scholar
 
-1. `bash scripts/setup.sh`: installs the pinned environment, links the model weights, and verifies their checksums. By default it uses the team's shared read-only copy of the weights on Scholar scratch (`/scratch/scholar/park1643/multi-modal-inference/models/Qwen3-Omni-30B-A3B-Instruct`), so there's no download.
-   - **Backup: download your own copy** (66 GB, to your scratch). Use this if the shared copy is unreachable (setup does it automatically then), gone, or fails the checksum:
-     ```bash
-     SHARED_MODEL_DIR= bash scripts/setup.sh
-     ```
-     It downloads the same pinned revision, so results are identical either way.
-2. `cp .env.example .env` and put your RCAC GenAI key in it (used for the decompose step).
-3. Put the VIBE data in `vibe/` (`vibe_task.jsonl` + `videos/`). It's not in git.
+Replace `PURDUE_USERNAME` with your Purdue username. See the [Scholar SSH guide](https://www.rcac.purdue.edu/knowledge/scholar/accounts) and [Scholar Spark guide](https://www.rcac.purdue.edu/knowledge/scholar/scholar-spark).
 
-**Each session:**
+**Mac terminal:** Connect to Scholar and keep this SSH session open while the interactive allocation runs.
 
 ```bash
-bash scripts/start.sh --limit 15   # loads the model in a tmux session (~5.5 min)
-# or, on the main test set (data/sampled100, 238 questions):
-bash scripts/start.sh --data data/sampled100
-tmux attach -t vlm                 # watch it; detach with Ctrl-b then d (it keeps running)
+ssh PURDUE_USERNAME@scholar.rcac.purdue.edu
 ```
 
-When it says `Ready.`, type prompt files at `describe>`:
+**Scholar login node:** Create the checkout parent directory and request an interactive Spark allocation. Run setup and inference on the allocated node.
 
+```bash
+mkdir -p ~/cs577
+sinteractive -A scholar --partition=spark-interactive --qos=normal \
+  --time=02:00:00 --nodes=1 --cpus-per-task=10 --gres=gpu:1
 ```
-describe> prompts/describe_speaker_focused.txt       # runs the first 15 questions
-describe> prompts/describe_speaker_focused.txt 50    # this run only: first 50
-describe> q                                          # quit when you're done for the day
+
+**Allocated Spark compute node:** Initialize the Spark module tree and verify your allocation. Expect a `scholar-k*` or `scholar-l*` hostname, `aarch64`, and a Slurm job ID.
+
+```bash
+source /etc/profile
+module load modtree/spark
+hostname
+uname -m
+echo "$SLURM_JOB_ID"
 ```
 
-- Prompt files (`describe_*.txt`, `decompose.txt`, `decide.txt`) are re-read on every run: edit, then run again. Python changes need a restart.
-- Results go to `results/<prompt name>.jsonl` (`_2`, `_3`, … for reruns, never overwritten), with a copy of the exact prompt in `results/<name>.prompt.txt`. Runs with `--data data/sampled100` go to `results/sampled100/` instead.
-- Speed: ~5 s per clip when batched (was ~5 min with HF transformers).
+For the initial checkout, clone the private repository into `~/cs577/multi-modal-inference` if GitHub authentication is configured on Scholar. Your Mac's GitHub authentication does not automatically carry over. Alternatively, copy your local clone once from a **second Mac terminal** after creating `~/cs577`:
 
-**Keep the model loaded all session.** On the GB10 nodes, memory isn't freed when the model exits, so a second load on the same node fails (`Only N GB GPU memory free`). If that happens, or after any crash, start a new OnDemand session. That's why `start.sh` keeps one copy loaded in tmux instead of reloading per run.
+```bash
+rsync -av \
+  --exclude='.venv' --exclude='.env' --exclude='models/' \
+  --exclude='vibe/' --exclude='__pycache__/' \
+  ~/Desktop/multi-modal-inference \
+  PURDUE_USERNAME@scholar.rcac.purdue.edu:~/cs577/
+```
+
+For ongoing Codex development, edit the Scholar checkout directly with the RCAC MCP bridge. Check the registrations with `codex mcp list` on the Mac and confirm the session exposes remote file and command tools. Read `/etc/agents.d/AGENTS.md` before working on Scholar.
+
+**Allocated Spark compute node, one-time setup:**
+
+```bash
+cd ~/cs577/multi-modal-inference
+bash scripts/setup.sh
+cp -n .env.example .env
+nano .env
+```
+
+Enter `RCAC_API_KEY` privately in the editor and keep `.env` out of Git. Setup puts the pinned environment, model and caches on scratch. It uses the team's shared weights when accessible and downloads the pinned Qwen3-Omni-30B-A3B-Instruct weights to personal scratch if the shared config is unreadable. If the shared weights fail validation, use `SHARED_MODEL_DIR= bash scripts/setup.sh`. Reuse the installed environment and weights across sessions. Run setup again if scratch has purged them.
+
+Place the [VIBE dataset](https://huggingface.co/datasets/taniarini/vibe/tree/main) at `vibe/vibe_task.jsonl` and `vibe/videos/`. The dataset is distributed separately from Git. If you already have it locally, put the large dataset on scratch and symlink it into the checkout. On Scholar, run `source scripts/env.sh`, check space with `myquota`, then run `mkdir -p "$PROJECT_SCRATCH/vibe"`. From the **second Mac terminal**, copy the dataset using the default scratch path:
+
+```bash
+rsync -av ~/Desktop/multi-modal-inference/vibe/ \
+  PURDUE_USERNAME@scholar.rcac.purdue.edu:/scratch/scholar/PURDUE_USERNAME/multi-modal-inference/vibe/
+```
+
+Back in the **Spark shell**, if the checkout has no `vibe` entry, run `ln -s "$PROJECT_SCRATCH/vibe" vibe`.
+
+**Allocated Spark compute node, each session:**
+
+```bash
+cd ~/cs577/multi-modal-inference
+bash scripts/start.sh --limit 15
+tmux attach -t vlm
+```
+
+For the 238-question sampled test set, start with `bash scripts/start.sh --data data/sampled100`. The launcher currently checks for the default `vibe/vibe_task.jsonl` even when `--data` is supplied.
+
+**Application prompt:** Wait about 5.5 minutes for `Ready.`, then enter `prompts/describe_speaker_focused.txt` at `describe>`. Enter another description prompt path to rerun, or append a question limit, for example `prompts/describe_speaker_focused.txt 50`. The description, decomposition and decision prompts are read from disk for each run. Python changes take effect when a new runner starts.
+
+Results go to `results/<prompt name>.jsonl` with the exact description prompt in `results/<name>.prompt.txt`. Reruns get suffixes such as `_2`. Results for `--data data/sampled100` go under `results/sampled100/`.
+
+- Press **Ctrl+B**, release, then press **D** to detach without interrupting Python. Reattach with `tmux attach -t vlm` on the same compute node. A login-node shell sees its own tmux server.
+- **Ctrl+C** interrupts the foreground operation. During a baseline run, the runner catches it and returns to `describe>`. During model startup, it can stop the loader.
+- Keep the parent SSH session and interactive allocation open. The Slurm wall time applies even when tmux is detached.
+- When finished, enter `q` at `describe>`, then exit the remaining tmux shell and leave the allocation. The launcher leaves the shell open to preserve errors. If it says `Already running`, attach and check whether you see `describe>`, loader output, or an idle shell.
+- On GB10, model memory can stay occupied after Python exits. After a crash or an `Only N GB GPU memory free` error, follow the repository recovery procedure and start a fresh Spark session on a node with free memory. Keep one model load per session.
 
 **Reproducibility check** (optional, in a fresh session; it uses up that session's memory): `.venv/bin/python scripts/smoke_test.py` must print `Alone vs batched identical: True` and fingerprint **`00a0f821ec7552e2`** (36 frames, current `prompts/describe_speaker_focused.txt`; editing that prompt or the frame count changes it). A different fingerprint means your setup differs from everyone else's: weights, package versions, or not a GB10.
 
@@ -194,53 +240,13 @@ Full bibliographic references and links remain to be added after confirming the 
 - [ ] Compare model adaptation and calibrated voting.
 - [ ] Report results, costs, and failure analysis.
 
-## Setup
-
-Run these on a Scholar GPU node.
-
-1. Clone the repo and run setup. This installs the Python environment and downloads Qwen2.5-Omni-7B (~22 GB). It takes about 10–20 minutes.
-
-   ```bash
-   git clone <repo-url>
-   cd multi-modal-inference
-   bash scripts/setup.sh
-   ```
-
-   Everything large is saved to your scratch folder, not home (home has a 25 GB limit).
-
-2. Download `vibe.zip` from the [VIBE dataset page](https://huggingface.co/datasets/taniarini/vibe/tree/main) (you may need to log in and accept the terms first). Unzip it and put the `vibe` folder in the repo's main folder.
-
-3. Add your GPT-OSS key: [genai.rcac.purdue.edu](https://genai.rcac.purdue.edu/) → Profile → Settings → Account → Secret. Then:
-
-   ```bash
-   cp .env.example .env   # paste the key after RCAC_API_KEY=
-   ```
-
-4. Test that it works:
-
-   ```bash
-   .venv/bin/python scripts/smoke_test.py
-   ```
-
-   It should describe a video clip and print `SMOKE TEST PASSED`.
-
-Notes:
-
-- Load the model in code with `from qwen_omni import load_model, GENERATION_KWARGS`. Don't call `from_pretrained` directly, because it hangs on Scholar's GB10 nodes.
-- Run `source scripts/env.sh` before installing packages or downloading other models, so they go to scratch.
-- Scratch deletes files that go unused for a long time. If the model or `.venv` goes missing, run `bash scripts/setup.sh` again.
-
 ## Pipeline
 
-- `qwen_omni.py`: loads Qwen2.5-Omni-7B (the VLM).
-- `llm.py`: calls GPT-OSS-120B (the LLM).
-- `pipeline.py`: the three steps.
-  - `describe()`: inital VLM call, the VLM watches the clip (video + audio) and describes it.
-  - `decompose()`: LLM spliting the description into claims.
-  - `decide()`: Final VLM call to perform the task, no video input
-  - `parse_answer()`: pulls A or B out of the reply.
-- `run_baseline.py`: runs `describe` → `decompose` → `decide` over VIBE (one description per video), saves one line per question to `results/`, and prints accuracy.
-- `prompts/`: one prompt per step. The describe prompt is picked with `--describe`.
+- `qwen_omni.py` loads Qwen3-Omni-30B-A3B-Instruct through the vLLM Python API.
+- `llm.py` calls GPT-OSS-120B through RCAC GenAI.
+- `pipeline.py` builds requests with `describe_request()` and `decide_request()`, calls GPT-OSS in `decompose()`, and extracts A or B with `parse_answer()`.
+- `run_baseline.py` describes and decomposes once per video, then answers each question from its claims and writes one JSONL row per question.
+- `prompts/` contains the baseline prompts. Select the description prompt at `describe>`.
 
 ### Describe prompt
 
