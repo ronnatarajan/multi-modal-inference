@@ -41,7 +41,7 @@ def new_out_path(out_dir, stem):
     return path
 
 
-def run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir):
+def run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir, tag=""):
     describe_prompt = prompt_path.read_text()
     block = temporal.EARLIER_BLOCK.read_text()
     videos = list(dict.fromkeys(item["video"] for item in items))
@@ -63,7 +63,7 @@ def run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir):
     replies = generate(llm, [decide_request(processor, assertions[item["video"]], item) for item in items])
     print(f"Decided {len(items)} questions in {time.time() - t0:.0f}s", flush=True)
 
-    out_path = new_out_path(out_dir, f"{prompt_path.stem}_m{m}")
+    out_path = new_out_path(out_dir, f"{prompt_path.stem}_m{m}{tag}")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.with_suffix(".prompt.txt").write_text(
         describe_prompt + "\n\n--- experiments/temporal/prompts/earlier_segments.txt ---\n" + block)
@@ -103,26 +103,33 @@ def run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir):
 
 
 def parse_line(line, default_limit):
-    """'<prompt file> m=<2|3> [limit=N] [min=S]' -> (path, m, limit, min_s), or an error string."""
+    """'<prompt file> m=<2|3> [limit=N] [min=S] [range=A:B]' -> (path, m, limit, min_s, rng), or an error string.
+    range=A:B takes questions A+1..B (0-based, B exclusive), like run_baseline.py's 'A:B'."""
     parts = line.split()
     opts = {}
     for part in parts[1:]:
         key, sep, value = part.partition("=")
-        if not sep or key not in ("m", "limit", "min"):
-            return "Usage: <prompt file> m=<1|2|3> [limit=N] [min=SECONDS]"
+        if not sep or key not in ("m", "limit", "min", "range"):
+            return "Usage: <prompt file> m=<1|2|3> [limit=N] [min=SECONDS] [range=A:B]"
         opts[key] = value
     try:
         m = int(opts.get("m", ""))
         limit = int(opts["limit"]) if "limit" in opts else default_limit
         min_s = float(opts.get("min", 0))
+        rng = None
+        if "range" in opts:
+            a, b = (int(x) for x in opts["range"].split(":"))
+            if not 0 <= a < b:
+                raise ValueError
+            rng = (a, b)
     except ValueError:
-        return "Usage: <prompt file> m=<1|2|3> [limit=N] [min=SECONDS]"
+        return "Usage: <prompt file> m=<1|2|3> [limit=N] [min=SECONDS] [range=A:B]"
     if m not in (1, 2, 3):
         return "m must be 1, 2 or 3"
     path = Path(parts[0]) if Path(parts[0]).is_absolute() else ROOT / parts[0]
     if not path.is_file():
         return f"No such file: {path}"
-    return path, m, limit, min_s
+    return path, m, limit, min_s, rng
 
 
 def main():
@@ -159,8 +166,11 @@ def main():
         if isinstance(parsed, str):
             print(parsed)
             continue
-        prompt_path, m, limit, min_s = parsed
-        items = all_items
+        prompt_path, m, limit, min_s, rng = parsed
+        items, tag = all_items, ""
+        if rng:
+            items = all_items[rng[0]:rng[1]]
+            tag = f"_q{rng[0] + 1}-{min(rng[1], len(all_items))}"
         if min_s:
             for v in {i["video"] for i in items} - durations.keys():
                 durations[v] = temporal.plan(data_dir / "videos" / v, 1)["duration"]
@@ -170,7 +180,7 @@ def main():
             print("No questions match.")
             continue
         try:
-            run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir)
+            run_experiment(llm, processor, items, prompt_path, m, data_dir, out_dir, tag)
         except KeyboardInterrupt:
             print("\nRun stopped. Model is still loaded.")
         except Exception as e:  # e.g. RCAC API down: report it and keep the model loaded

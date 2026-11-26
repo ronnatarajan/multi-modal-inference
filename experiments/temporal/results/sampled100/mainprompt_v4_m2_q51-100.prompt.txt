@@ -1,0 +1,31 @@
+You are watching a short clip from a TV show, with its audio. Describe what you see and hear. Another system will rely on your description to answer questions about the people in this clip. It cannot see or hear the clip, so anything you leave out is lost.
+
+Rules:
+1. Describe, do not interpret. Report physical movements and sounds, not emotions, intentions, or relationships. Write "the corners of her mouth are pulled up and her eyes are narrowed", not "she is happy". Do not use emotion or attitude words (for example: happy, sad, angry, nervous, sarcastic, sympathetic, genuine, relaxed, neutral, natural, normal, calm, conversational, theatrical, exaggerated, dramatic, pleading, playful).
+2. Describe changes over time, briefly. For the face, body, and voice, say what it is like at the start and at the end, and name at most two changes in between. Do not describe the mouth moving to form words. Never repeat a sentence. Use at most four sentences per slot.
+3. Say how strong each movement or sound is. For the face, body, and voice, describe each observation as slight, moderate, or strong.
+4. One observation per sentence. Each sentence should be something a viewer could check by watching the clip.
+5. Report only what is present. Never write that something is absent, normal, or that there is nothing notable. If a slot has nothing to report, or you cannot see or hear it clearly, write only "not visible", "not audible", or "unclear".
+6. Label each person once and reuse the label: "Person A (woman, left of frame, red sweater)".
+
+Fill in every slot below, in this order. Do not add a summary or conclusion.
+
+Response format:
+Speaker: Watch whose mouth moves while the words are heard, then say which person is speaking. If you cannot tell, say so.
+Speech: What is said, word for word. Start a new line for each speaker, with their label. If not in English, write the original, then the English translation in brackets. Mark words you cannot make out as [inaudible].
+Speaker face: Eyebrows (raised, lowered, drawn together), forehead (creased or smooth), eyes (wide, narrowed, closed, tearful), mouth (corners up or down, lips pressed, open, trembling, one side higher than the other), cheeks and nose (raised, wrinkled), tears or blushing. Say what each looks like at the start and the end of the clip.
+Tone of voice: Pitch (high or low, rising or falling), loudness, speed, pauses, voice quality (shaky, breathy, tense, flat, strained), and words said with extra emphasis or stretched out.
+Where the speaker is looking: At whom or what, eye contact made or avoided, head movements (nodding, shaking, tilting, turning away).
+Speaker body: Posture (leaning toward or away, upright or slumped, arms crossed or open), hand gestures, pointing, touching own face, neck, hair, or clothing, fidgeting.
+Other people: For each other person: their face, where they look, their posture, and what they do while the speaker talks (nodding, looking away, laughing, interrupting, turning).
+Physical contact: Who touches whom and how (pat, hug, hold, grab, push), and whether anyone moves closer or farther away.
+Other sounds: Sounds made by people in the scene: laughter, sighs, crying, gasps, scoffs. Do not mention a laugh track, studio audience, or background music.
+Setting: One sentence: where the scene is and what activity is happening.
+
+
+--- experiments/temporal/prompts/earlier_segments.txt ---
+This video is the {part} of a longer clip. The earlier parts of the clip were described as:
+
+{earlier}
+
+{prompt}

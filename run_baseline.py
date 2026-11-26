@@ -11,6 +11,8 @@ Then at the prompt:
     describe> prompts/describe_speaker_focused.txt          # run it on the first N questions
     describe> prompts/describe_speaker_focused.txt 30       # override the limit for this run
     describe> prompts/describe_speaker_focused.txt 30:60    # questions 31-60 only (-> <name>_q31-60.jsonl)
+    describe> prompts/describe_speaker_focused.txt+prompts/mainprompt_v4 50:100
+                                                            # combined: describe with both, join, then decompose
     describe> q                                             # quit (or Ctrl-D)
 
 The describe prompt, decompose.txt and decide.txt are re-read every run, so edit them and run again.
@@ -48,9 +50,9 @@ def load_items(data_dir):
     return items
 
 
-def new_out_path(out_dir, prompt_path, tag=""):
+def new_out_path(out_dir, name, tag=""):
     """<out_dir>/<name><tag>.jsonl, or <name><tag>_2.jsonl, _3, ... so earlier runs are never overwritten."""
-    stem = prompt_path.stem + tag
+    stem = name + tag
     path = out_dir / f"{stem}.jsonl"
     k = 2
     while path.exists():
@@ -71,19 +73,29 @@ def parse_range(arg, n_items):
     return None
 
 
-def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir, tag=""):
-    describe_prompt = prompt_path.read_text()
+def run_experiment(llm, processor, items, prompt_paths, data_dir, out_dir, tag=""):
+    """prompt_paths: one describe prompt, or several (combined run): each clip is described once per prompt and
+    the descriptions are joined ("Description 1: ...", "Description 2: ...") before decompose."""
+    prompts = [p.read_text() for p in prompt_paths]
+    describe_prompt = prompts[0] if len(prompts) == 1 else "\n\n".join(
+        f"--- Description {i + 1}: {p.name} ---\n{text}" for i, (p, text) in enumerate(zip(prompt_paths, prompts)))
     videos = list(dict.fromkeys(item["video"] for item in items))  # unique, in order
     t_start = time.time()
 
     # 1. Describe every clip (VLM, video + audio), in chunks of clips to keep RAM flat (see qwen_omni.CHUNK).
-    descriptions = dict(zip(videos, generate_in_chunks(
-        llm, videos, lambda v: describe_request(processor, data_dir / "videos" / v, describe_prompt))))
-    print(f"Described {len(videos)} clips in {time.time() - t_start:.0f}s", flush=True)
+    per_prompt = [dict(zip(videos, generate_in_chunks(
+        llm, videos, lambda v, text=text: describe_request(processor, data_dir / "videos" / v, text))))
+        for text in prompts]
+    if len(prompts) == 1:
+        descriptions = per_prompt[0]
+    else:
+        descriptions = {v: "\n\n".join(f"Description {i + 1}:\n{d[v]}" for i, d in enumerate(per_prompt))
+                        for v in videos}
+    print(f"Described {len(videos)} clips x {len(prompts)} prompt(s) in {time.time() - t_start:.0f}s", flush=True)
 
     # Save the descriptions now, so a failure in the steps below doesn't lose them and slow clips can be
     # inspected. A failed run leaves this file without a .jsonl; the next run with this prompt overwrites it.
-    out_path = new_out_path(out_dir, prompt_path, tag)
+    out_path = new_out_path(out_dir, "+".join(p.stem for p in prompt_paths), tag)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.with_suffix(".prompt.txt").write_text(describe_prompt)
     out_path.with_suffix(".descriptions.json").write_text(json.dumps(descriptions, ensure_ascii=False, indent=1))
@@ -112,7 +124,7 @@ def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir, tag=""
     replies = [decided.get(item["qid"]) for item in items]
     print(f"Decided {len(todo)} questions in {time.time() - t0:.0f}s", flush=True)
 
-    rel_prompt = str(prompt_path.relative_to(ROOT)) if prompt_path.is_relative_to(ROOT) else str(prompt_path)
+    rel_prompt = "+".join(str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else str(p) for p in prompt_paths)
     correct = unparsed = 0
     with open(out_path, "w") as f:
         for item, reply in zip(items, replies):
@@ -168,9 +180,11 @@ def main():
         if not line:
             continue
         parts = line.split()
-        prompt_path = Path(parts[0]) if Path(parts[0]).is_absolute() else ROOT / parts[0]
-        if not prompt_path.is_file():
-            print(f"No such file: {prompt_path}")
+        # "a.txt+b.txt" = combined run: describe each clip with both prompts and join the descriptions.
+        prompt_paths = [Path(s) if Path(s).is_absolute() else ROOT / s for s in parts[0].split("+")]
+        missing = [p for p in prompt_paths if not p.is_file()]
+        if missing:
+            print(f"No such file: {missing[0]}")
             continue
         start, end, tag = 0, args.limit, ""
         if len(parts) > 1:
@@ -180,7 +194,7 @@ def main():
                 continue
             start, end, tag = parsed
         try:
-            run_experiment(llm, processor, all_items[start:end], prompt_path, data_dir, out_dir, tag)
+            run_experiment(llm, processor, all_items[start:end], prompt_paths, data_dir, out_dir, tag)
         except KeyboardInterrupt:
             print("\nRun stopped. Model is still loaded.")
         except Exception as e:  # e.g. RCAC API down: report it and keep the model loaded
