@@ -1,35 +1,22 @@
 You are watching a short clip from a TV show, with its audio. Describe what you see and hear. Another system will rely on your description to answer questions about the people in this clip. It cannot see or hear the clip, so anything you leave out is lost.
 
 Rules:
-1. Describe, do not interpret. Report physical movements and sounds, not emotions, intentions, or relationships. Write "the corners of her mouth are pulled up and her eyes are narrowed", not "she is happy". Do not use emotion or attitude words (for example: happy, sad, angry, nervous, sarcastic, sympathetic).
-2. One observation per sentence. Each sentence should be something a viewer could check by watching the clip.
-3. Report only what is actually present. If a slot does not apply, or you cannot see or hear it clearly, write "not visible", "not audible", or "unclear". Never guess to fill a slot.
-4. Label each person once and reuse the label: "Person A (woman, left of frame, red sweater)". Say which person is speaking. If you cannot tell who is speaking, say so.
-
-What each slot covers:
-- Setting: where the scene takes place, important objects, what activity is happening.
-- People present: how many people are visible, their labels, where they are in the frame, who is speaking.
-- Speaker face: eyebrows (raised, lowered, drawn together), eyes (wide, narrowed, closed, tearful), mouth (corners up or down, lips pressed, open, trembling), cheeks and nose (raised, wrinkled), tears or blushing, very brief expressions.
-- Where the speaker is looking: at whom, at what, away, or down; eye contact made or avoided; head movements (nodding, shaking, tilting, turning away).
-- Speaker body: posture (leaning toward or away, upright or slumped, arms crossed or open), hand gestures while speaking, pointing, touching own face, neck, hair, or clothing, fidgeting.
-- Physical contact between anyone: who touches whom and how (pat, hug, hold, grab, push), how close people are, whether anyone moves closer or farther away.
-- What others are doing: for each other person, their face, where they look, their posture, and how they respond to the speaker (nodding, looking away, laughing, interrupting, turning their body).
-- Speech: what is said, word for word. If more than one person speaks, start a new line for each with their label. If the speech is not in English, write it in the original language, then the English translation in brackets. Mark words you cannot make out as [inaudible].
-- Tone of voice: for each speaker, pitch (high or low, rising or falling), loudness, speed, pauses or hesitations, voice quality (shaky, breathy, tense, flat, strained), and words said with extra emphasis or stretched out.
-- Other sounds: laughter (from people in the scene or a laugh track), sighs, crying, gasps, scoffs, music, background noise.
-- Mismatches between channels: any place where the words, tone of voice, face, and body do not match each other (for example: positive words said in a flat voice with no smile). State only that they do not match and how. Do not say what the mismatch means.
+1. Describe, do not interpret. Report physical movements and sounds, not emotions, intentions, or relationships. Write "the corners of her mouth are pulled up and her eyes are narrowed", not "she is happy". Do not use emotion or attitude words (for example: happy, sad, angry, nervous, sarcastic, sympathetic, genuine, relaxed, neutral, natural, normal, calm, conversational, theatrical, exaggerated, dramatic, pleading, playful).
+2. Describe changes over time. For the face, body, and voice, say what it is like at the start, how it changes, and what it is like at the end. Short or brief movements matter.
+3. One observation per sentence. Each sentence should be something a viewer could check by watching the clip.
+4. Report only what is present. Never write that something is absent, normal, or that there is nothing notable. If a slot has nothing to report, or you cannot see or hear it clearly, write only "not visible", "not audible", or "unclear".
+5. Label each person once and reuse the label: "Person A (woman, left of frame, red sweater)".
 
 Fill in every slot below, in this order. Do not add a summary or conclusion.
 
 Response format:
-Setting: ...
-People present: ...
-Speaker face: ...
-Where the speaker is looking: ...
-Speaker body: ...
-Physical contact between anyone: ...
-What others are doing: ...
-Speech: "..."
-Tone of voice: ...
-Other sounds: ...
-Mismatches between channels: ...
+Speaker: Watch whose mouth moves while the words are heard, then say which person is speaking. If you cannot tell, say so.
+Speech: What is said, word for word. Start a new line for each speaker, with their label. If not in English, write the original, then the English translation in brackets. Mark words you cannot make out as [inaudible].
+Speaker face: Eyebrows (raised, lowered, drawn together), forehead (creased or smooth), eyes (wide, narrowed, closed, tearful), mouth (corners up or down, lips pressed, open, trembling, one side higher than the other), cheeks and nose (raised, wrinkled), tears or blushing. Say how each changes during the clip.
+Tone of voice: Pitch (high or low, rising or falling), loudness, speed, pauses, voice quality (shaky, breathy, tense, flat, strained), and words said with extra emphasis or stretched out.
+Where the speaker is looking: At whom or what, eye contact made or avoided, head movements (nodding, shaking, tilting, turning away).
+Speaker body: Posture (leaning toward or away, upright or slumped, arms crossed or open), hand gestures, pointing, touching own face, neck, hair, or clothing, fidgeting.
+Other people: For each other person: their face, where they look, their posture, and what they do while the speaker talks (nodding, looking away, laughing, interrupting, turning).
+Physical contact: Who touches whom and how (pat, hug, hold, grab, push), and whether anyone moves closer or farther away.
+Other sounds: Sounds made by people in the scene: laughter, sighs, crying, gasps, scoffs. Do not mention a laugh track, studio audience, or background music.
+Setting: One sentence: where the scene is and what activity is happening.
