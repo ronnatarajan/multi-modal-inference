@@ -10,6 +10,7 @@ or directly:    .venv/bin/python run_baseline.py [--limit N] [--data DIR]
 Then at the prompt:
     describe> prompts/describe_speaker_focused.txt          # run it on the first N questions
     describe> prompts/describe_speaker_focused.txt 30       # override the limit for this run
+    describe> prompts/describe_speaker_focused.txt 30:60    # questions 31-60 only (-> <name>_q31-60.jsonl)
     describe> q                                             # quit (or Ctrl-D)
 
 The describe prompt, decompose.txt and decide.txt are re-read every run, so edit them and run again.
@@ -47,17 +48,30 @@ def load_items(data_dir):
     return items
 
 
-def new_out_path(out_dir, prompt_path):
-    """<out_dir>/<name>.jsonl, or <name>_2.jsonl, _3, ... so earlier runs are never overwritten."""
-    path = out_dir / f"{prompt_path.stem}.jsonl"
+def new_out_path(out_dir, prompt_path, tag=""):
+    """<out_dir>/<name><tag>.jsonl, or <name><tag>_2.jsonl, _3, ... so earlier runs are never overwritten."""
+    stem = prompt_path.stem + tag
+    path = out_dir / f"{stem}.jsonl"
     k = 2
     while path.exists():
-        path = out_dir / f"{prompt_path.stem}_{k}.jsonl"
+        path = out_dir / f"{stem}_{k}.jsonl"
         k += 1
     return path
 
 
-def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir):
+def parse_range(arg, n_items):
+    """'N' -> questions [0, N); 'A:B' -> questions [A, B) (0-based, B exclusive, so 30:60 = questions 31-60).
+    Returns (start, end, tag for the output file name) or None if the argument is malformed."""
+    if arg.isdigit():
+        return 0, int(arg), ""
+    a, sep, b = arg.partition(":")
+    if sep and a.isdigit() and b.isdigit() and int(a) < int(b):
+        a, b = int(a), min(int(b), n_items)
+        return a, b, f"_q{a + 1}-{b}"
+    return None
+
+
+def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir, tag=""):
     describe_prompt = prompt_path.read_text()
     videos = list(dict.fromkeys(item["video"] for item in items))  # unique, in order
     t_start = time.time()
@@ -69,7 +83,7 @@ def run_experiment(llm, processor, items, prompt_path, data_dir, out_dir):
 
     # Save the descriptions now, so a failure in the steps below doesn't lose them and slow clips can be
     # inspected. A failed run leaves this file without a .jsonl; the next run with this prompt overwrites it.
-    out_path = new_out_path(out_dir, prompt_path)
+    out_path = new_out_path(out_dir, prompt_path, tag)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.with_suffix(".prompt.txt").write_text(describe_prompt)
     out_path.with_suffix(".descriptions.json").write_text(json.dumps(descriptions, ensure_ascii=False, indent=1))
@@ -158,14 +172,15 @@ def main():
         if not prompt_path.is_file():
             print(f"No such file: {prompt_path}")
             continue
-        limit = args.limit
+        start, end, tag = 0, args.limit, ""
         if len(parts) > 1:
-            if not parts[1].isdigit():
-                print("Usage: <prompt file> [limit]")
+            parsed = parse_range(parts[1], len(all_items))
+            if parsed is None:
+                print("Usage: <prompt file> [N | A:B]   (N = first N questions; A:B = questions A+1..B, e.g. 30:60)")
                 continue
-            limit = int(parts[1])
+            start, end, tag = parsed
         try:
-            run_experiment(llm, processor, all_items[:limit], prompt_path, data_dir, out_dir)
+            run_experiment(llm, processor, all_items[start:end], prompt_path, data_dir, out_dir, tag)
         except KeyboardInterrupt:
             print("\nRun stopped. Model is still loaded.")
         except Exception as e:  # e.g. RCAC API down: report it and keep the model loaded

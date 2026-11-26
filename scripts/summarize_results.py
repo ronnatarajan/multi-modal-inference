@@ -1,25 +1,30 @@
-"""One table of every run's accuracy, so results can be tracked in one place.
+"""Accuracy tables for every run, one summary per dataset, so results can be tracked in one place.
 
 Usage (from the repo root):
-    python3 scripts/summarize_results.py            # print the table
-    python3 scripts/summarize_results.py --write    # also write results/SUMMARY.md
+    python3 scripts/summarize_results.py            # print the tables
+    python3 scripts/summarize_results.py --write    # also write results/<dataset>/SUMMARY.md
 
-For runs on data/sampled100 it also splits accuracy into
-  dev  = the first 50 questions (used to develop the structured prompts), and
-  test = the held-out rest: questions 51-238, minus video_72 (its questions straddle the boundary).
-A run that doesn't cover a split shows "-" there. Questions skipped because decompose failed
-(decompose_failed: true) count as wrong, as in the runner's own summary.
+Datasets:
+  sampled100 DEV set (data/sampled100): develop prompts here, e.g. in batches of 30 questions
+             (`prompts/x 30:60`). Every run is compared with the baseline on the questions both have.
+  test391    held-out TEST set (data/test391): run a finished method once; never tune on it.
+  results/   (top level) early 15-question pilot runs on vibe/.
+For both, each run is paired with the largest baseline run (describe_speaker_and_surroundings*) on the
+questions both answered, with a sign test on the questions where they disagree.
+Questions skipped because decompose failed (decompose_failed: true) count as wrong.
 """
 import json
 import sys
+from math import comb
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+BASELINE = "describe_speaker_and_surroundings"
 DEV_N = 50
 
 
-def load_split():
-    """qids in data/sampled100 order -> (dev qids, test qids). Same numbering as run_baseline.load_items."""
+def sampled100_split():
+    """(dev qids, test qids) for data/sampled100, numbered like run_baseline.load_items."""
     path = ROOT / "data" / "sampled100" / "vibe_task.jsonl"
     if not path.exists():
         return set(), set()
@@ -29,51 +34,107 @@ def load_split():
         k = per_video.get(item["task_id"], 0)
         per_video[item["task_id"]] = k + 1
         qids.append((f"{item['task_id']}_{k}", item["video"]))
-    dev = {q for q, _ in qids[:DEV_N]}
     dev_videos = {v for _, v in qids[:DEV_N]}
-    test = {q for q, v in qids[DEV_N:] if v not in dev_videos}
-    return dev, test
+    return {q for q, _ in qids[:DEV_N]}, {q for q, v in qids[DEV_N:] if v not in dev_videos}
 
 
-def score(rows, qids=None):
+def acc(rows, qids=None, need=None):
     rows = [r for r in rows if qids is None or r["qid"] in qids]
-    if not rows:
-        return None
-    return sum(bool(r["correct"]) for r in rows), len(rows)
-
-
-def fmt(s, full=None):
-    if s is None or (full is not None and s[1] < full):
+    if not rows or (need is not None and len(rows) < need):
         return "-"
-    return f"{s[0]}/{s[1]} = {s[0] / s[1]:.3f}"
+    c = sum(bool(r["correct"]) for r in rows)
+    return f"{c}/{len(rows)} = {c / len(rows):.3f}"
+
+
+def sign_p(a, b):
+    m = a + b
+    return min(1.0, 2 * sum(comb(m, i) for i in range(min(a, b) + 1)) / 2 ** m) if m else 1.0
+
+
+def load_runs(folder):
+    runs = {}
+    for path in sorted(folder.glob("*.jsonl")):
+        rows = [json.loads(line) for line in open(path)]
+        if rows and "correct" in rows[0]:
+            runs[path.stem] = rows
+    return runs
+
+
+def run_table(runs, split=None):
+    head = "| Run | Prompt | Questions | Accuracy |"
+    sep = "| --- | --- | --- | --- |"
+    if split:
+        head, sep = head + " Dev (first 50) | Test (held-out 187) |", sep + " --- | --- |"
+    lines = [head + " Skipped |", sep + " --- |"]
+    for name, rows in runs.items():
+        line = f"| `{name}` | `{rows[0].get('describe_prompt', '?')}` | {len(rows)} | {acc(rows)} |"
+        if split:
+            line += f" {acc(rows, split[0], len(split[0]))} | {acc(rows, split[1], len(split[1]))} |"
+        lines.append(line + f" {sum(bool(r.get('decompose_failed')) for r in rows) or ''} |")
+    return lines
+
+
+def paired_table(runs):
+    """Every run vs the baseline run(s), on the questions both have."""
+    bases = [n for n in runs if n.startswith(BASELINE)]
+    if not bases:
+        return []
+    base = max(bases, key=lambda n: len(runs[n]))
+    b = {r["qid"]: r for r in runs[base]}
+    lines = [f"Paired with `{base}` on the questions both runs have:", "",
+             "| Run | Shared | Baseline | Run | Only baseline right | Only run right | p (sign test) |",
+             "| --- | --- | --- | --- | --- | --- | --- |"]
+    for name, rows in runs.items():
+        if name == base or name.startswith(BASELINE):
+            continue
+        shared = [r for r in rows if r["qid"] in b]
+        if not shared:
+            continue
+        only_b = sum(1 for r in shared if b[r["qid"]]["correct"] and not r["correct"])
+        only_r = sum(1 for r in shared if r["correct"] and not b[r["qid"]]["correct"])
+        lines.append(f"| `{name}` | {len(shared)} | {sum(b[r['qid']]['correct'] for r in shared)} "
+                     f"| {sum(r['correct'] for r in shared)} | {only_b} | {only_r} | {sign_p(only_b, only_r):.3f} |")
+    return lines
+
+
+SECTIONS = {
+    "sampled100": ("DEV set: data/sampled100",
+                   "238 questions on 100 clips. Develop prompts here, e.g. in batches of 30 "
+                   "(`prompts/x 30:60` = questions 31-60), and compare with the baseline below.",
+                   None, True),
+    "test391": ("TEST set (held out): data/test391",
+                "391 questions on 175 English clips not in sampled100. Run a finished method once; "
+                "don't tune on it.", None, True),
+}
 
 
 def main():
-    dev, test = load_split()
-    lines = ["| Run | Dataset | Prompt | All | Dev (first 50) | Test (held-out 187) | Skipped |",
-             "| --- | --- | --- | --- | --- | --- | --- |"]
-    for path in sorted(ROOT.glob("results/**/*.jsonl")) + sorted(ROOT.glob("experiments/*/results/**/*.jsonl")):
-        rows = [json.loads(line) for line in open(path)]
-        if not rows or "correct" not in rows[0]:
+    write = "--write" in sys.argv
+    for dataset, (title, blurb, split, paired) in SECTIONS.items():
+        folder = ROOT / "results" / dataset
+        runs = load_runs(folder) if folder.exists() else {}
+        if not runs:
             continue
-        rel = path.relative_to(ROOT)
-        dataset = path.parent.name
-        prompt = rows[0].get("describe_prompt", "?")
-        skipped = sum(bool(r.get("decompose_failed")) for r in rows)
-        on_sampled = dataset == "sampled100"
-        lines.append(f"| `{rel}` | {dataset} | `{prompt}` | {fmt(score(rows))} "
-                     f"| {fmt(score(rows, dev), len(dev)) if on_sampled else '-'} "
-                     f"| {fmt(score(rows, test), len(test)) if on_sampled else '-'} | {skipped or ''} |")
-    table = "\n".join(lines)
-    print(table)
-    if "--write" in sys.argv:
-        out = ROOT / "results" / "SUMMARY.md"
-        out.write_text("# Results summary\n\nGenerated by `python3 scripts/summarize_results.py --write`; "
-                       "rerun it after each run.\n\nDev = first 50 questions of data/sampled100 (used to develop "
-                       "the structured prompts). Test = held-out questions 51-238 minus video_72. "
-                       "\"-\" = the run doesn't cover that whole split. Skipped questions count as wrong.\n\n"
-                       + table + "\n")
-        print(f"\nwrote {out.relative_to(ROOT)}")
+        lines = [f"# {title}", "", blurb, "", "Generated by `python3 scripts/summarize_results.py --write`; "
+                 "rerun it after each run. Skipped questions count as wrong. \"-\" = the run doesn't cover "
+                 "that whole split.", ""]
+        lines += run_table(runs, sampled100_split() if split else None)
+        if paired:
+            lines += [""] + paired_table(runs)
+        text = "\n".join(lines) + "\n"
+        print(text)
+        if write:
+            (folder / "SUMMARY.md").write_text(text)
+            print(f"wrote {(folder / 'SUMMARY.md').relative_to(ROOT)}\n")
+
+    pilot = load_runs(ROOT / "results")
+    index = ["# Results", "", "- [DEV set (sampled100)](sampled100/SUMMARY.md): develop prompts here",
+             "- [TEST set (test391)](test391/SUMMARY.md): final evaluation only", ""]
+    if pilot:
+        index += ["Early 15-question pilot runs on vibe/:", ""] + run_table(pilot)
+    if write:
+        (ROOT / "results" / "SUMMARY.md").write_text("\n".join(index) + "\n")
+        print("wrote results/SUMMARY.md (index)")
 
 
 if __name__ == "__main__":
