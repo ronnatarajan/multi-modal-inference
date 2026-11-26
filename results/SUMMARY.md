@@ -15,3 +15,4 @@ Dev = first 50 questions of data/sampled100 (used to develop the structured prom
 | `results/sampled100/mainprompt_2.jsonl` | sampled100 | `prompts/mainprompt` | 25/50 = 0.500 | 25/50 = 0.500 | - |  |
 | `results/sampled100/mainprompt_v2.jsonl` | sampled100 | `prompts/mainprompt_v2` | 29/50 = 0.580 | 29/50 = 0.580 | - | 4 |
 | `results/sampled100/mainprompt_v3.jsonl` | sampled100 | `prompts/mainprompt_v3` | 39/50 = 0.780 | 39/50 = 0.780 | - |  |
+| `results/sampled100/mainprompt_v3_2.jsonl` | sampled100 | `prompts/mainprompt_v3` | 174/238 = 0.731 | 38/50 = 0.760 | 135/187 = 0.722 |  |
