@@ -7,6 +7,7 @@ import requests
 
 URL = "https://genai.rcac.purdue.edu/api/chat/completions"
 MODEL = "gpt-oss:120b"
+MAX_TIMEOUTS = 2  # tries per request on timeouts / 5xx before giving up (see ask_llm)
 
 # Read RCAC_API_KEY from .env (unless it's already set in the shell).
 for line in (Path(__file__).resolve().parent / ".env").read_text().splitlines():
@@ -22,16 +23,25 @@ def ask_llm(prompt):
     resets within about a minute."""
     headers = {"Authorization": f"Bearer {os.environ['RCAC_API_KEY']}"}
     body = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0}
-    for attempt in range(10):
+    # Timeouts and server errors get only MAX_TIMEOUTS tries: a request that hits the server's ~5 min limit
+    # (504) is identical on retry (temperature 0), so it usually times out again. Rate limits still get
+    # up to 10 tries, since they clear within a minute.
+    timeouts = rate_limits = 0
+    while timeouts < MAX_TIMEOUTS and rate_limits < 10:
         try:
             r = requests.post(URL, headers=headers, json=body, timeout=300)
         except requests.exceptions.RequestException:
+            timeouts += 1
             time.sleep(30)
             continue
-        rate_limited = r.status_code == 429 or (r.status_code == 400 and "rate limit" in r.text.lower())
-        if rate_limited or r.status_code >= 500:
-            time.sleep(60 if rate_limited else 30)
+        if r.status_code == 429 or (r.status_code == 400 and "rate limit" in r.text.lower()):
+            rate_limits += 1
+            time.sleep(60)
+            continue
+        if r.status_code >= 500:
+            timeouts += 1
+            time.sleep(30)
             continue
         r.raise_for_status()
         return r.json()["choices"][0]["message"]["content"].strip()
-    raise RuntimeError("RCAC server: gave up after 10 tries")
+    raise RuntimeError(f"RCAC server: gave up after {timeouts} timeouts/server errors and {rate_limits} rate limits")
