@@ -1,9 +1,2522 @@
-# v3 vs v7 on dev questions 51-238
+# Disagreements between baseline, v3 and v7 on dev questions 51-238
 
-v3 = structured slots (`prompts/mainprompt_v3`). v7 = VIBE baseline + one voice sentence (`prompts/mainprompt_v7`).
-Both prompts describe the voice: v7 asks for pitch, loudness, speed, pauses and emphasis; v3's tone slot asks for the same plus voice-quality words (shaky, breathy, tense, flat, strained).
+- **baseline** = `prompts/describe_speaker_focused.txt` (VIBE App. D prompt + quote). No voice description.
+- **v3** = `prompts/mainprompt_v3` (structured slots; Tone of voice slot lists pitch, loudness, speed, pauses, voice quality (shaky, breathy, tense, flat, strained), emphasized or stretched-out words).
+- **v7** = `prompts/mainprompt_v7` (baseline + one voice sentence: pitch, loudness, speed, pauses, emphasized words; no quality words).
 
-On these 188 questions: v3 136, v7 137, baseline 140. They disagree on 39: v3 right only 19, v7 right only 20.
+Totals on these 188 questions: baseline 140, v3 136, v7 137.
+
+Sections: [v3 vs baseline](#v3-baseline) · [v7 vs baseline](#v7-baseline) · [v3 vs v7](#v3-v7)
+
+<a id='v3-baseline'></a>
+# v3 vs baseline
+
+On these 188 questions: v3 136, baseline 140. Both right 119, both wrong 31; v3 right only 17, baseline right only 21.
+
+## Tag counts
+
+**v3 right, baseline wrong (17)**  
+cue: face 8, smile/laugh 5, hands/gesture 1, posture/movement 1, voice/speech 1, gaze 1  
+emotions: joy 5, other 5, anger 4, intensity/emphasis 4, calm/relaxed 2, engagement/attention 1, fear/anxiety 1  
+negated questions: 4  
+clips: 13
+
+**baseline right, v3 wrong (21)**  
+cue: face 10, smile/laugh 4, hands/gesture 3, gaze 2, posture/movement 1, voice/speech 1  
+emotions: joy 7, intensity/emphasis 5, engagement/attention 4, anger 4, fear/anxiety 4, other 2, sadness 2, surprise 1  
+negated questions: 7  
+clips: 18
+
+## v3 right, baseline wrong (17)
+
+### `video_150_1` · cue: smile/laugh · emotions: joy, calm/relaxed · negated
+**Fact:** There is a slight smile on the speaker's face.  
+**Correct (A):** The slight smile does not indicate a relaxed and content expression.  
+**Other (B):** The slight smile indicates a relaxed and content expression.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is low and the pace is slow. The voice is strained. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's overall body language—including narrowed eyes, a low and strained voice, and a slow, deliberate pace—suggests tension or unease rather than relaxation. While there is a slight smile, it appears inconsistent with the rest of the cues, which point more toward discomfort or forced calmness. Therefore, the smile likely does not reflect genuine relaxation or contentment. | The slight smile, combined with the relaxed hand position and upright, still posture, suggests a calm and composed demeanor. While the facial tension from the wrinkled forehead and lowered eyebrows might indicate some intensity, the smile itself aligns more closely with a controlled, content expression rather than one of discomfort or tension. Therefore, the smile likely reflects a sense of ease rather than its absence. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: You're gonna slice 'em up real nice.
+Speaker face: At the start, the corners of his mouth are pulled down and his eyes are narrowed. By the end, his mouth is open and his eyes are wide.
+Tone of voice: The pitch is low and the pace is slow. The voice is strained.
+Where the speaker is looking: He is looking to his right.
+Speaker body: He is sitting with his hands clasped in front of him.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in a room with a white brick wall, a chalkboard, and a refrigerator.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the brown suit jacket. He says, "You're gonna slice 'em up real nice."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His eyebrows raise slightly at the beginning of the sentence and lower towards the end. His forehead wrinkles a little as he talks.
+
+The man's hands are clasped together in front of him. His arms remain in the same position throughout the clip. His torso is upright and does not move. His shoulders are still.
+
+The man in the brown suit jacket is the main speaker. He says, "You're gonna slice 'em up real nice."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His eyebrows raise slightly at the beginning of the sentence and lower towards the end. His forehead wrinkles a little as he talks.
+
+The man's hands are clasped together in front of him. His arms remain in the same position throughout the clip. His torso is upright and does not move. His shoulders are still.
+```
+</details>
+
+### `video_150_2` · cue: face · emotions: other · negated
+**Fact:** His eyes are slightly crinkled.  
+**Correct (A):** The crinkled eyes do not indicate a genuine smile.  
+**Other (B):** The crinkled eyes indicate a genuine smile.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is low and the pace is slow. The voice is strained. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The crinkling of the eyes, often referred to as "crow's feet," is a key indicator of a Duchenne smile, which is associated with genuine positive emotion. However, this is contradicted by other cues such as the narrowed eyes, low pitch, strained voice, and slow delivery, which suggest tension or discomfort rather than happiness. Given the overall context, the crinkling may be more consistent with a forced or insincere expression rather than a genuine smile. | The crinkling of the eyes, especially when paired with raised eyebrows and forehead wrinkling, is a classic sign of a Duchenne smile, which is associated with genuine positive emotion. Since the speaker's facial muscles are engaged in a coordinated way that suggests authentic expression rather than just lip movement, this supports the idea of a genuine smile. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: You're gonna slice 'em up real nice.
+Speaker face: At the start, the corners of his mouth are pulled down and his eyes are narrowed. By the end, his mouth is open and his eyes are wide.
+Tone of voice: The pitch is low and the pace is slow. The voice is strained.
+Where the speaker is looking: He is looking to his right.
+Speaker body: He is sitting with his hands clasped in front of him.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in a room with a white brick wall, a chalkboard, and a refrigerator.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the brown suit jacket. He says, "You're gonna slice 'em up real nice."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His eyebrows raise slightly at the beginning of the sentence and lower towards the end. His forehead wrinkles a little as he talks.
+
+The man's hands are clasped together in front of him. His arms remain in the same position throughout the clip. His torso is upright and does not move. His shoulders are still.
+
+The man in the brown suit jacket is the main speaker. He says, "You're gonna slice 'em up real nice."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His eyebrows raise slightly at the beginning of the sentence and lower towards the end. His forehead wrinkles a little as he talks.
+
+The man's hands are clasped together in front of him. His arms remain in the same position throughout the clip. His torso is upright and does not move. His shoulders are still.
+```
+</details>
+
+### `video_157_2` · cue: face · emotions: engagement/attention
+**Fact:** Her eyes are slightly narrowed.  
+**Correct (A):** Her eyes being slightly narrowed indicates that she is focused on the conversation.  
+**Other (B):** Her eyes being slightly narrowed do not indicate that she is focused on the conversation.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The narrowing of the eyes, combined with the speaker maintaining steady eye contact and a clear, steady voice, suggests a state of concentration or engagement rather than disinterest. This is consistent with Interpretation A, which aligns with the attentive body language observed throughout the clip. | The narrowing of the eyes, combined with the slight forehead wrinkling and the animated hand gestures, suggests a heightened emotional state rather than simple focus. This expression is more consistent with skepticism or mild annoyance, especially given the context of her words, which carry a teasing or challenging tone. Therefore, the narrowing likely reflects emotional engagement rather than neutral concentration. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Remember how you said that you were really dense about poetry? [inaudible]
+Speaker face: At the start, her eyebrows are slightly raised and her mouth is open. By the end, her eyebrows are lowered and her mouth is closed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B throughout the clip.
+Speaker body: She touches her hair with her right hand, then lowers it. Her left hand rests on a glass object.
+Other people: Person B (woman, right of frame, brown top) listens, her head turned toward Person A. Her right hand rests on her hip.
+Physical contact: Person A's left hand is on a glass object. Person B's right hand is on the same object.
+Other sounds: Not audible.
+Setting: The scene is in a kitchen with shelves of jars and books. Two women are standing and talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move up and down. Her forehead wrinkles slightly. Her eyes narrow and open. Her mouth opens and closes. Her lips move in different shapes.
+
+Her right hand moves up to her head. Her left hand moves down to the vase. Her right hand moves down to the vase. Her left hand moves up to her chest.
+```
+</details>
+
+### `video_222_2` · cue: hands/gesture · emotions: anger, intensity/emphasis
+**Fact:** Her body language includes holding the mug firmly and leaning slightly forward.  
+**Correct (A):** Her body language suggests a strong emotional response, which aligns with the emotion of anger.  
+**Other (B):** Her body language suggests engagement and enthusiasm, which aligns with the emotion of joy.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is mid-range and steady. The pace is moderate, with a slight emphasis on the word "wouldn't." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The person is leaning forward and holding the mug firmly, which can indicate attentiveness and involvement in the conversation. However, her facial expressions shift from wide-eyed and raised eyebrows to a furrowed brow and creased forehead, which are more indicative of concern or skepticism than joy. While the forward lean suggests engagement, the overall expression does not align with the high arousal typically seen in joy or enthusiasm. Therefore, the interpretation involving a strong emotional response like anger is more consistent with the observed tension in her face. | The speaker's forward lean and firm grip on the mug indicate attentiveness and a desire to connect, which are signs of engagement rather than anger. While her facial tension could suggest frustration, the overall posture and focus on the conversation point more toward active involvement than emotional distress. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: I mean, I could, but I wouldn't.
+Speaker face: At the start, her eyebrows are raised and her eyes are wide. By the end, her eyebrows are drawn together and her forehead is creased. Her mouth is open at the start and closes slightly by the end.
+Tone of voice: The pitch is mid-range and steady. The pace is moderate, with a slight emphasis on the word "wouldn't."
+Where the speaker is looking: She is looking toward the right side of the frame, at another person.
+Speaker body: She holds a blue mug with both hands. Her hands move slightly as she speaks.
+Other people: Person B (woman, right of frame, purple top) is visible from the side, facing Person A. Person C (man, left of frame, black jacket) is seen from the back, standing with his back to the camera.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in what appears to be a bar or restaurant, with other people in the background.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the white shirt. She says, "I mean, I could, but I wouldn't."
+
+The woman in the white shirt's eyebrows move together and down. Her forehead wrinkles. Her eyes look forward and then shift to the side. Her mouth opens and closes, and her lips move with the words.
+
+The woman in the white shirt holds a blue mug with both hands. She moves her right hand to gesture and then returns it to the mug. Her left hand remains on the mug. Her torso is angled slightly toward the person she is speaking to.
+```
+</details>
+
+### `video_236_2` · cue: smile/laugh · emotions: joy, calm/relaxed · negated
+**Fact:** There is a slight smile on the speaker's face.  
+**Correct (A):** The slight smile does not suggest a relaxed and content expression.  
+**Other (B):** The slight smile suggests a relaxed and content expression.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is low and the speed is moderate. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight smile is present alongside narrowed eyes and a low-pitched, moderate-speed voice, which may indicate skepticism or guardedness rather than genuine relaxation or contentment. While smiles can signal positive emotions, the combination of facial tension and vocal tone suggests the smile may be more socially polite or masking underlying discomfort. Therefore, the smile likely does not reflect true relaxation or contentment. | The slight smile, combined with the relaxed posture and minimal tension in the facial muscles, indicates a calm and comfortable demeanor. While the speaker is expressing a cautionary opinion, the smile likely reflects a non-confrontational and agreeable attitude rather than discomfort or sarcasm. Therefore, the smile aligns more closely with a relaxed and content expression. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Yeah, I don't think you should say that even when
+Speaker face: At the start, the corners of his mouth are pulled up and his eyes are narrowed. At the end, his mouth is open and his eyes are narrowed.
+Tone of voice: The pitch is low and the speed is moderate.
+Where the speaker is looking: He is looking to his right.
+Speaker body: He is sitting with his arms on his knees.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in a room with a brown leather couch and a large green plant.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the black shirt. He says, "Yeah, I don't think you should say that even when..."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His jaw moves up and down. His eyebrows raise slightly at the beginning of the sentence.
+
+The man's torso remains mostly still. His arms are resting on his legs. His hands are not visible. His head turns slightly to the right.
+```
+</details>
+
+### `video_243_0` · cue: posture/movement · emotions: other
+**Fact:** She is sitting on a hospital bed.  
+**Correct (B):** Sitting on a hospital bed could indicate that she is dealing with a difficult situation or health issue.  
+**Other (A):** Sitting on a hospital bed could indicate that she is recovering from a procedure or celebrating a positive health milestone.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The pitch is low and the pace is slow. The voice is flat and the words are spoken with a sense of resignation. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's body language—such as the downturned mouth, lowered eyebrows, creased forehead, and narrowed eyes—combined with her slow, flat, resigned tone, suggests emotional weight rather than celebration. The context of being in a hospital bed, paired with these cues, points more strongly toward a challenging or somber situation rather than a positive milestone. | The woman's upright posture and controlled hand placement suggest composure rather than distress. Her facial expressions—slight eyebrow raises and shifting eyes—could indicate anticipation or reflection, aligning more with a meaningful beginning than overt discomfort. Given the phrase "And so it begins," the tone seems more declarative and hopeful than burdened. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: And so it begins.
+Speaker face: At the start, her eyebrows are slightly raised, her forehead is smooth, her eyes are open and looking forward, and her mouth is closed with corners slightly downturned. By the end, her eyebrows are lowered, her forehead is creased, her eyes are narrowed, and her mouth is open.
+Tone of voice: The pitch is low and the pace is slow. The voice is flat and the words are spoken with a sense of resignation.
+Where the speaker is looking: She looks forward, then turns her head to her right.
+Speaker body: She is sitting upright in a hospital bed with her arms resting on her lap.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: A woman is sitting in a hospital bed.
+```
+
+**baseline:**
+
+```
+The speaker is the woman in the red cardigan. She says, "And so it begins."
+
+The woman's mouth opens and closes as she speaks. Her eyebrows move slightly upwards. Her eyes look forward and then shift to the side. Her lips part and come together during the sentence.
+
+The woman's arms remain in the same position. Her hands are resting on her lap. Her torso is upright. Her legs are not visible in the frame.
+```
+</details>
+
+### `video_249_0` · cue: smile/laugh · emotions: other
+**Fact:** The man is smiling.  
+**Correct (A):** His smile indicates that he is enjoying the interaction with the woman.  
+**Other (B):** His smile is a facade to mask his anger.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | Person A's voice is high-pitched, loud, fast, with a rising inflection. Person B's voice is high-pitched, loud, fast, with a rising inflection. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's smile is accompanied by raised cheeks and a wrinkled nose, which are indicators of a genuine Duchenne smile. His open posture, leaning forward, and physical contact (hands on the woman's stomach) suggest warmth and engagement. These cues align more with genuine enjoyment than masking anger, which would likely involve tense facial muscles or conflicting body language. | The man's facial muscles, including his cheeks and lips, are engaged in a smile, but his eyebrows are slightly raised and his forehead shows small wrinkles, which can indicate tension or concern. His forward-leaning posture and hands on the woman's stomach suggest a close, possibly urgent interaction. While the smile may appear genuine, the combination of tense facial features and protective body language suggests it could be masking underlying emotions like worry or frustration rather than genuine enjoyment. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A's mouth moves while the words are heard. Person B's mouth moves while the words are heard. Person A is speaking.
+Speech: Person A: "You okay? What's wrong?" Person B: "I'm fine."
+Speaker face: Person A's eyebrows are raised, forehead is smooth, eyes are wide, mouth corners are up, cheeks are raised, nose is wrinkled. Person B's eyebrows are raised, forehead is smooth, eyes are wide, mouth corners are up, cheeks are raised, nose is wrinkled.
+Tone of voice: Person A's voice is high-pitched, loud, fast, with a rising inflection. Person B's voice is high-pitched, loud, fast, with a rising inflection.
+Where the speaker is looking: Person A is looking at Person B. Person B is looking at Person A.
+Speaker body: Person A is leaning forward, arms are open. Person B is lying down, arms are open.
+Other people: Person B's face is visible. Person B is looking at Person A. Person B's posture is reclined. Person B's hands are on Person A's arms.
+Physical contact: Person A's hands are on Person B's stomach. Person B's hands are on Person A's arms.
+Other sounds: Not audible.
+Setting: The scene is indoors, on a couch, with two people interacting.
+```
+
+**baseline:**
+
+```
+The main speaker is the man. He says, "You okay? What's wrong?"
+
+The man's eyebrows move slightly up and down. His forehead shows small wrinkles. His eyes look forward. His nose remains still. His cheeks move slightly. His mouth opens and closes, and his lips move.
+
+The man's arms are bent. His hands are on the woman's stomach. His legs are bent. His torso is leaning forward.
+```
+</details>
+
+### `video_249_1` · cue: smile/laugh · emotions: joy
+**Fact:** The man is smiling.  
+**Correct (B):** His smile suggests that he is feeling joy.  
+**Other (A):** His smile does not suggest that he is feeling joy.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | Person A's voice is high-pitched, loud, fast, with a rising inflection. Person B's voice is high-pitched, loud, fast, with a rising inflection. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's smile is accompanied by raised cheeks and a wrinkled nose, which are indicators of a genuine smile (Duchenne smile). Additionally, his wide eyes, open posture, and forward lean suggest engagement and concern rather than false positivity. These cues align more with authentic emotional expression than masking true feelings. | The man's facial expression includes a smile, but his eyebrows are slightly raised and his forehead shows small wrinkles, which can indicate concern rather than joy. Additionally, his forward-leaning posture and hands on the woman's stomach suggest he is focused on her well-being, reinforcing that his smile may be a response to worry rather than happiness. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A's mouth moves while the words are heard. Person B's mouth moves while the words are heard. Person A is speaking.
+Speech: Person A: "You okay? What's wrong?" Person B: "I'm fine."
+Speaker face: Person A's eyebrows are raised, forehead is smooth, eyes are wide, mouth corners are up, cheeks are raised, nose is wrinkled. Person B's eyebrows are raised, forehead is smooth, eyes are wide, mouth corners are up, cheeks are raised, nose is wrinkled.
+Tone of voice: Person A's voice is high-pitched, loud, fast, with a rising inflection. Person B's voice is high-pitched, loud, fast, with a rising inflection.
+Where the speaker is looking: Person A is looking at Person B. Person B is looking at Person A.
+Speaker body: Person A is leaning forward, arms are open. Person B is lying down, arms are open.
+Other people: Person B's face is visible. Person B is looking at Person A. Person B's posture is reclined. Person B's hands are on Person A's arms.
+Physical contact: Person A's hands are on Person B's stomach. Person B's hands are on Person A's arms.
+Other sounds: Not audible.
+Setting: The scene is indoors, on a couch, with two people interacting.
+```
+
+**baseline:**
+
+```
+The main speaker is the man. He says, "You okay? What's wrong?"
+
+The man's eyebrows move slightly up and down. His forehead shows small wrinkles. His eyes look forward. His nose remains still. His cheeks move slightly. His mouth opens and closes, and his lips move.
+
+The man's arms are bent. His hands are on the woman's stomach. His legs are bent. His torso is leaning forward.
+```
+</details>
+
+### `video_267_0` · cue: voice/speech · emotions: joy · negated
+**Fact:** The speaker is gesturing with open hands.  
+**Correct (A):** The open hand gestures do not suggest the speaker is feeling joy.  
+**Other (B):** The open hand gestures suggest the speaker is feeling joy.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | Open hand gestures often indicate openness, honesty, or a desire to connect, but they are not exclusive to joy. Given the speaker’s clear, steady voice and moderate pace, her tone seems neutral to positive, but there is no strong evidence of joy in her facial expressions—her eyebrows lower by the end, and her mouth closes. The gestures may instead reflect a conversational openness rather than emotional joy. | The open hand gestures, combined with the speaker's animated facial expressions such as raised eyebrows, wrinkled forehead, and flared nose, indicate emotional engagement and expressiveness. These cues are more consistent with conveying enthusiasm or joy rather than a neutral or negative emotion. Therefore, the open hand gestures likely reflect a positive emotional state. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (woman, left of frame, red sweater)
+Speech: And so she comes to the wedding.
+Speaker face: At the start, her eyebrows are raised and her mouth is open. By the end, her eyebrows are lowered and her mouth is closed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks toward Person B (man, right of frame, red sweater) and then turns her head slightly to the left.
+Speaker body: She stands with her arms slightly bent and hands open, gesturing outward. She then lowers her hands to her sides.
+Other people: Person B (man, right of frame, red sweater) stands with his back mostly to the camera, facing Person A. He remains still.
+Physical contact: No physical contact occurs.
+Other sounds: Not audible.
+Setting: The scene is set in a kitchen and living room area, with a refrigerator, table, and couch visible.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the pink shirt. She says, "And so she comes to the wedding."
+
+Her eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes open and close slightly. Her nose flares and relaxes. Her cheeks rise and fall. Her mouth opens and closes, and her lips move.
+
+Her arms move up and down. Her hands open and close. Her torso turns slightly. Her legs remain in place.
+
+The man in the red sweater is the main speaker. He says, "So she comes to the wedding."
+
+His eyebrows raise and lower. His forehead wrinkles and smooths out. His eyes open and close slightly. His nose flares and relaxes. His cheeks rise and fall. His mouth opens and closes, and his lips move.
+
+His arms remain in place. His hands remain in place. His torso remains in place. His legs remain in place.
+```
+</details>
+
+### `video_280_1` · cue: face · emotions: intensity/emphasis
+**Fact:** His mouth is open.  
+**Correct (A):** His mouth being open suggests he is shouting or speaking forcefully.  
+**Other (B):** His mouth being open does not suggest that he is shouting or speaking forcefully.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is high and the volume is loud. The speech is fast and forceful, with the words "not" and "Rachel" emphasized. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's mouth is open at the end of his speech, which aligns with his loud, forceful, and high-pitched delivery. Given that he emphasizes key words and speaks quickly, the open mouth is consistent with an intense, emotionally charged tone rather than a neutral or calm one. Therefore, the open mouth supports the interpretation that he is speaking forcefully. | The man's mouth is open in coordination with his speech, and his lips are moving with the words he is saying. His tone and delivery appear to be emphatic but not aggressive, and there are no signs of shouting such as raised volume or strained facial muscles. Therefore, the open mouth is more likely a natural part of speaking rather than an indication of forceful shouting. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B (man, right of frame, green t-shirt)
+Speech: I do not have feelings for Rachel, okay?
+Speaker face: At the start, the corners of his mouth are pulled down and his eyes are narrowed. At the end, his mouth is open and his eyes are wide.
+Tone of voice: The pitch is high and the volume is loud. The speech is fast and forceful, with the words "not" and "Rachel" emphasized.
+Where the speaker is looking: He is looking at Person A and turns his head slightly toward her.
+Speaker body: He is standing upright with his left arm bent and hand on his shoulder. His right hand moves in a small gesture.
+Other people: Person A (woman, left of frame, red sweater) is looking at Person B. Her face is not visible.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is indoors, in a hallway with a green door marked "20". A man and a woman are having a conversation.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the green t-shirt. He says, "I do not have feelings for Rachel, okay?"
+
+The man's eyebrows move up and down. His forehead wrinkles. His eyes look toward the woman. His mouth opens and closes. His lips move with the words. His cheeks move slightly.
+
+The man's left hand holds a grey jacket on his shoulder. His right hand moves in the air. His torso turns slightly. His head moves as he speaks. His arms shift with his gestures.
+
+The woman in the pink shirt is not speaking. Her mouth does not move. Her lips remain still. Her cheeks do not move. Her eyes look at the man. Her head is mostly still. Her body does not move.
+```
+</details>
+
+### `video_280_2` · cue: face · emotions: anger, fear/anxiety
+**Fact:** His facial expression is tense.  
+**Correct (B):** The tense facial expression suggests he is feeling anger.  
+**Other (A):** The tense facial expression does not suggest he is feeling anger.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The pitch is high and the volume is loud. The speech is fast and forceful, with the words "not" and "Rachel" emphasized. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's tense facial expression, combined with narrowed eyes, a high-pitched and loud voice, and forceful delivery, strongly indicates emotional arousal. While tension can stem from various emotions, the emphasis on "not" and "Rachel," along with the confrontational tone and direct gaze, align more closely with anger than other possible emotions. Therefore, the interpretation that the tension reflects anger is more supported by the evidence. | The man's tense facial expression, combined with his defensive tone and the context of denying feelings for someone, suggests he is under emotional pressure. While tension can indicate various emotions, his body language—such as the hand gestures and shifting posture—aligns more with discomfort or defensiveness than outright anger. Therefore, the tension likely reflects emotional strain rather than anger. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B (man, right of frame, green t-shirt)
+Speech: I do not have feelings for Rachel, okay?
+Speaker face: At the start, the corners of his mouth are pulled down and his eyes are narrowed. At the end, his mouth is open and his eyes are wide.
+Tone of voice: The pitch is high and the volume is loud. The speech is fast and forceful, with the words "not" and "Rachel" emphasized.
+Where the speaker is looking: He is looking at Person A and turns his head slightly toward her.
+Speaker body: He is standing upright with his left arm bent and hand on his shoulder. His right hand moves in a small gesture.
+Other people: Person A (woman, left of frame, red sweater) is looking at Person B. Her face is not visible.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is indoors, in a hallway with a green door marked "20". A man and a woman are having a conversation.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the green t-shirt. He says, "I do not have feelings for Rachel, okay?"
+
+The man's eyebrows move up and down. His forehead wrinkles. His eyes look toward the woman. His mouth opens and closes. His lips move with the words. His cheeks move slightly.
+
+The man's left hand holds a grey jacket on his shoulder. His right hand moves in the air. His torso turns slightly. His head moves as he speaks. His arms shift with his gestures.
+
+The woman in the pink shirt is not speaking. Her mouth does not move. Her lips remain still. Her cheeks do not move. Her eyes look at the man. Her head is mostly still. Her body does not move.
+```
+</details>
+
+### `video_282_2` · cue: face · emotions: anger
+**Fact:** Her mouth movements suggest she is speaking with intensity.  
+**Correct (A):** The mouth movements indicate she is possibly feeling frustration.  
+**Other (B):** The mouth movements do not indicate that she is possibly feeling frustration.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is high and the pace is fast. The voice is strained and the words are spoken with emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The combination of intense mouth movements, a strained voice, and facial tension (such as furrowed brows and narrowed eyes) suggests emotional intensity. While the mouth shape at the end of the clip (corners pulled down) could indicate frustration, the overall context of high pitch, fast pace, and emphatic delivery points more toward passion or urgency than frustration. Therefore, the evidence supports that her mouth movements are consistent with strong emotion, possibly frustration, but not definitively ruling it out. | The woman's mouth movements, including opening, closing, pressing, and spreading lips, combined with other intense facial expressions like eyebrow movement, forehead wrinkling, and nose flaring, suggest strong emotional engagement. While these cues could indicate frustration, they are equally consistent with emphatic or passionate speech, especially given her verbal content ("the kiss was good") and active hand gestures. Therefore, the intensity of her mouth movements is better explained as expressive emphasis rather than frustration. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (woman, left of frame, red sweater)
+Speech: [inaudible]
+Speaker face: At the start, her eyebrows are drawn together, her forehead is creased, her eyes are narrowed, and her mouth is open. At the end, her eyebrows are raised, her forehead is smooth, her eyes are wide, and her mouth is open with the corners pulled down.
+Tone of voice: The pitch is high and the pace is fast. The voice is strained and the words are spoken with emphasis.
+Where the speaker is looking: She looks down at her hands, then looks up and to her right, and then looks up and to her left.
+Speaker body: She moves her hands in a circular motion in front of her chest, then raises her right hand and points her index finger up and down. She then raises her left hand and points her index finger up and down.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in a kitchen. A woman is standing and talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the dark coat. She says, "No, no, the kiss was good."
+
+The woman's eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes open and close slightly. Her nose flares and relaxes. Her cheeks move up and down. Her mouth opens and closes, and her lips press together and spread apart.
+
+The woman raises her hands and moves them in front of her. Her arms move up and down. Her hands open and close. Her torso shifts slightly. Her body leans forward and back.
+```
+</details>
+
+### `video_282_3` · cue: gaze · emotions: anger, intensity/emphasis
+**Fact:** She is making direct eye contact.  
+**Correct (A):** Making direct eye contact is a common indicator of anger or strong emotion.  
+**Other (B):** Making direct eye contact is a sign of confidence and engagement, often associated with positive emotions like joy.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is high and the pace is fast. The voice is strained and the words are spoken with emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's facial expressions and vocal tone suggest high emotional intensity, including tension and strain, which aligns more closely with strong emotions like anger rather than joy. While direct eye contact can indicate confidence, the combination of furrowed brows, narrowed eyes, and a strained voice points toward a negative emotional state. Therefore, interpretation A is more consistent with the observed cues. | The woman's facial expressions, such as raised eyebrows, open eyes, and smiling cheeks, suggest a positive emotional state rather than anger. Her body language, including leaning forward and animated hand movements, indicates active engagement and openness. Therefore, interpretation B aligns better with the overall cues of confidence and positive emotion. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (woman, left of frame, red sweater)
+Speech: [inaudible]
+Speaker face: At the start, her eyebrows are drawn together, her forehead is creased, her eyes are narrowed, and her mouth is open. At the end, her eyebrows are raised, her forehead is smooth, her eyes are wide, and her mouth is open with the corners pulled down.
+Tone of voice: The pitch is high and the pace is fast. The voice is strained and the words are spoken with emphasis.
+Where the speaker is looking: She looks down at her hands, then looks up and to her right, and then looks up and to her left.
+Speaker body: She moves her hands in a circular motion in front of her chest, then raises her right hand and points her index finger up and down. She then raises her left hand and points her index finger up and down.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in a kitchen. A woman is standing and talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the dark coat. She says, "No, no, the kiss was good."
+
+The woman's eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes open and close slightly. Her nose flares and relaxes. Her cheeks move up and down. Her mouth opens and closes, and her lips press together and spread apart.
+
+The woman raises her hands and moves them in front of her. Her arms move up and down. Her hands open and close. Her torso shifts slightly. Her body leans forward and back.
+```
+</details>
+
+### `video_286_1` · cue: face · emotions: intensity/emphasis
+**Fact:** Her mouth movements are firm and deliberate.  
+**Correct (A):** Her mouth movements indicate a strong emotional response.  
+**Other (B):** Her mouth movements do not indicate a strong emotional response.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is high and the pace is fast. The voice is strained and loud. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's firm and deliberate mouth movements, combined with her wide eyes, high-pitched and loud voice, and fast speech pace, suggest she is emotionally charged. These cues align more closely with a strong emotional response rather than a neutral or controlled one. Therefore, interpretation A is more consistent with the overall body language and vocal tone. | The speaker's mouth movements are described as firm and deliberate, which suggests control and intentionality rather than unfiltered emotion. While her eyebrows and forehead show some tension, the deliberate nature of her articulation points more toward emphasis or assertiveness than a strong emotional reaction. Therefore, the movements are more likely indicating control than emotional intensity. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B
+Speech: Now wait a minute. You just took all the words.
+Speaker face: At the start, her eyebrows are raised and her eyes are wide. By the end, her eyebrows are lowered and her eyes are narrowed.
+Tone of voice: The pitch is high and the pace is fast. The voice is strained and loud.
+Where the speaker is looking: She looks toward Person A, then turns her head to look up and to her right.
+Speaker body: She stands with her arms at her sides, then raises her right arm and points upward.
+Other people: Person A (woman, left of frame, pink sweater) is sitting on a couch. She stands up, turns to face Person B, and raises her hands.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is in a furnished living room where two women are having a conversation.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the black top. She says, "Now wait a minute, you just took all the words."
+
+Her mouth opens and closes with each word. Her eyebrows raise and lower as she speaks. Her forehead wrinkles slightly when she raises her eyebrows. Her cheeks move as she forms the words.
+
+Her right arm extends forward with her palm up. Her left arm moves up and down. Her torso turns slightly to the side. Her legs remain mostly still.
+```
+</details>
+
+### `video_298_1` · cue: smile/laugh · emotions: joy
+**Fact:** The man next to her is smiling.  
+**Correct (A):** The man seems to be enjoying the moment, indicating a positive and joyful atmosphere.  
+**Other (B):** The man is smiling, which may be masking his true feelings or intentions, causing the speaker to feel fear.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | The pitch is mid-range and the speed is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's smile could be interpreted as genuine, especially given the casual setting and the speaker's calm, steady tone. The speaker's narrowed eyes and lowered eyebrows suggest concern or suspicion, but there's no evidence of fear in her voice or posture. The smile is more likely a sign of comfort or amusement rather than deception. | The man's smile, combined with his eyes looking down and closed mouth, suggests a more reserved or possibly nervous reaction rather than overt joy. Given the speaker's questioning tone and concerned facial expressions, her reaction seems more aligned with suspicion or anxiety rather than a joyful atmosphere. Therefore, interpretation B is more consistent with the subtle cues from both individuals. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Did you break up with her?
+Speaker face: At the start, her eyebrows are slightly raised and her eyes are narrowed. By the end, her eyebrows are lowered and her eyes are narrowed.
+Tone of voice: The pitch is mid-range and the speed is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B while speaking.
+Speaker body: She holds a book open with both hands and keeps her arms relatively still.
+Other people: Person B looks at Person A, then looks down at the book, then looks back at Person A. His head is tilted slightly.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a living room, where two people are sitting on a couch and looking at a book.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman. She says, "Did you break up with her?"
+
+Her eyebrows move slightly upward and inward. Her forehead shows small creases. Her eyes narrow a little. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are bent at the elbows. Her hands hold a book. Her legs are bent at the knees. Her torso is upright.
+
+The man is not the main speaker. His mouth is closed. His eyebrows are slightly raised. His eyes are looking down. His cheeks are slightly raised. His lips are closed. His arms are resting on his legs. His hands are on his lap. His legs are bent. His torso is upright.
+```
+</details>
+
+### `video_306_0` · cue: face · emotions: other
+**Fact:** His mouth is slightly open.  
+**Correct (B):** This suggests that he is feeling vulnerable or lost in thought.  
+**Other (A):** This suggests that he is reacting to something unexpected or surprising.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The pitch is low and the pace is slow. There is a pause after "So, uh," and the word "airport" is spoken with a slightly lower pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The observation that his mouth is slightly open at the start of the utterance, combined with the slow speech pace and low pitch, suggests a reflective or pensive state rather than surprise. The gradual lowering of his eyebrows and narrowing of his eyes toward the end of the sentence further indicate introspection or emotional processing, not a reaction to something unexpected. Therefore, the interpretation that he is feeling vulnerable or lost in thought aligns better with the overall body language cues. | The man's slightly open mouth, combined with his fluctuating eyebrows, forehead wrinkling, and subtle head movements, indicates a state of mild surprise or sudden realization rather than deep introspection. These micro-expressions are more consistent with reacting to new or unexpected information, especially since he is in the middle of delivering a statement about someone going to the airport. While vulnerability or being lost in thought could be possible, the active and reactive nature of his other body language points more strongly toward surprise. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (man, center of frame, black coat)
+Speech: So, uh, Emily just went to the airport.
+Speaker face: At the start, the eyebrows are slightly raised and the eyes are open. At the end, the eyebrows are lowered and the eyes are narrowed. The mouth is open at the start and closed at the end.
+Tone of voice: The pitch is low and the pace is slow. There is a pause after "So, uh," and the word "airport" is spoken with a slightly lower pitch.
+Where the speaker is looking: The speaker looks towards the right of the frame, then turns his head to look directly forward.
+Speaker body: The speaker stands with his arms at his sides. He raises his right hand and gestures outwards, then lowers it back to his side.
+Other people: Not visible.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with a refrigerator, a door, and a framed picture on the wall.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the black coat. He says, "So uh, Emily just went to the airport."
+
+The man's eyebrows move up and down. His forehead wrinkles and smooths out. His eyes open and close slightly. His nose flares a little. His cheeks move up and down. His mouth opens and closes, and his lips move.
+
+The man's right arm moves up and down. His left arm stays down. His torso moves slightly. His head moves up and down.
+```
+</details>
+
+### `video_417_0` · cue: face · emotions: other
+**Fact:** The woman has wide eyes and an open mouth.  
+**Correct (B):** Her facial expressions suggest she seems to be pleading or trying to make a point.  
+**Other (A):** Her facial expressions suggest she is surprised or astonished.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | Person B's voice is high-pitched, loud, fast, with a strained quality. Person A's voice is high-pitched, loud, fast, with a strained quality. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's wide eyes and open mouth, combined with her high-pitched, loud, and fast speech, suggest a heightened emotional state. While these expressions could indicate surprise, the context of her saying "it's just not a big deal" and her strained voice and hand gestures imply she is trying to emphasize or justify her point rather than express astonishment. Therefore, the interpretation that she is pleading or trying to make a point fits better with the overall tone and context. | The woman's wide eyes and open mouth are classic indicators of surprise or astonishment, especially when combined with her animated hand and arm movements, which suggest she is reacting to something unexpected. While her gestures could imply she is trying to emphasize a point, the facial cues align more strongly with a spontaneous emotional reaction rather than a deliberate attempt to plead. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B's mouth moves while the words are heard. Person A's mouth moves while the words are heard.
+Speech: Person B: "Right, I know, I know. So it's it's just not a big deal."
+Person A: "Right, I know, I know. So it's it's just not a big deal."
+Speaker face: Person B's eyebrows are raised, forehead is smooth, eyes are wide, mouth is open, lips are parted, cheeks are raised, nose is wrinkled. Person A's eyebrows are raised, forehead is smooth, eyes are wide, mouth is open, lips are parted, cheeks are raised, nose is wrinkled.
+Tone of voice: Person B's voice is high-pitched, loud, fast, with a strained quality. Person A's voice is high-pitched, loud, fast, with a strained quality.
+Where the speaker is looking: Person B is looking at Person A. Person A is looking at Person B.
+Speaker body: Person B's hands are moving. Person A's hands are moving.
+Other people: Person A's face is visible. Person A is looking at Person B. Person A's hands are moving.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with a light fixture on the wall. Two women are having a conversation.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman with brown hair. She says, "Right, I know, I know. So it's it's just not a big deal."
+
+The woman with brown hair's eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes open and close slightly. Her mouth opens and closes, and her lips move. Her cheeks move up and down.
+
+The woman with brown hair moves her hands up and down. Her arms move up and down. Her torso moves slightly. Her hands move in front of her.
+```
+</details>
+
+## baseline right, v3 wrong (21)
+
+### `video_76_0` · cue: hands/gesture · emotions: intensity/emphasis, engagement/attention
+**Fact:** The man is gesturing with his hands.  
+**Correct (B):** The gesturing suggests he is engaged and passionate about what he is saying.  
+**Other (A):** The gesturing does not suggest he is engaged and passionate about what he is saying.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The voice is low, the pace is slow, and the words are spoken with a strained quality. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's hands are held up in front of him with arms slightly bent, and his voice is low, slow, and strained—qualities that suggest internal tension rather than outward enthusiasm. While he is gesturing, the overall body language (narrowed eyes, downturned mouth, and tense delivery) conveys discomfort or seriousness, not passion. Therefore, the gesture likely reflects emotional strain rather than engagement or excitement. | The man's hand gestures, combined with his body turning toward the woman and active facial expressions like raised eyebrows and forehead wrinkles, indicate emotional investment in the conversation. These cues typically signal engagement and passion rather than disinterest. Therefore, interpretation B aligns better with the observed body language. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person C (man, right of frame, red sweater)
+Speech: I need a good lie.
+Speaker face: At the start, the corners of his mouth are pulled down and his eyes are narrowed. At the end, his mouth is open and his eyes are wide.
+Tone of voice: The voice is low, the pace is slow, and the words are spoken with a strained quality.
+Where the speaker is looking: He is looking at Person A.
+Speaker body: He is standing with his arms slightly bent and his hands held up in front of him.
+Other people: Person A (woman, left of frame, red sweater) is standing with her arms at her sides, looking at Person C. Person B (man, center of frame, black shirt) is standing with his arms at his sides, looking at Person C.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is in a kitchen with a dining table, chairs, and shelves filled with dishes.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the red sweater. He says, "I need a good lie."
+
+The man in the red sweater's mouth opens and closes as he speaks. His lips move to form the words. His eyebrows raise slightly as he talks. His forehead shows some wrinkles when he speaks.
+
+The man in the red sweater holds a box in his hands. He gestures with his hands while talking. His body turns towards the woman in the brown skirt. His arms move as he speaks.
+```
+</details>
+
+### `video_84_0` · cue: smile/laugh · emotions: joy
+**Fact:** The woman is smiling.  
+**Correct (A):** The smile on her face and the way she laughs indicate that she is enjoying herself and is in a positive emotional state.  
+**Other (B):** The smile on her face and the way she laughs do not indicate that she is enjoying herself and is in a positive emotional state.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's mouth is pulled up in a smile, but her eyes are narrowed, which may suggest a lack of genuine engagement or a forced expression. Additionally, her body is angled away and she is shifting weight, indicating possible discomfort or distraction. These cues combined with the context of cleaning up in a public setting suggest the smile may not reflect true enjoyment. | The woman is holding a mop and saying, “I’m just cleaning up,” which suggests she is engaged in a routine task. Her smile appears genuine, as indicated by the slight raising of her cheeks and the engagement of her eyes, which aligns with a positive emotional state. There is no evidence of forced or fake laughter, so the smile likely reflects genuine enjoyment or contentment. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: I'm just cleaning up.
+Speaker face: At the start, the corners of her mouth are pulled up and her eyes are narrowed. At the end, her mouth is open and her eyes are narrowed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She is looking towards the right of the frame.
+Speaker body: She is standing with her body angled slightly to the right. She holds a blue pole with both hands and shifts her weight from one foot to the other.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in what appears to be a bar or cafe, with a woman standing behind the counter.
+```
+
+**baseline:**
+
+```
+The woman in the blue shirt and apron is the main speaker. She says, "I'm just cleaning up."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her cheeks rise slightly as she talks. Her eyes remain open and focused forward.
+
+The woman holds a blue mop handle with both hands. Her arms are bent at the elbows. She shifts her weight slightly from one foot to the other. Her torso remains mostly upright.
+```
+</details>
+
+### `video_84_1` · cue: smile/laugh · emotions: joy
+**Fact:** The woman is smiling.  
+**Correct (A):** Her facial expressions suggest that she is in a cheerful and happy mood.  
+**Other (B):** Her smile is likely masking her feelings of disgust.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's mouth is pulled up in a smile, but her eyes are narrowed, which can indicate a Duchenne vs. non-Duchenne smile. Since the eyes are narrowed and not relaxed or crinkled at the corners, this suggests the smile may not be genuine. Combined with her body language—looking away, shifting weight, and holding a pole—she may be trying to appear friendly while feeling uncomfortable or displeased. This supports the idea that the smile is masking negative emotions like disgust. | The woman's smile is accompanied by raised cheeks and focused eyes, which are consistent with genuine positive emotion. Her relaxed posture, upright torso, and casual weight shifting further support a mood of ease and cheerfulness rather than discomfort or disgust. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: I'm just cleaning up.
+Speaker face: At the start, the corners of her mouth are pulled up and her eyes are narrowed. At the end, her mouth is open and her eyes are narrowed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She is looking towards the right of the frame.
+Speaker body: She is standing with her body angled slightly to the right. She holds a blue pole with both hands and shifts her weight from one foot to the other.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is indoors, in what appears to be a bar or cafe, with a woman standing behind the counter.
+```
+
+**baseline:**
+
+```
+The woman in the blue shirt and apron is the main speaker. She says, "I'm just cleaning up."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her cheeks rise slightly as she talks. Her eyes remain open and focused forward.
+
+The woman holds a blue mop handle with both hands. Her arms are bent at the elbows. She shifts her weight slightly from one foot to the other. Her torso remains mostly upright.
+```
+</details>
+
+### `video_99_0` · cue: hands/gesture · emotions: intensity/emphasis
+**Fact:** The man is gesturing with his hands.  
+**Correct (A):** His gesturing suggests that he is expressing strong emotions.  
+**Other (B):** His gesturing does not suggest that he is expressing strong emotions.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man’s gestures—raising both hands and pointing with his index fingers—are deliberate and synchronized with his speech, indicating emphasis rather than emotional intensity. His facial expressions, such as wide eyes and a steady voice, suggest engagement and clarity rather than heightened emotion. Therefore, the gestures appear to serve a communicative function rather than signaling strong feelings. | The man's hand gestures, combined with dynamic facial expressions such as raised eyebrows, forehead wrinkling, and nose flaring, indicate heightened emotional engagement. These cues together suggest that his gestures are not merely incidental but are reinforcing an emotionally charged statement. Therefore, the gestures align more closely with expressing strong emotions rather than being neutral or subdued. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (man, right of frame, grey suit)
+Speech: Well then to quote Ross, I better be going.
+Speaker face: At the start, the corners of his mouth are pulled up and his eyes are wide. At the end, his mouth is open and his eyes are wide.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: He is looking at Person B.
+Speaker body: His arms are at his sides. He raises his right hand and points with his index finger, then raises his left hand and points with his index finger.
+Other people: Person B (woman, left of frame, black top) has her back to the camera. She is standing still.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is indoors, in a kitchen. A man and a woman are standing and talking.
+```
+
+**baseline:**
+
+```
+The man in the grey suit is the main speaker. He says, "Well then to quote Ross, I better be going."
+
+The man's eyebrows raise and lower. His forehead wrinkles. His eyes open and close. His nose flares. His cheeks move. His mouth opens and closes. His lips purse and stretch.
+
+The man's arms move. His hands gesture. His torso shifts. His shoulders move.
+```
+</details>
+
+### `video_147_0` · cue: face · emotions: anger, fear/anxiety, surprise, joy
+**Fact:** The man's posture is tense and confrontational.  
+**Correct (B):** His posture is tense and confrontational, indicating that he is feeling surprised or joyful about something unexpected.  
+**Other (A):** His posture is tense and confrontational, indicating that he is feeling anger.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's eyes narrowing and mouth closing suggest a shift from initial openness to a more guarded or intense expression, which aligns more with tension or anger than joy or surprise. While surprise might involve wide eyes, the narrowing indicates a more confrontational or defensive stance. Joy typically involves relaxed features and smiling, which are absent here. Therefore, the tense and confrontational posture is more consistent with anger than with surprise or joy. | The raised eyebrows, wrinkled forehead, and open eyes suggest surprise or heightened emotion rather than anger, which typically involves furrowed brows and a tense jaw. Additionally, the open hands and forward-facing torso indicate openness rather than defensiveness, which is more consistent with surprise or excitement than anger. Therefore, the interpretation aligning with surprise or joy is more fitting. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: I can do that.
+Speaker face: At the start, Person A's mouth is open and his eyes are wide. By the end, his mouth is closed and his eyes are narrowed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: Person A is looking at Person B.
+Speaker body: Person A's hands are open and gesturing in front of his body.
+Other people: Person B is facing Person A. Person B's back is to the camera. Person B's hands are visible and gesturing.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with a bed and lamps on the wall. Two men are talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the man on the left. He says, "I can do that."
+
+The man on the left has his mouth open and his lips are moving. His eyebrows are raised and his forehead is wrinkled. His eyes are open and looking towards the other man. His cheeks are raised and his nose is wrinkled.
+
+The man on the left has his hands open and moving. His arms are bent at the elbows. His torso is facing forward. His shoulders are slightly raised.
+```
+</details>
+
+### `video_157_0` · cue: smile/laugh · emotions: joy · negated
+**Fact:** There is a slight smile on the woman's face.  
+**Correct (A):** Her facial expression is not one of happiness and contentment.  
+**Other (B):** Her facial expression is one of happiness and contentment.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight smile on Person A’s face, combined with her engaged eye contact and relaxed posture, suggests a positive emotional state. Although her eyebrows lower by the end, this may reflect a shift in tone rather than a lack of happiness, especially since her voice remains steady and clear. The context of her conversational tone and the casual setting further support the interpretation that her smile reflects genuine contentment. | The slight smile on her face, combined with the animated facial movements and hand gestures, suggests a mix of amusement and mild exasperation rather than genuine happiness. Her eyebrows and forehead movements indicate she is emphasizing a point or reacting to something ironic, which aligns more with interpretation A. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Remember how you said that you were really dense about poetry? [inaudible]
+Speaker face: At the start, her eyebrows are slightly raised and her mouth is open. By the end, her eyebrows are lowered and her mouth is closed.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B throughout the clip.
+Speaker body: She touches her hair with her right hand, then lowers it. Her left hand rests on a glass object.
+Other people: Person B (woman, right of frame, brown top) listens, her head turned toward Person A. Her right hand rests on her hip.
+Physical contact: Person A's left hand is on a glass object. Person B's right hand is on the same object.
+Other sounds: Not audible.
+Setting: The scene is in a kitchen with shelves of jars and books. Two women are standing and talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move up and down. Her forehead wrinkles slightly. Her eyes narrow and open. Her mouth opens and closes. Her lips move in different shapes.
+
+Her right hand moves up to her head. Her left hand moves down to the vase. Her right hand moves down to the vase. Her left hand moves up to her chest.
+```
+</details>
+
+### `video_160_3` · cue: gaze · emotions: other
+**Fact:** The man has an open mouth and direct gaze.  
+**Correct (B):** His open mouth and direct gaze suggest he is making a point or explaining something.  
+**Other (A):** His open mouth and direct gaze do not suggest that he is making a point or explaining something.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | Person B's voice is low and questioning. Person A's voice is higher and sounds like a response. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's open mouth and direct gaze, combined with his questioning tone and consistent facial expression, indicate he is actively engaged in a conversation and seeking clarification rather than making a declarative statement. While his posture is upright and his expression is intense, the context of his question ("How do you know so much about this?") suggests he is challenging or probing, not explaining or asserting. Therefore, the interpretation that he is not making a point or explaining something aligns better with the observed cues. | The man's open mouth and direct gaze, combined with his questioning tone and engaged posture (torso angled toward the woman), indicate he is actively involved in the conversation. These cues typically signal assertiveness or an attempt to clarify or emphasize a point, rather than passivity. Therefore, interpretation B aligns better with the overall body language and context. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B (man, center of frame, dark suit) is speaking. Person A (woman, right of frame, red sweater) is speaking.
+Speech: Person B: "How do you know so much about this?" Person A: [inaudible]
+Speaker face: Person B's eyebrows are drawn together, his forehead is creased, his eyes are narrowed, and his mouth is open. His expression remains consistent. Person A's mouth is open and her eyes are wide. Her expression remains consistent.
+Tone of voice: Person B's voice is low and questioning. Person A's voice is higher and sounds like a response.
+Where the speaker is looking: Person B is looking at Person A. Person A is looking at Person B.
+Speaker body: Person B is standing upright. Person A has her arms crossed.
+Other people: Person C (man, left of frame, dark suit) is standing with his back to the camera. Person D (woman, right background, dark top) is standing with her hands clasped.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with a textured wall, where people are standing and talking.
+```
+
+**baseline:**
+
+```
+The man in the dark suit is the main speaker. He says, "How do you know so much about this?"
+
+The man's eyebrows move together and down. His forehead wrinkles. His eyes narrow. His mouth opens and his lips move.
+
+The man's torso is angled slightly toward the woman. His arms are at his sides. His hands are not visible. His shoulders are level.
+```
+</details>
+
+### `video_206_1` · cue: face · emotions: anger, fear/anxiety · negated
+**Fact:** Her facial expression is tense.  
+**Correct (A):** The tense facial expression does not indicate she is feeling anger.  
+**Other (B):** The tense facial expression indicates she is feeling anger.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is high and the pace is fast. The voice is strained and loud. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The combination of wide eyes, raised eyebrows, and a strained, loud, high-pitched voice suggests heightened emotional arousal. While tension can stem from various emotions, the narrowing of eyes and lowered brows by the end, along with the forceful hand gestures and intense focus on Person A, align more closely with expressions of anger than other emotions like fear or excitement. The physical intensity and directed energy toward Person A support the interpretation that the tension reflects anger. | The woman's facial expression, characterized by raised eyebrows, forehead wrinkles, and wide eyes, suggests heightened emotional arousal. However, her tone and context—describing architectural features in a calm, informative manner—do not align with anger, which typically includes other cues like clenched jaw or aggressive gestures. Instead, the tension may reflect concentration or effort in explaining details. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B
+Speech: [inaudible]
+Speaker face: At the start, her eyebrows are raised and her eyes are wide. By the end, her eyebrows are lowered and her eyes are narrowed. Her mouth is open at the start and closed by the end.
+Tone of voice: The pitch is high and the pace is fast. The voice is strained and loud.
+Where the speaker is looking: She looks at Person A throughout the clip.
+Speaker body: Her hands are raised in front of her body with palms facing Person A. She lowers her hands and then raises them again.
+Other people: Person A has his hands in his pockets. He looks at Person B.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is indoors, in a furnished room with a couch, a refrigerator, and a door.
+```
+
+**baseline:**
+
+```
+The woman in the white shirt is the main speaker. She says, "And the crown molding and the dormer windows in the attic."
+
+Her eyebrows raise and lower as she speaks. Her forehead shows wrinkles when she raises her eyebrows. Her eyes open wider at times. Her mouth opens and closes with the words. Her lips move to form the sounds.
+
+Her hands move up and down. Her arms move with her hands. Her torso shifts slightly. Her body turns towards the man she is speaking to.
+```
+</details>
+
+### `video_206_2` · cue: face · emotions: intensity/emphasis · negated
+**Fact:** Her mouth is open.  
+**Correct (A):** Her mouth being open does not suggest that she is shouting or expressing strong displeasure.  
+**Other (B):** Her mouth being open suggests she is shouting or expressing strong displeasure.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is high and the pace is fast. The voice is strained and loud. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's mouth is open in conjunction with other signs such as wide eyes, raised eyebrows, a high-pitched and loud voice, and a fast, strained delivery. These cues collectively suggest heightened emotional arousal, which is more consistent with shouting or expressing strong displeasure than with neutral or calm speech. The open mouth is likely part of an expressive, emotionally charged vocalization rather than a casual or conversational state. | The woman's mouth is open as she is clearly speaking in a normal conversational tone, forming words about architectural details. Her overall body language, including controlled hand movements and a body orientation toward the listener, indicates engagement rather than anger or shouting. Therefore, interpretation A is more consistent with the observed behavior. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B
+Speech: [inaudible]
+Speaker face: At the start, her eyebrows are raised and her eyes are wide. By the end, her eyebrows are lowered and her eyes are narrowed. Her mouth is open at the start and closed by the end.
+Tone of voice: The pitch is high and the pace is fast. The voice is strained and loud.
+Where the speaker is looking: She looks at Person A throughout the clip.
+Speaker body: Her hands are raised in front of her body with palms facing Person A. She lowers her hands and then raises them again.
+Other people: Person A has his hands in his pockets. He looks at Person B.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is indoors, in a furnished room with a couch, a refrigerator, and a door.
+```
+
+**baseline:**
+
+```
+The woman in the white shirt is the main speaker. She says, "And the crown molding and the dormer windows in the attic."
+
+Her eyebrows raise and lower as she speaks. Her forehead shows wrinkles when she raises her eyebrows. Her eyes open wider at times. Her mouth opens and closes with the words. Her lips move to form the sounds.
+
+Her hands move up and down. Her arms move with her hands. Her torso shifts slightly. Her body turns towards the man she is speaking to.
+```
+</details>
+
+### `video_207_0` · cue: face · emotions: sadness · negated
+**Fact:** Her facial expression is downcast.  
+**Correct (B):** The downcast facial expression is not often associated with sadness or disappointment.  
+**Other (A):** The downcast facial expression is often associated with sadness or disappointment.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The downcast facial expression, combined with narrowed eyes and drawn-together eyebrows, suggests a more complex emotional state than simple sadness. However, the context—receiving flowers and expressing gratitude—indicates a moment of emotional vulnerability rather than disappointment. This aligns more with interpretation A, as the expression may reflect a heartfelt or shy reaction to being appreciated. | The speaker's downcast facial expression, combined with her looking down at the flowers and holding them gently with both hands, suggests a moment of emotional reflection or gratitude rather than sadness. Her words, "Joey, they're my favorite. Thank you," indicate appreciation, which aligns more with a humble or touched demeanor than disappointment. Therefore, the expression likely reflects sincerity or being moved, not sadness. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: "Joey, they're my favorite. Thank you."
+Speaker face: At the start, her eyebrows are slightly raised and her eyes are open. By the end, her eyebrows are drawn together and her eyes are narrowed. Her mouth is open at the start and closed by the end.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B, then looks down at the flowers she is holding.
+Speaker body: She holds a bouquet of white lilies with both hands. She brings the bouquet closer to her chest.
+Other people: Person B is visible from the back and side. He is standing still and looking at Person A.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in what appears to be an apartment kitchen or living area. A woman is receiving flowers from a man.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the black shirt. She says, "Joey, they're my favorite. Thank you."
+
+The woman's eyebrows move slightly downward and together. Her forehead shows small creases. Her eyes look down at the flowers. Her mouth opens and closes as she speaks, and her lips move to form the words.
+
+The woman holds the flowers with both hands. Her arms are bent at the elbows. Her torso is upright. Her hands move slightly as she holds the flowers.
+```
+</details>
+
+### `video_208_0` · cue: face · emotions: anger · negated
+**Fact:** Her facial expressions include furrowed brows and a stern look.  
+**Correct (B):** Her facial expressions do not align with the emotion of anger.  
+**Other (A):** Her facial expressions align with the emotion of anger.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is mid-range and steady. The pace is moderate. The voice is clear and the volume is consistent. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The furrowed brows and stern look, combined with narrowed eyes and a creased forehead, are strong indicators of anger or frustration. These facial cues, especially when paired with a shift from an open, wide-eyed expression to a more closed, intense one, suggest a rising emotional intensity consistent with anger. The gesture of moving hands outward with palms up may also signal exasperation or a defensive stance, reinforcing the interpretation of anger. | The furrowed brows and stern look could suggest frustration or intensity, but the context of her statement—“No, I live with Phoebe”—is a simple clarification rather than an emotionally charged declaration. Additionally, her overall body language, including controlled hand gestures and a mostly still torso, does not convey strong anger. The facial cues may instead reflect concentration or emphasis rather than anger. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A's mouth moves while the words are heard.
+Speech: Person A: "No, I live with Phoebe."
+Speaker face: At the start, her eyebrows are slightly raised, her forehead is smooth, her eyes are wide, and her mouth is open. By the end, her eyebrows are lowered, her forehead is creased, her eyes are narrowed, and her mouth is closed.
+Tone of voice: The pitch is mid-range and steady. The pace is moderate. The voice is clear and the volume is consistent.
+Where the speaker is looking: Person A looks at Person B throughout the clip.
+Speaker body: Person A's hands are clasped in front of her. She then unclasps them and gestures with both hands, palms up, moving them outwards and then inwards.
+Other people: Person B (man, right of frame, blue sweater) stands still, looking at Person A. His mouth is closed and his expression is neutral.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene takes place in a hallway with a dark green door and beige walls. A woman and a man are standing and talking.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the red top. She says, "No, I live with Phoebe."
+
+The woman's eyebrows move slightly upwards and then lower. Her forehead shows small wrinkles. Her eyes look forward and then shift slightly. Her mouth opens and closes, and her lips move with the words. Her cheeks move in and out with the mouth movements.
+
+The woman's hands move from being clasped to gesturing. Her arms move slightly with the hand gestures. Her torso remains mostly still. Her head moves slightly as she speaks.
+
+The man in the blue sweater is not the main speaker.
+```
+</details>
+
+### `video_215_0` · cue: face · emotions: other
+**Fact:** Her mouth is slightly open.  
+**Correct (B):** Her mouth being slightly open suggests that she is in the middle of speaking.  
+**Other (A):** Her mouth being slightly open does not suggest that she is in the middle of speaking.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is high. The speed is moderate. The voice is clear. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The observation states that Person B's mouth is slightly open, and this occurs while Person A is speaking. However, Person B's mouth is also described as closed at another point, and there is no indication that Person B is vocalizing. Since the mouth being slightly open could be due to surprise or listening rather than speaking, and no speech is heard from Person B, it is more likely that the open mouth reflects a reaction rather than active speech. | The woman's mouth is slightly open while she is actively speaking the sentence, "What are you talking about? These aren't mine." Her lips are moving to form words, and her cheeks are also moving, which are consistent with ongoing speech. Therefore, the slight opening of her mouth is best interpreted as part of her speaking process. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B's mouth moves while the words are heard. Person A is speaking.
+Speech: Person A: "What are you talking about? These aren't mine."
+Speaker face: Person B's eyebrows are raised. Her eyes are open and looking at Person A. The corners of her mouth are pulled up. Her mouth is open. Her eyebrows are lowered. Her eyes are narrowed. Her mouth is closed.
+Tone of voice: The pitch is high. The speed is moderate. The voice is clear.
+Where the speaker is looking: Person B is looking at Person A.
+Speaker body: Person B's right hand is holding a black object. Her left hand is gesturing. Person A's back is to the camera.
+Other people: Person A is facing Person B. Person A's back is to the camera.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with furniture and a cardboard box.
+```
+
+**baseline:**
+
+```
+The woman is the main speaker. She says, "What are you talking about? These aren't mine."
+
+The woman's eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes blink and look towards the man. Her nose remains still. Her cheeks move as she speaks. Her mouth opens and closes, and her lips move to form words.
+
+The woman's right hand holds a black object. Her left hand moves from her side to her chest. Her torso turns slightly towards the man. Her arms move as she gestures with her hands.
+```
+</details>
+
+### `video_298_0` · cue: gaze · emotions: joy, engagement/attention
+**Fact:** Her eyes are focused on the book.  
+**Correct (B):** Her eyes being focused on the book indicates her engagement with the content.  
+**Other (A):** Her eyes being focused on the book suggests she is using it as a distraction from her sadness.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is mid-range and the speed is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The observation that Person A's eyes are focused on the book could suggest engagement, especially since she is holding it open and speaking directly to Person B. However, the narrowing of her eyes and lowered eyebrows by the end of the clip indicate emotional tension or concern, which might imply she is using the book as a distraction. Given the context of asking a personal question ("Did you break up with her?"), the emotional cues lean toward interpretation A. | The woman's focused gaze on the book, combined with her tense facial expressions—such as narrowed eyes, raised eyebrows, and forehead creases—suggests she is emotionally engaged or possibly distressed. While distraction is possible, the intensity of her micro-expressions points more toward emotional involvement with the situation rather than simply avoiding it. Therefore, her focus on the book likely reflects her deep engagement with its content, possibly as a way to process or confront the topic she's discussing. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Did you break up with her?
+Speaker face: At the start, her eyebrows are slightly raised and her eyes are narrowed. By the end, her eyebrows are lowered and her eyes are narrowed.
+Tone of voice: The pitch is mid-range and the speed is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B while speaking.
+Speaker body: She holds a book open with both hands and keeps her arms relatively still.
+Other people: Person B looks at Person A, then looks down at the book, then looks back at Person A. His head is tilted slightly.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a living room, where two people are sitting on a couch and looking at a book.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman. She says, "Did you break up with her?"
+
+Her eyebrows move slightly upward and inward. Her forehead shows small creases. Her eyes narrow a little. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are bent at the elbows. Her hands hold a book. Her legs are bent at the knees. Her torso is upright.
+
+The man is not the main speaker. His mouth is closed. His eyebrows are slightly raised. His eyes are looking down. His cheeks are slightly raised. His lips are closed. His arms are resting on his legs. His hands are on his lap. His legs are bent. His torso is upright.
+```
+</details>
+
+### `video_298_2` · cue: hands/gesture · emotions: joy, engagement/attention
+**Fact:** The woman is holding a book and appears to be reading it.  
+**Correct (A):** Her body language suggests that she is engaged and focused on the content of the book.  
+**Other (B):** Her body language does not suggest that she is engaged and focused on the content of the book.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the speed is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman is holding the book open with both hands and maintaining eye contact with Person B while speaking, which indicates she is actively involved in the conversation rather than focusing on reading. Her steady voice and moderate speech pace further suggest she is engaged in dialogue, not absorbed in the book. Therefore, her body language does not support the idea that she is focused on the book's content. | The woman is holding a book and appears to be reading it, which indicates she is likely focused on the content. Her upright torso, bent arms, and hands holding the book suggest a posture consistent with reading. While her facial expressions show curiosity or concern, they are directed toward the man, not the book, indicating her attention may be divided. However, the physical positioning and object interaction (holding the book) still support the idea that she is engaged with it. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Did you break up with her?
+Speaker face: At the start, her eyebrows are slightly raised and her eyes are narrowed. By the end, her eyebrows are lowered and her eyes are narrowed.
+Tone of voice: The pitch is mid-range and the speed is moderate. The voice is clear and steady.
+Where the speaker is looking: She looks at Person B while speaking.
+Speaker body: She holds a book open with both hands and keeps her arms relatively still.
+Other people: Person B looks at Person A, then looks down at the book, then looks back at Person A. His head is tilted slightly.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a living room, where two people are sitting on a couch and looking at a book.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman. She says, "Did you break up with her?"
+
+Her eyebrows move slightly upward and inward. Her forehead shows small creases. Her eyes narrow a little. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are bent at the elbows. Her hands hold a book. Her legs are bent at the knees. Her torso is upright.
+
+The man is not the main speaker. His mouth is closed. His eyebrows are slightly raised. His eyes are looking down. His cheeks are slightly raised. His lips are closed. His arms are resting on his legs. His hands are on his lap. His legs are bent. His torso is upright.
+```
+</details>
+
+### `video_319_3` · cue: posture/movement · emotions: fear/anxiety
+**Fact:** The man's posture is slightly hunched.  
+**Correct (B):** The hunched posture indicates a sense of tension or unease.  
+**Other (A):** The hunched posture does not indicate a sense of tension or unease.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is clear and steady. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's hunched posture, combined with his body being angled toward Person A and his direct gaze, suggests he is engaged in the conversation. While a hunched posture can sometimes signal tension, in this context it may simply reflect a relaxed or thoughtful stance rather than unease. Given the lack of other signs of discomfort, such as fidgeting or avoiding eye contact, interpretation A seems more plausible. | The man's slightly hunched posture, combined with raised eyebrows, a wrinkled forehead, and direct eye contact, suggests he is actively engaged and possibly questioning or challenging the woman's statement. These facial cues typically signal cognitive effort or mild discomfort, which aligns more with interpretation B. A relaxed posture would likely not include such pronounced facial tension. Therefore, the hunched posture likely reflects a sense of tension or unease rather than casual relaxation. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A (woman, left of frame, red sweater)
+Speech: Richard used to do it, didn't he?
+Speaker face: At the start, her eyes are narrowed and her mouth is closed. By the end, her mouth is slightly open and her eyes are looking forward.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is clear and steady.
+Where the speaker is looking: She is looking at Person B.
+Speaker body: Her arms are crossed in front of her body.
+Other people: Person B (man, right of frame, dark suit) is standing with his body angled toward Person A. He is looking at Person A.
+Physical contact: There is no physical contact.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with a large pillar, where people are standing and talking.
+```
+
+**baseline:**
+
+```
+The man in the dark suit is the main speaker. He says, "Richard used to do it, didn't he?"
+
+The man's eyebrows are raised and his forehead is wrinkled. His eyes are open and looking towards the woman. His mouth is open and his lips are moving as he speaks. His cheeks are slightly raised.
+
+The man's torso is angled slightly towards the woman. His arms are down at his sides. His hands are not visible. His body remains mostly still throughout the clip.
+
+The woman in the red top is the main speaker. She says, "Richard used to do it, didn't he?"
+
+The woman's eyebrows are slightly raised. Her forehead is smooth. Her eyes are open and looking towards the man. Her mouth is open and her lips are moving as she speaks. Her cheeks are slightly raised.
+
+The woman's torso is angled slightly towards the man. Her arms are crossed in front of her. Her hands are clasped together. Her body remains mostly still throughout the clip.
+```
+</details>
+
+### `video_334_1` · cue: face · emotions: fear/anxiety
+**Fact:** The man has wide eyes and a slightly open mouth.  
+**Correct (B):** His facial expressions suggest a combination of fear and anxiety.  
+**Other (A):** His facial expressions suggest a combination of surprise and anger.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | Person B's voice is low, loudness is moderate, speed is moderate, voice quality is tense. Person A's voice is low, loudness is moderate, speed is moderate, voice quality is tense. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's wide eyes and slightly open mouth are commonly associated with surprise, but the context of tense voice, narrowed eyes, and lowered eyebrows suggests underlying anger rather than fear. While fear can involve wide eyes, it is typically paired with other cues like flinching or avoidance, which are absent here. The combination of surprise and anger fits the overall tense and confrontational tone of the interaction. | The wide eyes and slightly open mouth, combined with the furrowed brow and tense facial muscles, are more consistent with fear and anxiety than with anger. While surprise can cause wide eyes, the accompanying tension in the forehead and the overall guarded expression suggest distress rather than anger. The context of the statement—“They really hate you and I want to fit in”—also supports a fearful or anxious emotional state. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B's mouth moves while the words are heard. Person A's mouth moves while the words are heard.
+Speech: Person B: "Well, nothing yet. They really hate you and I want to fit in." Person A: "..."
+Speaker face: Person B's eyebrows are lowered, forehead is creased, eyes are narrowed, mouth is open with corners down. Person A's eyebrows are lowered, forehead is creased, eyes are narrowed, mouth is open with corners down.
+Tone of voice: Person B's voice is low, loudness is moderate, speed is moderate, voice quality is tense. Person A's voice is low, loudness is moderate, speed is moderate, voice quality is tense.
+Where the speaker is looking: Person B is looking at Person A. Person A is looking at Person B.
+Speaker body: Person B's arms are at his sides. Person A's arms are at her sides.
+Other people: Person A's face is visible. Person A is looking at Person B. Person A's posture is upright.
+Physical contact: Not applicable.
+Other sounds: Not applicable.
+Setting: The scene is in a kitchen with a brick wall in the background.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the white shirt and red tie. He says, "Well, nothing yet. They really hate you and I want to fit in."
+
+The man's eyebrows move down and together. His forehead wrinkles. His eyes look down and then up. His mouth opens and closes. His lips move apart and together.
+
+The man's hands move up and down. His arms move back and forth. His torso shifts slightly. His shoulders move up and down.
+
+The woman in the white chef's coat is the main speaker. She says, "Well, nothing yet. They really hate you and I want to fit in."
+
+The woman's eyebrows move down and together. Her forehead wrinkles. Her eyes look down and then up. Her mouth opens and closes. Her lips move apart and together.
+
+The woman's hands move up and down. Her arms move back and forth. Her torso shifts slightly. Her shoulders move up and down.
+```
+</details>
+
+### `video_368_2` · cue: face · emotions: anger, sadness · negated
+**Fact:** There is a slight furrow in her brow and she occasionally looks downwards.  
+**Correct (B):** These do not suggest that she might also be feeling a bit of annoyance or disappointment.  
+**Other (A):** These suggest that she might also be feeling a bit of annoyance or disappointment.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | High-pitched, loud, fast, with a strained quality. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight furrow in her brow and downward glances could indicate internal conflict or negative emotion, especially when combined with her strained, high-pitched tone and wide eyes—signs of distress or frustration. While her initial raised arms and open mouth suggest surprise or alarm, the brow furrow and downward gaze may signal a shift toward annoyance or disappointment beneath the surface. These subtle cues align more with interpretation A, as they suggest a complex emotional state that includes frustration rather than being absent of it. | The slight furrow in her brow and downward glances could indicate a mix of emotions, but in the context of her overall expressive reaction—wide eyes, raised arms, and hands moving to her head—it seems more aligned with surprise or distress rather than annoyance or disappointment. These subtle cues don't strongly support negative emotions like irritation, especially since her expression is more open and reactive than closed or dismissive. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Oh my god.
+Speaker face: At the start, the corners of her mouth are pulled up and her eyes are narrowed. At the end, her mouth is open and her eyes are wide.
+Tone of voice: High-pitched, loud, fast, with a strained quality.
+Where the speaker is looking: Looking up and to the right.
+Speaker body: Arms raised with hands open, then both hands move to her head.
+Other people: not visible
+Physical contact: not visible
+Other sounds: not audible
+Setting: The scene is in a kitchen with shelves of jars and pots in the background.
+```
+
+**baseline:**
+
+```
+The woman in the black dress is the main speaker. She says, "Oh my god."
+
+The woman's eyebrows move upward and inward. Her forehead wrinkles. Her eyes widen. Her mouth opens and her lips part.
+
+Her arms are raised. Her hands move up and down. Her hands move to her head. Her hands move away from her head.
+```
+</details>
+
+### `video_379_0` · cue: voice/speech · emotions: engagement/attention
+**Fact:** The speaker's body language is open and inviting, with a slight lean forward.  
+**Correct (A):** The open and inviting body language with a slight lean forward indicates engagement and interest in the conversation.  
+**Other (B):** The open and inviting body language with a slight lean forward does not indicate engagement and interest in the conversation.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is low and the pace is slow. The voice is steady and the words are spoken clearly. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker is looking down at the chick throughout the clip, which suggests his focus is on the animal rather than on Person B. Although the body language is described as open and inviting, the lack of eye contact with Person B and the consistent focus on the chick imply that the speaker's attention is directed toward the animal, not the interaction. Therefore, the body language may not reflect engagement in the conversation. | The speaker's open posture, slight forward lean, and gentle hand movements while holding the birds suggest a sense of care and attentiveness. These cues typically align with engagement and interest, especially in a context involving delicate handling of animals. Therefore, interpretation A is more consistent with the observed body language. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: Well, at least we got these little guys out.
+Speaker face: At the start, Person A's eyebrows are slightly raised and his forehead is smooth. His eyes are open and looking down. By the end, his eyebrows are lowered and his forehead is creased. His eyes are narrowed and his mouth is open.
+Tone of voice: The pitch is low and the pace is slow. The voice is steady and the words are spoken clearly.
+Where the speaker is looking: Person A is looking down at the chick in his hands for the entire duration of the clip.
+Speaker body: Person A is sitting on the floor with his legs bent. He holds a small white chick in his cupped hands. His hands move slightly as he speaks.
+Other people: Person B is sitting on the floor to the right of Person A. He is holding a small yellow duckling. His head is turned towards Person A and he is looking at the duckling in his hands.
+Physical contact: Person A is holding a chick in his hands. Person B is holding a duckling in his hands.
+Other sounds: Not audible.
+Setting: The scene takes place indoors on a carpeted floor. Two men are sitting on the floor holding small birds.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the light blue striped shirt. He says, "Well, at least we got these little guys out."
+
+The man in the striped shirt's eyebrows move down and together. His forehead wrinkles. His eyes close and then open. His mouth opens and closes. His lips move apart and together.
+
+The man in the striped shirt holds a small white bird in his hands. His arms are bent at the elbows. His hands move slightly. His torso is upright.
+
+The man in the blue shirt holds a small yellow bird in his hands. His arms are bent at the elbows. His hands move slightly. His torso is upright.
+```
+</details>
+
+### `video_383_1` · cue: face · emotions: intensity/emphasis
+**Fact:** Her facial expression appears to be neutral to slightly concerned.  
+**Correct (A):** The emotion of the speaker can be identified as a combination of concern and seriousness.  
+**Other (B):** The speaker is surprised by the situation, which is reflected in her neutral to slightly concerned facial expression.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The pitch is mid-range and the pace is moderate. The voice is breathy and the words are spoken with a slight upward inflection at the end. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's initial wide eyes and raised eyebrows suggest surprise, but these features transition to narrowed eyes and lowered brows, indicating a shift toward concern or seriousness. While her expression is described as neutral to slightly concerned, the initial signs of surprise are more consistent with the observation of her facial changes over time. Therefore, interpretation B aligns better with the observed progression of her expression. | The speaker's facial expression is described as neutral to slightly concerned, with small forehead wrinkles and slight eyebrow movements, which are more consistent with concern or thoughtfulness than surprise. Surprise typically involves raised eyebrows, widened eyes, and an open mouth, none of which are strongly present here. Therefore, interpretation A aligns better with the observed cues. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A
+Speech: I just thought it would be fun.
+Speaker face: At the start, her eyebrows are slightly raised and her eyes are wide. By the end, her eyebrows are lowered and her eyes are narrowed. Her mouth is slightly open at the start and closes by the end.
+Tone of voice: The pitch is mid-range and the pace is moderate. The voice is breathy and the words are spoken with a slight upward inflection at the end.
+Where the speaker is looking: She is looking at Person B.
+Speaker body: She is standing with her arms at her sides and her body facing Person B.
+Other people: Person B is standing to the right of the frame, facing Person A. His face is partially visible. He is wearing a blue shirt with a pattern on it.
+Physical contact: Not visible.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a room with framed pictures on the wall and a mirror. Person A and Person B are standing and talking to each other.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the red dress. She says, "No, I just thought it would be fun."
+
+Her eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes look forward and then shift slightly. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are at her sides. Her hands are not visible. Her torso is upright. Her body does not move significantly.
+
+The man in the blue shirt is the main speaker. He says, "I don't know, I just thought it would be fun."
+
+His eyebrows raise and lower. His forehead wrinkles. His eyes look forward. His mouth opens and closes, and his lips move to form words.
+
+His arms are at his sides. His hands are not visible. His torso is upright. His body does not move significantly.
+```
+</details>
+
+### `video_393_0` · cue: face · emotions: intensity/emphasis · negated
+**Fact:** His mouth is open.  
+**Correct (B):** The open mouth does not indicate that he is speaking with conviction and determination.  
+**Other (A):** The open mouth indicates that he is speaking with conviction and determination.  
+*v7 was right.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | Person A's voice is loud and strained. Person B's voice is lower and calmer. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The observation that Person A's mouth is open while he is speaking, combined with his loud and strained voice, suggests that he is emphasizing his words with intensity. This aligns more closely with speaking with conviction and determination rather than simply being in the act of speaking. Therefore, Interpretation A is more consistent with the observed body language and vocal tone. | The man's mouth opens and closes in sync with his speech, which is a natural part of articulating words. His overall body language, including the slight head turn and forward gaze, suggests he is engaged in conversation rather than making a forceful or determined statement. Therefore, the open mouth is simply a functional aspect of speaking, not necessarily an indicator of conviction or determination. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person A's mouth moves while the words are heard. Person B's mouth moves while the words are heard. Person A is speaking.
+Speech: Person A: "Well, that's all right, sir, and that's just one girl."
+Person B: [inaudible]
+Speaker face: Person A's mouth is open. Person B's mouth is closed. Person B's mouth opens.
+Tone of voice: Person A's voice is loud and strained. Person B's voice is lower and calmer.
+Where the speaker is looking: Person A looks at Person B. Person B looks at Person A.
+Speaker body: Person A holds a glass with a straw in his left hand. Person B raises his right hand and points his index finger.
+Other people: Person A holds a glass with a straw in his left hand. Person B raises his right hand and points his index finger.
+Physical contact: Person B raises his right hand and points his index finger.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a dimly lit bar or club, with people sitting at tables.
+```
+
+**baseline:**
+
+```
+The main speaker is the man on the left. He says, "Well, that's all right, sir, and that's just one girl."
+
+The man on the left's mouth opens wide and then closes as he speaks. His eyebrows raise and lower. His forehead wrinkles. His eyes look forward and then shift to the right. His cheeks move with his mouth. His lips stretch and relax.
+
+The man on the left holds a glass in his right hand. His left hand rests on the table. His torso remains mostly still. His head turns slightly to the right.
+
+The man on the right raises his left hand. His fingers move as he speaks. His torso turns slightly to the left. His head turns to the left.
+```
+</details>
+
+### `video_398_1` · cue: smile/laugh · emotions: joy
+**Fact:** The woman is smiling.  
+**Correct (B):** Her facial expression appears to be joyful and happy.  
+**Other (A):** She is masking her anger with a smile.  
+*v7 was wrong.*
+
+| | v3 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The pitch is low and the pace is slow. The voice is flat and the words are spoken with a steady, even volume. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman’s narrowed eyes, flat tone, and slow, low-pitched speech suggest discomfort or resistance rather than genuine happiness. Although she is smiling, the lack of crinkling around the eyes and the tense hand placement on Person A’s shoulder indicate the smile may be forced. This combination of cues aligns more with masking negative emotions than expressing joy. | The woman's body language, including her hands resting on the man's chest and shoulder and her torso angled toward him, suggests intimacy and engagement rather than aggression. While she says, "It's not possible," which could indicate frustration, her smile combined with relaxed hand placement and steady eye contact points more toward a lighthearted or affectionate tone rather than masking anger. |
+
+<details><summary>Full descriptions</summary>
+
+**v3:**
+
+```
+Speaker: Person B
+Speech: It's not possible.
+Speaker face: At the start, her eyes are narrowed and her mouth is open. By the end, her eyes are narrowed and her mouth is closed.
+Tone of voice: The pitch is low and the pace is slow. The voice is flat and the words are spoken with a steady, even volume.
+Where the speaker is looking: She is looking at Person A.
+Speaker body: Her right hand is on her chest and her left hand is on Person A's shoulder. Her right hand moves slightly.
+Other people: Person A is lying down and looking at Person B. His eyes are open and his mouth is slightly open.
+Physical contact: Person B's left hand is on Person A's shoulder and her right hand is on her own chest.
+Other sounds: Not audible.
+Setting: The scene is indoors, in a bedroom, with two people lying in a bed.
+```
+
+**baseline:**
+
+```
+The woman is the main speaker. She says, "It's not possible."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her eyebrows raise slightly as she talks. Her eyes remain focused on the man.
+
+The woman's right arm is bent with her hand resting on the man's chest. Her left arm is bent with her hand resting on his shoulder. Her torso is angled towards the man. Her hands remain in the same position throughout the clip.
+```
+</details>
+
+<a id='v7-baseline'></a>
+# v7 vs baseline
+
+On these 188 questions: v7 137, baseline 140. Both right 127, both wrong 38; v7 right only 10, baseline right only 13.
+
+## Tag counts
+
+**v7 right, baseline wrong (10)**  
+cue: face 5, voice/speech 1, gaze 1, posture/movement 1, smile/laugh 1, hands/gesture 1  
+emotions: anger 4, other 3, engagement/attention 2, surprise 1, intensity/emphasis 1, fear/anxiety 1, joy 1  
+negated questions: 2  
+clips: 10
+
+**baseline right, v7 wrong (13)**  
+cue: face 6, smile/laugh 5, hands/gesture 2  
+emotions: joy 6, anger 5, fear/anxiety 5, intensity/emphasis 2, surprise 1, sadness 1  
+negated questions: 3  
+clips: 12
+
+## v7 right, baseline wrong (10)
+
+### `video_94_0` · cue: voice/speech · emotions: anger
+**Fact:** The speaker appears to be kneeling next to the person on the floor.  
+**Correct (B):** Their body language suggests that they are confrontational and possibly frustrated with the situation involving the person on the floor.  
+**Other (A):** Their body language suggests that they are concerned and possibly worried about the person on the floor.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is high-pitched and loud. She speaks quickly with little pause between words. Her voice rises in pitch at the end of the phrase. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's wide-open mouth, raised eyebrows, and wrinkled forehead suggest heightened emotional arousal, but the combination with a high-pitched, loud, and fast-paced voice—along with the forward lean and hands on the other person's legs—points more toward urgency or excitement than aggression. While concern could be a possibility, the vocal tone and physical intensity lean more toward a confrontational or demanding stance rather than gentle reassurance. | The speaker maintains eye contact, leans forward, and keeps her hands on the other person's legs, which indicates engagement and support rather than aggression. Her facial expressions, including slight eyebrow movements and forehead wrinkling, suggest focus and concern rather than anger or frustration. These cues align more closely with interpretation A, as they reflect care and attentiveness in a potentially challenging situation. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the light green shirt. She says, "I'm turning it on."
+
+The woman in the green shirt's mouth opens wide as she speaks. Her eyebrows raise and her forehead wrinkles. Her eyes narrow slightly and her cheeks move as she talks. Her lips stretch and pull back as she forms the words.
+
+The woman in the green shirt keeps her hands on the other woman's legs. She shifts her weight slightly on the floor. Her torso remains mostly still as she leans forward. Her arms stay bent and close to her body.
+
+The speaker's voice is high-pitched and loud. She speaks quickly with little pause between words. Her voice rises in pitch at the end of the phrase.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the light green shirt. She says, "I'm turning it on."
+
+The woman in the green shirt's mouth opens and closes as she speaks. Her lips move to form the words. Her eyebrows raise and lower slightly. Her forehead wrinkles a little. Her eyes remain open and focused on the other woman.
+
+The woman in the green shirt keeps her hands on the other woman's legs. She shifts her weight slightly. Her torso leans forward. Her arms remain bent at the elbows.
+
+The woman in the grey shirt is lying on the floor. She moves her arms and hands to push herself forward. Her legs are bent and she pushes with her feet. Her torso lifts and lowers as she moves forward.
+```
+</details>
+
+### `video_157_2` · cue: face · emotions: engagement/attention
+**Fact:** Her eyes are slightly narrowed.  
+**Correct (A):** Her eyes being slightly narrowed indicates that she is focused on the conversation.  
+**Other (B):** Her eyes being slightly narrowed do not indicate that she is focused on the conversation.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "poetry." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight narrowing of her eyes, combined with the upward movement of her eyebrows and the small forehead wrinkles, suggests a state of concentration or mild skepticism. This is further supported by her deliberate speech and the pause after "poetry," indicating she is carefully considering her words. Therefore, the narrowing likely reflects focus rather than a lack thereof. | The narrowing of the eyes, combined with the slight forehead wrinkling and the animated hand gestures, suggests a heightened emotional state rather than simple focus. This expression is more consistent with skepticism or mild annoyance, especially given the context of her words, which carry a teasing or challenging tone. Therefore, the narrowing likely reflects emotional engagement rather than neutral concentration. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes look down and then up. Her mouth opens and closes with the words. Her lips move to form the sounds.
+
+Her right hand moves up to her hair. Her left hand holds a glass object. Her body stays in the same position. Her arms move slightly.
+
+Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "poetry."
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move up and down. Her forehead wrinkles slightly. Her eyes narrow and open. Her mouth opens and closes. Her lips move in different shapes.
+
+Her right hand moves up to her head. Her left hand moves down to the vase. Her right hand moves down to the vase. Her left hand moves up to her chest.
+```
+</details>
+
+### `video_177_0` · cue: face · emotions: surprise, engagement/attention · negated
+**Fact:** His eyebrows are often raised.  
+**Correct (B):** The raised eyebrows do not indicate surprise or interest.  
+**Other (A):** The raised eyebrows indicate surprise or interest.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the sentence. The voice is loud. The pace is moderate. There is a pause after the word "you." The word "Thank" is said with extra emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's eyebrows are frequently raised, but this occurs in sync with his verbal expression of gratitude. Given that he says "Thank you" with emphasis on "Thank" and a rising pitch, the raised eyebrows likely serve to reinforce sincerity or warmth rather than signal surprise or interest. This suggests the gesture is more aligned with expressing appreciation than conveying curiosity or astonishment. | The speaker's eyebrows are frequently raised, which is a common nonverbal cue associated with expressing surprise or interest. Given that he is saying "Thank you," a polite and socially engaged phrase, the raised eyebrows likely reflect genuine interest or appreciation rather than surprise. This aligns more closely with interpretation A. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man is the main speaker. He says, "Thank you."
+
+The man's eyebrows move up and down. His forehead wrinkles and smooths out. His eyes open and close slightly. His mouth opens and closes. His lips move in different directions. His cheeks move up and down.
+
+The man's torso moves slightly. His right arm is bent at the elbow. His right hand holds a white object. His left arm is not visible.
+
+The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the sentence. The voice is loud. The pace is moderate. There is a pause after the word "you." The word "Thank" is said with extra emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the man on the left. He says, "Thank you."
+
+The man's eyebrows move up and down. His forehead wrinkles and smooths out. His eyes open and close slightly. His mouth opens and closes, and his lips move. His cheeks move up and down.
+
+The man's right arm is bent at the elbow. His right hand holds a white object. His left arm is bent at the elbow. His left hand holds a white object. His torso is angled slightly to the right.
+```
+</details>
+
+### `video_213_0` · cue: gaze · emotions: anger, intensity/emphasis · negated
+**Fact:** The intensity of her gaze.  
+**Correct (A):** The intensity of her gaze does not indicate that she is expressing strong emotions, likely frustration or annoyance.  
+**Other (B):** The intensity of her gaze indicates that she is expressing strong emotions, likely frustration or annoyance.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | Her voice is at a moderate pitch, with a slight rise at the end of the phrase. The pace is steady and conversational, with a brief pause after the first sentence. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's facial expressions, such as raised eyebrows, forehead wrinkles, and minimal nose flaring, suggest some level of emotional engagement or tension. However, her steady pace, moderate pitch, and mostly still torso indicate a controlled demeanor rather than overt frustration. The intensity of her gaze may reflect focus or emphasis rather than strong negative emotions. | The woman in the blue jacket maintains steady eye contact with the person she is addressing, and her eyes remain open throughout the sentence. Her eyebrows lower toward the end of the phrase, which, combined with the direct gaze, suggests emotional intensity rather than neutrality. This supports the idea that her gaze is conveying strong feelings like frustration or annoyance. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The woman in the blue jacket is the main speaker. Her mouth opens and closes as she speaks, her lips move to form words, and her jaw shifts slightly with the rhythm of her speech.
+
+Her eyebrows raise and lower, her forehead wrinkles slightly, her eyes blink and shift focus, her nose flares minimally, her cheeks move with her mouth, and her lips purse and stretch as she talks.
+
+Her torso remains mostly still, facing the person she is speaking to. Her arms are down at her sides, and her hands are not visible in the frame.
+
+Her voice is at a moderate pitch, with a slight rise at the end of the phrase. The pace is steady and conversational, with a brief pause after the first sentence.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the blue jacket. She says, "You'll have a last kiss."
+
+The woman in the blue jacket's mouth opens and closes as she speaks. Her lips move to form the words. Her eyebrows raise slightly at the beginning of the sentence and lower towards the end. Her eyes remain open and focused on the person she is addressing.
+
+The woman in the blue jacket keeps her arms at her sides. Her hands are not visible in the frame. Her torso remains mostly still, with only slight movements as she speaks. Her head turns slightly towards the person she is talking to.
+
+The woman in the white chef's uniform has her back to the camera. Her head is turned towards the woman in the blue jacket. Her arms are not visible in the frame. Her torso is mostly still, with only slight movements as she listens.
+```
+</details>
+
+### `video_243_0` · cue: posture/movement · emotions: other
+**Fact:** She is sitting on a hospital bed.  
+**Correct (B):** Sitting on a hospital bed could indicate that she is dealing with a difficult situation or health issue.  
+**Other (A):** Sitting on a hospital bed could indicate that she is recovering from a procedure or celebrating a positive health milestone.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is at a medium pitch. The pace is slow. There is a pause after the first sentence. The phrase "so it begins" is spoken with a slightly lower pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's body language—furrowed brow, downward and sideward gaze, and slow, deliberate speech—suggests contemplation or concern rather than celebration. Combined with the context of being on a hospital bed, these cues align more closely with someone facing a serious or challenging situation. While recovery is possible, the emotional tone leans toward gravity rather than joy. | The woman's upright posture and controlled hand placement suggest composure rather than distress. Her facial expressions—slight eyebrow raises and shifting eyes—could indicate anticipation or reflection, aligning more with a meaningful beginning than overt discomfort. Given the phrase "And so it begins," the tone seems more declarative and hopeful than burdened. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The speaker is the woman in the red cardigan. She says, "And so it begins."
+
+The woman's eyebrows move slightly upward and inward. Her forehead shows a slight furrow. Her eyes look down and then shift to the side. Her mouth opens slightly and then closes. Her lips move as she speaks.
+
+The woman's arms remain in the same position. Her hands are not visible. Her legs are not visible. Her torso remains still.
+
+The speaker's voice is at a medium pitch. The pace is slow. There is a pause after the first sentence. The phrase "so it begins" is spoken with a slightly lower pitch.
+```
+
+**baseline:**
+
+```
+The speaker is the woman in the red cardigan. She says, "And so it begins."
+
+The woman's mouth opens and closes as she speaks. Her eyebrows move slightly upwards. Her eyes look forward and then shift to the side. Her lips part and come together during the sentence.
+
+The woman's arms remain in the same position. Her hands are resting on her lap. Her torso is upright. Her legs are not visible in the frame.
+```
+</details>
+
+### `video_280_2` · cue: face · emotions: anger, fear/anxiety
+**Fact:** His facial expression is tense.  
+**Correct (B):** The tense facial expression suggests he is feeling anger.  
+**Other (A):** The tense facial expression does not suggest he is feeling anger.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is low. It rises at the end of the sentence. The pace is moderate. There is a pause after "Rachel." The word "okay" is said with emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's tense facial expression, combined with flared nostrils, furrowed brows, and a low voice with rising intonation, indicates emotional arousal. While tension can stem from various emotions, the physical signs—especially the nose flaring and clenched lips—are more consistent with suppressed anger than other emotions like nervousness or sadness. The emphasis on "okay" and the pause before it suggest defensiveness, reinforcing the idea that he may be trying to control his frustration. | The man's tense facial expression, combined with his defensive tone and the context of denying feelings for someone, suggests he is under emotional pressure. While tension can indicate various emotions, his body language—such as the hand gestures and shifting posture—aligns more with discomfort or defensiveness than outright anger. Therefore, the tension likely reflects emotional strain rather than anger. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man in the green t-shirt is the main speaker. He says, "I do not have feelings for Rachel, okay?"
+
+The man's eyebrows move up and down. His forehead wrinkles. His eyes look toward the woman. His nose flares slightly. His cheeks move. His mouth opens and closes. His lips press together and then part.
+
+The man's left arm holds a grey jacket. His right hand moves up and down. His right hand moves side to side. His torso shifts slightly.
+
+The speaker's voice is low. It rises at the end of the sentence. The pace is moderate. There is a pause after "Rachel." The word "okay" is said with emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the green t-shirt. He says, "I do not have feelings for Rachel, okay?"
+
+The man's eyebrows move up and down. His forehead wrinkles. His eyes look toward the woman. His mouth opens and closes. His lips move with the words. His cheeks move slightly.
+
+The man's left hand holds a grey jacket on his shoulder. His right hand moves in the air. His torso turns slightly. His head moves as he speaks. His arms shift with his gestures.
+
+The woman in the pink shirt is not speaking. Her mouth does not move. Her lips remain still. Her cheeks do not move. Her eyes look at the man. Her head is mostly still. Her body does not move.
+```
+</details>
+
+### `video_298_1` · cue: smile/laugh · emotions: joy
+**Fact:** The man next to her is smiling.  
+**Correct (A):** The man seems to be enjoying the moment, indicating a positive and joyful atmosphere.  
+**Other (B):** The man is smiling, which may be masking his true feelings or intentions, causing the speaker to feel fear.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✓ | B ✗ |
+| Voice as described | Her voice is at a medium pitch. It rises slightly at the end. The pace is moderate. There is a slight pause after "her." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's facial expressions—raised and inward-moving eyebrows, forehead wrinkles, and narrowed eyes—are consistent with suspicion or concern rather than fear. Her controlled posture and moderate speech pace suggest she is assessing the situation rather than being overwhelmed. Given that the man is smiling, it's more likely she is reacting to his behavior with curiosity or skepticism, not fear. | The man's smile, combined with his eyes looking down and closed mouth, suggests a more reserved or possibly nervous reaction rather than overt joy. Given the speaker's questioning tone and concerned facial expressions, her reaction seems more aligned with suspicion or anxiety rather than a joyful atmosphere. Therefore, interpretation B is more consistent with the subtle cues from both individuals. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman. She says, "Did you break up with her?"
+
+Her eyebrows move slightly upward and inward. Her forehead shows small wrinkles. Her eyes narrow a little. Her mouth opens and closes with the words. Her lips move to form the sounds. Her cheeks rise slightly.
+
+Her arms are bent with hands holding a book. Her legs are together. Her torso is upright. Her hands move slightly on the book.
+
+Her voice is at a medium pitch. It rises slightly at the end. The pace is moderate. There is a slight pause after "her."
+```
+
+**baseline:**
+
+```
+The main speaker is the woman. She says, "Did you break up with her?"
+
+Her eyebrows move slightly upward and inward. Her forehead shows small creases. Her eyes narrow a little. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are bent at the elbows. Her hands hold a book. Her legs are bent at the knees. Her torso is upright.
+
+The man is not the main speaker. His mouth is closed. His eyebrows are slightly raised. His eyes are looking down. His cheeks are slightly raised. His lips are closed. His arms are resting on his legs. His hands are on his lap. His legs are bent. His torso is upright.
+```
+</details>
+
+### `video_306_0` · cue: face · emotions: other
+**Fact:** His mouth is slightly open.  
+**Correct (B):** This suggests that he is feeling vulnerable or lost in thought.  
+**Other (A):** This suggests that he is reacting to something unexpected or surprising.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is low. The pitch stays mostly level. The pace is slow. There are pauses between phrases. The words "Emily" and "airport" are said with slightly more emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's mouth being slightly open, combined with his slow pace, low voice, and the emphasis on "Emily" and "airport," suggests a reflective or introspective state rather than surprise. His overall body language is subdued and controlled, with minimal movement and no signs of sudden arousal, which makes interpretation A less likely. Instead, the slight openness of his mouth aligns more with someone who is emotionally exposed or mentally preoccupied. | The man's slightly open mouth, combined with his fluctuating eyebrows, forehead wrinkling, and subtle head movements, indicates a state of mild surprise or sudden realization rather than deep introspection. These micro-expressions are more consistent with reacting to new or unexpected information, especially since he is in the middle of delivering a statement about someone going to the airport. While vulnerability or being lost in thought could be possible, the active and reactive nature of his other body language points more strongly toward surprise. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man in the black coat is the main speaker. He says, "So, uh, Emily just went to the airport."
+
+The man's eyebrows move up and down. His forehead wrinkles and smooths out. His eyes open and close slightly. His nose flares a little. His cheeks move up and down. His mouth opens and closes. His lips press together and spread apart.
+
+The man's right arm moves up and down. His left arm stays down. His torso shifts slightly.
+
+The speaker's voice is low. The pitch stays mostly level. The pace is slow. There are pauses between phrases. The words "Emily" and "airport" are said with slightly more emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the black coat. He says, "So uh, Emily just went to the airport."
+
+The man's eyebrows move up and down. His forehead wrinkles and smooths out. His eyes open and close slightly. His nose flares a little. His cheeks move up and down. His mouth opens and closes, and his lips move.
+
+The man's right arm moves up and down. His left arm stays down. His torso moves slightly. His head moves up and down.
+```
+</details>
+
+### `video_319_4` · cue: hands/gesture · emotions: anger
+**Fact:** The man is making strong points.  
+**Correct (B):** He is possibly expressing frustration or annoyance.  
+**Other (A):** He is confidently sharing his ideas and feels pleased with the discussion.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is of a medium pitch. It is steady in loudness and has a moderate speed. There are no noticeable pauses or changes in emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's eyebrows moving slightly up and down and the creases on his forehead suggest mild tension or concentration rather than relaxation or pleasure. His steady voice and lack of emphasis or pauses indicate he is making a point deliberately, but without emotional escalation. The combination of focused facial cues and controlled delivery leans more toward frustration or annoyance than confidence and pleasure. | The man's raised eyebrows, wrinkled forehead, and focused gaze toward the woman suggest he is actively engaged and possibly emphasizing a point. While these cues can sometimes indicate frustration, in this context—combined with his open mouth, moving lips, and forward-leaning posture—they align more closely with assertive communication rather than annoyance. His body language supports confidence and engagement, not irritation. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man in the dark suit and patterned tie is the main speaker. He says, "Richard used to do it, didn't he?"
+
+The man's eyebrows move slightly up and down. His forehead shows some creases. His eyes look towards the woman. His nose remains still. His cheeks move as he speaks. His mouth opens and closes, and his lips move to form words.
+
+The man's torso is mostly still. His head turns slightly towards the woman. His arms are down by his sides. His hands are not visible.
+
+The speaker's voice is of a medium pitch. It is steady in loudness and has a moderate speed. There are no noticeable pauses or changes in emphasis.
+```
+
+**baseline:**
+
+```
+The man in the dark suit is the main speaker. He says, "Richard used to do it, didn't he?"
+
+The man's eyebrows are raised and his forehead is wrinkled. His eyes are open and looking towards the woman. His mouth is open and his lips are moving as he speaks. His cheeks are slightly raised.
+
+The man's torso is angled slightly towards the woman. His arms are down at his sides. His hands are not visible. His body remains mostly still throughout the clip.
+
+The woman in the red top is the main speaker. She says, "Richard used to do it, didn't he?"
+
+The woman's eyebrows are slightly raised. Her forehead is smooth. Her eyes are open and looking towards the man. Her mouth is open and her lips are moving as she speaks. Her cheeks are slightly raised.
+
+The woman's torso is angled slightly towards the man. Her arms are crossed in front of her. Her hands are clasped together. Her body remains mostly still throughout the clip.
+```
+</details>
+
+### `video_417_0` · cue: face · emotions: other
+**Fact:** The woman has wide eyes and an open mouth.  
+**Correct (B):** Her facial expressions suggest she seems to be pleading or trying to make a point.  
+**Other (A):** Her facial expressions suggest she is surprised or astonished.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✓ | A ✗ |
+| Voice as described | The speaker's voice is at a medium pitch. It rises and falls with the sentence. The pace is moderate. There are slight pauses between phrases. The words "not a big deal" are spoken with a slightly lower pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's wide eyes and open mouth could indicate surprise, but her overall context—saying "it's just not a big deal" with a slightly lower pitch and using hand gestures—suggests she is trying to downplay something while emphasizing her point. Her body language seems more aligned with persuasion or explanation than genuine astonishment. | The woman's wide eyes and open mouth are classic indicators of surprise or astonishment, especially when combined with her animated hand and arm movements, which suggest she is reacting to something unexpected. While her gestures could imply she is trying to emphasize a point, the facial cues align more strongly with a spontaneous emotional reaction rather than a deliberate attempt to plead. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the floral top. She says, "Right, I know, I know. So it's it's just not a big deal."
+
+The speaker's eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes look forward and then shift. Her mouth opens and closes. Her lips move to form words.
+
+The speaker's hands move in front of her. Her arms shift position. Her torso remains mostly still. Her shoulders move slightly.
+
+The speaker's voice is at a medium pitch. It rises and falls with the sentence. The pace is moderate. There are slight pauses between phrases. The words "not a big deal" are spoken with a slightly lower pitch.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman with brown hair. She says, "Right, I know, I know. So it's it's just not a big deal."
+
+The woman with brown hair's eyebrows move up and down. Her forehead wrinkles and smooths out. Her eyes open and close slightly. Her mouth opens and closes, and her lips move. Her cheeks move up and down.
+
+The woman with brown hair moves her hands up and down. Her arms move up and down. Her torso moves slightly. Her hands move in front of her.
+```
+</details>
+
+## baseline right, v7 wrong (13)
+
+### `video_84_0` · cue: smile/laugh · emotions: joy
+**Fact:** The woman is smiling.  
+**Correct (A):** The smile on her face and the way she laughs indicate that she is enjoying herself and is in a positive emotional state.  
+**Other (B):** The smile on her face and the way she laughs do not indicate that she is enjoying herself and is in a positive emotional state.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The speaker's voice is at a moderate pitch. The pace is steady and the volume is consistent. There are no noticeable pauses or changes in emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's smile is subtle, with her cheeks rising slightly, which is consistent with a polite or neutral expression rather than one of genuine enjoyment. Her steady pace, consistent volume, and lack of emphasis or laughter suggest she is not expressing strong positive emotion. Therefore, the smile likely serves a social function rather than indicating genuine enjoyment. | The woman is holding a mop and saying, “I’m just cleaning up,” which suggests she is engaged in a routine task. Her smile appears genuine, as indicated by the slight raising of her cheeks and the engagement of her eyes, which aligns with a positive emotional state. There is no evidence of forced or fake laughter, so the smile likely reflects genuine enjoyment or contentment. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the foreground. She says, "I'm just cleaning up."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her cheeks rise slightly as she talks. Her eyes remain open and focused forward.
+
+The woman holds a blue object in her hands. Her arms are bent at the elbows. Her torso is upright. Her legs are together and stationary.
+
+The speaker's voice is at a moderate pitch. The pace is steady and the volume is consistent. There are no noticeable pauses or changes in emphasis.
+```
+
+**baseline:**
+
+```
+The woman in the blue shirt and apron is the main speaker. She says, "I'm just cleaning up."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her cheeks rise slightly as she talks. Her eyes remain open and focused forward.
+
+The woman holds a blue mop handle with both hands. Her arms are bent at the elbows. She shifts her weight slightly from one foot to the other. Her torso remains mostly upright.
+```
+</details>
+
+### `video_147_0` · cue: face · emotions: anger, fear/anxiety, surprise, joy
+**Fact:** The man's posture is tense and confrontational.  
+**Correct (B):** His posture is tense and confrontational, indicating that he is feeling surprised or joyful about something unexpected.  
+**Other (A):** His posture is tense and confrontational, indicating that he is feeling anger.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The speaker's voice is at a medium pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after "I can do that." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | A tense and confrontational posture typically signals defensiveness or hostility, which aligns more closely with anger than with surprise or joy. While surprise or joy might involve open expressions or upward movements, the observed tension and forward focus suggest a readiness to engage in conflict rather than react to something positive or unexpected. | The raised eyebrows, wrinkled forehead, and open eyes suggest surprise or heightened emotion rather than anger, which typically involves furrowed brows and a tense jaw. Additionally, the open hands and forward-facing torso indicate openness rather than defensiveness, which is more consistent with surprise or excitement than anger. Therefore, the interpretation aligning with surprise or joy is more fitting. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man on the left is the main speaker. He says, "I can do that."
+
+The man's eyebrows move slightly up and down. His forehead wrinkles a little. His eyes look forward. His nose remains still. His cheeks move slightly. His mouth opens and closes. His lips move.
+
+The man's hands move. His arms move slightly. His torso remains still. His legs are not visible.
+
+The speaker's voice is at a medium pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after "I can do that."
+```
+
+**baseline:**
+
+```
+The main speaker is the man on the left. He says, "I can do that."
+
+The man on the left has his mouth open and his lips are moving. His eyebrows are raised and his forehead is wrinkled. His eyes are open and looking towards the other man. His cheeks are raised and his nose is wrinkled.
+
+The man on the left has his hands open and moving. His arms are bent at the elbows. His torso is facing forward. His shoulders are slightly raised.
+```
+</details>
+
+### `video_157_0` · cue: smile/laugh · emotions: joy · negated
+**Fact:** There is a slight smile on the woman's face.  
+**Correct (A):** Her facial expression is not one of happiness and contentment.  
+**Other (B):** Her facial expression is one of happiness and contentment.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "poetry." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight smile on her face, combined with the rising intonation at the end of the sentence and the moderate, conversational pace, suggests a lighthearted or playful tone. While her eyebrows and forehead show some tension, the smile likely indicates amusement or gentle teasing rather than genuine happiness. Given the context of her words—referencing someone else's past comment—this seems more like a teasing or ironic smile than one of contentment. | The slight smile on her face, combined with the animated facial movements and hand gestures, suggests a mix of amusement and mild exasperation rather than genuine happiness. Her eyebrows and forehead movements indicate she is emphasizing a point or reacting to something ironic, which aligns more with interpretation A. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes look down and then up. Her mouth opens and closes with the words. Her lips move to form the sounds.
+
+Her right hand moves up to her hair. Her left hand holds a glass object. Her body stays in the same position. Her arms move slightly.
+
+Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "poetry."
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the yellow coat. She says, "Remember how you said that you were really dense about poetry?"
+
+Her eyebrows move up and down. Her forehead wrinkles slightly. Her eyes narrow and open. Her mouth opens and closes. Her lips move in different shapes.
+
+Her right hand moves up to her head. Her left hand moves down to the vase. Her right hand moves down to the vase. Her left hand moves up to her chest.
+```
+</details>
+
+### `video_160_0` · cue: face · emotions: anger, fear/anxiety
+**Fact:** He has a tense expression on his face.  
+**Correct (A):** The tense expression on his face is a typical sign of anger.  
+**Other (B):** The tense expression on his face is a sign of surprise.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The speaker's voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after the word "this." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The combination of narrowed eyes, furrowed brow, and tense facial muscles often indicates surprise or disbelief rather than anger, especially when paired with a questioning tone and rising intonation. While anger can involve tension, it typically includes more pronounced features like flared nostrils or a rigid jaw, which are not observed here. The slight pause after "this" and the inquisitive nature of the question suggest he is taken aback rather than enraged. | The combination of narrowed eyes, furrowed brows, and forehead wrinkles typically signals skepticism or suspicion rather than surprise, which usually involves raised eyebrows and wider eyes. Additionally, his direct questioning tone and forward torso orientation suggest he is challenging or confronting, aligning more with anger or suspicion than surprise. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man in the dark suit is the main speaker. He says, "How do you know so much about this?"
+
+The man's eyebrows move together and down. His forehead wrinkles. His eyes narrow slightly. His mouth opens and closes. His lips move to form words. His cheeks move with his mouth.
+
+The man's torso is mostly still. His head moves slightly. His arms are not visible. His hands are not visible. His legs are not visible.
+
+The speaker's voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after the word "this."
+```
+
+**baseline:**
+
+```
+The man in the dark suit is the main speaker. He says, "How do you know so much about this?"
+
+The man's eyebrows move together and down. His forehead wrinkles. His eyes narrow. His mouth opens and his lips move.
+
+The man's torso is angled slightly toward the woman. His arms are at his sides. His hands are not visible. His shoulders are level.
+```
+</details>
+
+### `video_168_1` · cue: face · emotions: intensity/emphasis
+**Fact:** The way she stands and the expression on her face.  
+**Correct (A):** The way she stands and the expression on her face indicate that she is likely expressing a strong emotion, possibly related to a disagreement or a challenging situation.  
+**Other (B):** The way she stands and the expression on her face do not indicate that she is likely expressing a strong emotion, possibly related to a disagreement or a challenging situation.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the first sentence. The voice is loud. The speed is moderate. There are pauses between phrases. The words "special appearance" are said with extra emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's facial expressions, such as eyebrow movements, forehead wrinkling, and slight nose flaring, combined with her animated hand and torso movements, suggest active engagement rather than tension or conflict. Her voice is loud and expressive, with emphasis on certain words, indicating enthusiasm or excitement rather than disagreement. These cues align more closely with someone delivering a lively or dramatic announcement than someone in a challenging or confrontational situation. | The woman's wide eyes, flared nose, raised eyebrows, and forward-leaning posture suggest heightened emotional arousal, possibly excitement or urgency, rather than a calm or neutral state. These cues are more consistent with strong emotional expression than with disengagement or lack of emotion. Therefore, interpretation A better captures the intensity of her body language. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman on the left. She says, "special appearance by Elliott Gould as Jack Geller and Christina Pickles as Judy Geller."
+
+The woman's eyebrows move up and down. Her forehead wrinkles and smooths. Her eyes open and close. Her nose flares slightly. Her cheeks move up and down. Her mouth opens and closes. Her lips move.
+
+The woman's arms move. Her hands move. Her torso moves. Her legs move.
+
+The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the first sentence. The voice is loud. The speed is moderate. There are pauses between phrases. The words "special appearance" are said with extra emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman on the left. She says, "special appearance by Elliott Gould as Jack Geller."
+
+Her eyebrows are raised and her forehead is wrinkled. Her eyes are open wide and her pupils are visible. Her nose is flared and her cheeks are raised. Her mouth is open and her lips are parted.
+
+Her arms are bent at the elbows and her hands are moving. Her torso is leaning forward and her legs are positioned to support her weight. Her body is facing the man on the right.
+
+The man on the right is wearing a white helmet. He is standing still and looking at the woman. His arms are at his sides and his hands are not visible. His body is facing the woman.
+```
+</details>
+
+### `video_168_2` · cue: hands/gesture · emotions: anger
+**Fact:** The woman is standing with her hands on her hips.  
+**Correct (B):** This posture is associated with anger or frustration.  
+**Other (A):** This posture is not associated with anger or frustration.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the first sentence. The voice is loud. The speed is moderate. There are pauses between phrases. The words "special appearance" are said with extra emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's hands-on-hips posture is often interpreted as a sign of confidence or assertiveness, especially when combined with her animated facial expressions and energetic delivery. While this stance can sometimes signal frustration, the overall tone of her voice and expressive body language suggest enthusiasm rather than anger. Therefore, interpretation A is more consistent with the observed cues. | The woman's hands-on-hips posture, combined with her forward-leaning torso and animated facial expressions (raised eyebrows, wide eyes, flared nose), suggests a strong emotional state. While this stance can sometimes signal confidence, in this context—especially with her intense facial cues—it aligns more closely with heightened emotion such as frustration or anger. Therefore, interpretation B is more consistent with the full body language observed. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman on the left. She says, "special appearance by Elliott Gould as Jack Geller and Christina Pickles as Judy Geller."
+
+The woman's eyebrows move up and down. Her forehead wrinkles and smooths. Her eyes open and close. Her nose flares slightly. Her cheeks move up and down. Her mouth opens and closes. Her lips move.
+
+The woman's arms move. Her hands move. Her torso moves. Her legs move.
+
+The speaker's voice is at a medium pitch. The pitch rises slightly at the end of the first sentence. The voice is loud. The speed is moderate. There are pauses between phrases. The words "special appearance" are said with extra emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman on the left. She says, "special appearance by Elliott Gould as Jack Geller."
+
+Her eyebrows are raised and her forehead is wrinkled. Her eyes are open wide and her pupils are visible. Her nose is flared and her cheeks are raised. Her mouth is open and her lips are parted.
+
+Her arms are bent at the elbows and her hands are moving. Her torso is leaning forward and her legs are positioned to support her weight. Her body is facing the man on the right.
+
+The man on the right is wearing a white helmet. He is standing still and looking at the woman. His arms are at his sides and his hands are not visible. His body is facing the woman.
+```
+</details>
+
+### `video_206_1` · cue: face · emotions: anger, fear/anxiety · negated
+**Fact:** Her facial expression is tense.  
+**Correct (A):** The tense facial expression does not indicate she is feeling anger.  
+**Other (B):** The tense facial expression indicates she is feeling anger.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | Her voice is high. It rises and falls. It is loud. It is fast. There are no pauses. She emphasizes the words "crown molding" and "dormer windows." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's tense facial expression, combined with rapid, high-pitched speech and emphatic delivery, suggests strong emotional arousal. While tension can stem from various emotions, the intensity and physicality of her expression—such as flared nostrils, furrowed brows, and tight lips—align more closely with anger than with other states like nervousness or excitement. Her emphasis on specific words and lack of pauses further indicate a forceful, possibly agitated emotional state. | The woman's facial expression, characterized by raised eyebrows, forehead wrinkles, and wide eyes, suggests heightened emotional arousal. However, her tone and context—describing architectural features in a calm, informative manner—do not align with anger, which typically includes other cues like clenched jaw or aggressive gestures. Instead, the tension may reflect concentration or effort in explaining details. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman. She says, "And the crown molding and the dormer windows in the attic."
+
+Her eyebrows raise and lower. Her forehead wrinkles slightly. Her eyes open wider and then narrow. Her nose flares a little. Her cheeks move up and down. Her mouth opens and closes. Her lips press together and then part.
+
+Her hands move up and down. Her arms move back and forth. Her torso shifts slightly. Her shoulders move up and down.
+
+Her voice is high. It rises and falls. It is loud. It is fast. There are no pauses. She emphasizes the words "crown molding" and "dormer windows."
+```
+
+**baseline:**
+
+```
+The woman in the white shirt is the main speaker. She says, "And the crown molding and the dormer windows in the attic."
+
+Her eyebrows raise and lower as she speaks. Her forehead shows wrinkles when she raises her eyebrows. Her eyes open wider at times. Her mouth opens and closes with the words. Her lips move to form the sounds.
+
+Her hands move up and down. Her arms move with her hands. Her torso shifts slightly. Her body turns towards the man she is speaking to.
+```
+</details>
+
+### `video_208_1` · cue: hands/gesture · emotions: fear/anxiety
+**Fact:** Her hands are clasped together in front of her.  
+**Correct (B):** This can suggest nervousness or anxiety.  
+**Other (A):** This does not suggest nervousness or anxiety.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The speaker's voice is at a moderate pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after the word "No." The word "Phoebe" is spoken with a slightly higher pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | Clasped hands can indicate a range of emotions, but in this context, combined with the slight pause after "No" and the rising pitch on "Phoebe," it may reflect a moment of hesitation or emotional processing. However, her eyes remain focused and her torso is still, which suggests composure rather than overt anxiety. Therefore, the gesture is more likely a sign of thoughtfulness or emphasis than nervousness. | Clasped hands in front of the body can often indicate a defensive or self-soothing gesture, especially when combined with subtle facial tension like forehead wrinkles and upward eyebrow movements. While not definitive, this body language is commonly associated with nervousness or anxiety in social interactions. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The woman in the red top is the main speaker. She says, "No, I live with Phoebe."
+
+The woman's eyebrows move slightly upwards and then lower. Her forehead shows some creases. Her eyes remain open and focused. Her mouth opens and closes as she speaks. Her lips move to form words. Her cheeks move with the opening and closing of her mouth.
+
+The woman's hands are clasped together in front of her. She then moves her hands apart and gestures with them. Her arms move slightly as she gestures. Her torso remains mostly still.
+
+The speaker's voice is at a moderate pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after the word "No." The word "Phoebe" is spoken with a slightly higher pitch.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the red top. She says, "No, I live with Phoebe."
+
+The woman's eyebrows move slightly upwards and then lower. Her forehead shows small wrinkles. Her eyes look forward and then shift slightly. Her mouth opens and closes, and her lips move with the words. Her cheeks move in and out with the mouth movements.
+
+The woman's hands move from being clasped to gesturing. Her arms move slightly with the hand gestures. Her torso remains mostly still. Her head moves slightly as she speaks.
+
+The man in the blue sweater is not the main speaker.
+```
+</details>
+
+### `video_236_0` · cue: smile/laugh · emotions: joy · negated
+**Fact:** There is a slight smile on his face.  
+**Correct (B):** The slight smile does not suggest that he is feeling happy or amused.  
+**Other (A):** The slight smile suggests that he is feeling happy or amused.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The speaker's voice is at a moderate pitch and level. The pace is moderate, with a slight rise in pitch at the end of the sentence. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The slight smile, combined with raised cheeks and a relaxed facial expression, typically indicates positive emotion such as amusement or happiness. Although his eyes are looking away and his body is still, the facial cues align more closely with Interpretation A, suggesting genuine positive affect rather than a neutral or forced expression. | The slight smile, combined with the relaxed posture and the context of his hesitant tone, suggests a more complex emotional state than simple happiness. It may indicate mild amusement or a subtle attempt to soften his disagreement, rather than genuine joy. Therefore, the smile likely reflects social politeness or a nuanced emotional response rather than straightforward happiness. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man in the black shirt is the main speaker. He says, "Yeah, I don't think you should say that even when..."
+
+The man's eyebrows are slightly raised. His forehead is smooth. His eyes are open and looking to his right. His nose is visible. His cheeks are slightly raised. His mouth is open, and his lips move as he speaks.
+
+The man's torso is angled slightly to his left. His arms are resting on his legs. His hands are not visible. His legs are not visible. His body remains mostly still.
+
+The speaker's voice is at a moderate pitch and level. The pace is moderate, with a slight rise in pitch at the end of the sentence.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the black shirt. He says, "Yeah, I don't think you should say that even when..."
+
+The man's mouth opens and closes as he speaks. His lips move to form the words. His jaw moves up and down. His eyebrows raise slightly at the beginning of the sentence.
+
+The man's torso remains mostly still. His arms are resting on his legs. His hands are not visible. His head turns slightly to the right.
+```
+</details>
+
+### `video_378_1` · cue: smile/laugh · emotions: joy
+**Fact:** The man is smiling.  
+**Correct (A):** The smiling indicates a positive and happy emotion.  
+**Other (B):** The smiling is a nervous or anxious response to fear.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The speaker's voice is low. The pitch is steady. The loudness is moderate. The speed is normal. There are no noticeable pauses or emphasis. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The man's eyebrows are raised and his forehead is wrinkled, which can indicate tension or concern. While his cheeks are raised (a sign of smiling), the partial eye closure and low, steady voice suggest he may be masking discomfort. The hand touching his face and slight torso turn further support a defensive or uneasy posture, making the smile appear more nervous than genuinely happy. | The man's smile is accompanied by subtle facial cues such as eyebrow raises and forehead creasing, which can indicate a mix of emotions. However, the context of him saying "Oh, there you are" in a casual tone, combined with relaxed body language (e.g., minimal movement, no signs of tension), suggests a friendly and welcoming demeanor rather than anxiety. Therefore, the smile is more likely expressing genuine happiness or recognition. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the man in the dark blue fleece jacket and baseball cap. He says, "Oh, there you are."
+
+The man's eyebrows are slightly raised. His forehead is wrinkled. His eyes are partially closed. His nose is visible. His cheeks are raised. His mouth is open and his lips are moving.
+
+The man's right hand is touching his face. His left arm is bent. His torso is slightly turned. His head is tilted.
+
+The speaker's voice is low. The pitch is steady. The loudness is moderate. The speed is normal. There are no noticeable pauses or emphasis.
+```
+
+**baseline:**
+
+```
+The main speaker is the man in the dark blue fleece jacket and baseball cap. He says, "Oh, there you are."
+
+The man's mouth opens and closes as he speaks. His eyebrows move slightly upward. His forehead shows some creasing. His cheeks move as he talks. His lips purse and then open.
+
+The man's right hand moves from his face to his side. His left arm is mostly still. His torso remains in the same position. His head turns slightly to the left.
+
+The woman in the red floral shirt is the main speaker. She says, "Oh, there you are."
+
+The woman's mouth opens and closes as she speaks. Her eyebrows move slightly upward. Her forehead shows some creasing. Her cheeks move as she talks. Her lips purse and then open.
+
+The woman's hands are resting on the table. Her arms are mostly still. Her torso remains in the same position. Her head turns slightly to the left.
+```
+</details>
+
+### `video_383_3` · cue: face · emotions: intensity/emphasis
+**Fact:** She is speaking with a stern and intense expression.  
+**Correct (B):** She appears to be speaking with a stern and intense expression.  
+**Other (A):** She does not appear to be speaking with a stern and intense expression.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "No." The word "fun" is spoken with a slightly higher pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The speaker's eyebrows are moving slightly up and down, and her forehead shows small wrinkles, which can indicate tension or focus. However, her eyes shift to the side and her mouth moves naturally with speech, suggesting a more casual or playful tone rather than sternness. The slight pause after "No" and the higher pitch on "fun" further imply lightheartedness rather than intensity. | The observation that her eyebrows move slightly up and down and her forehead shows small wrinkles suggests tension or focus, which aligns with a stern and intense expression. Additionally, her eyes shifting slightly while maintaining forward focus could indicate emotional intensity. These cues support the interpretation that she is conveying seriousness rather than casualness. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The main speaker is the woman in the red dress. She says, "No, I just thought it would be fun."
+
+Her eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes look forward and then shift to the side. Her mouth opens and closes, and her lips move with the words.
+
+Her arms are at her sides. Her hands are not visible. Her torso is still. Her shoulders are level.
+
+Her voice is at a medium pitch. It rises slightly at the end of the sentence. The pace is moderate. There is a slight pause after "No." The word "fun" is spoken with a slightly higher pitch.
+```
+
+**baseline:**
+
+```
+The main speaker is the woman in the red dress. She says, "No, I just thought it would be fun."
+
+Her eyebrows move slightly up and down. Her forehead shows small wrinkles. Her eyes look forward and then shift slightly. Her mouth opens and closes, and her lips move to form words.
+
+Her arms are at her sides. Her hands are not visible. Her torso is upright. Her body does not move significantly.
+
+The man in the blue shirt is the main speaker. He says, "I don't know, I just thought it would be fun."
+
+His eyebrows raise and lower. His forehead wrinkles. His eyes look forward. His mouth opens and closes, and his lips move to form words.
+
+His arms are at his sides. His hands are not visible. His torso is upright. His body does not move significantly.
+```
+</details>
+
+### `video_393_1` · cue: face · emotions: anger, sadness, fear/anxiety
+**Fact:** The man has raised eyebrows and a tense posture.  
+**Correct (A):** His body language, including raised eyebrows and a tense posture, suggests that he is upset or frustrated about something.  
+**Other (B):** His body language, including raised eyebrows and a tense posture, does not suggest that he is upset or frustrated about something.  
+*v3 was right.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | B ✗ | A ✓ |
+| Voice as described | The speaker's voice is low and steady. The pace is moderate. There are slight pauses between phrases. The words "one girl" are spoken with a slightly lower pitch. | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The raised eyebrows and forehead wrinkles indicate heightened attention or emphasis, not necessarily distress. His voice remains low and steady, and his torso is mostly still, which contradicts signs of frustration. The slight pauses and controlled pace suggest he is carefully choosing his words rather than being upset. | The raised eyebrows and forehead wrinkling suggest heightened emotional arousal, while the tense posture and slight head turn indicate discomfort or defensiveness. These cues align more closely with emotional tension than with neutrality, making it likely that he is experiencing frustration or upset. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The man on the left is the main speaker. He says, "Well, that's all right, sir, and that's just one girl."
+
+The man on the left's mouth opens wide and moves as he speaks. His eyebrows raise and lower. His forehead wrinkles. His eyes look forward and then shift to the right. His cheeks move with his mouth. His lips stretch and relax.
+
+The man on the left holds a glass in his right hand. His left hand rests on the table. His torso remains mostly still. His head turns slightly to the right.
+
+The speaker's voice is low and steady. The pace is moderate. There are slight pauses between phrases. The words "one girl" are spoken with a slightly lower pitch.
+```
+
+**baseline:**
+
+```
+The main speaker is the man on the left. He says, "Well, that's all right, sir, and that's just one girl."
+
+The man on the left's mouth opens wide and then closes as he speaks. His eyebrows raise and lower. His forehead wrinkles. His eyes look forward and then shift to the right. His cheeks move with his mouth. His lips stretch and relax.
+
+The man on the left holds a glass in his right hand. His left hand rests on the table. His torso remains mostly still. His head turns slightly to the right.
+
+The man on the right raises his left hand. His fingers move as he speaks. His torso turns slightly to the left. His head turns to the left.
+```
+</details>
+
+### `video_398_1` · cue: smile/laugh · emotions: joy
+**Fact:** The woman is smiling.  
+**Correct (B):** Her facial expression appears to be joyful and happy.  
+**Other (A):** She is masking her anger with a smile.  
+*v3 was wrong.*
+
+| | v7 | baseline |
+| --- | --- | --- |
+| Answer | A ✗ | B ✓ |
+| Voice as described | The speaker's voice is at a medium pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after "It's not possible." | (baseline prompt does not ask for voice) |
+| Decider's reasoning | The woman's facial expression includes raised cheeks and lip movement consistent with smiling, which typically indicates positive emotion. However, her eyebrows are drawn inward and her forehead shows wrinkles, which can signal tension or suppressed frustration. The combination of a smile with these tense features suggests she may be trying to hide negative emotions. Therefore, the smile likely serves as a mask rather than genuine joy. | The woman's body language, including her hands resting on the man's chest and shoulder and her torso angled toward him, suggests intimacy and engagement rather than aggression. While she says, "It's not possible," which could indicate frustration, her smile combined with relaxed hand placement and steady eye contact points more toward a lighthearted or affectionate tone rather than masking anger. |
+
+<details><summary>Full descriptions</summary>
+
+**v7:**
+
+```
+The woman is the main speaker. She says, "It's not possible."
+
+The woman's eyebrows move slightly upward and inward. Her forehead shows small wrinkles. Her eyes narrow a little. Her mouth opens and closes as she speaks. Her lips move to form words. Her cheeks rise slightly.
+
+The woman's left arm rests on the man's chest. Her right hand moves from her chest to her shoulder. Her right arm is bent with the hand near her shoulder. Her torso remains mostly still.
+
+The speaker's voice is at a medium pitch. It rises slightly at the end of the phrase. The pace is moderate. There is a slight pause after "It's not possible."
+```
+
+**baseline:**
+
+```
+The woman is the main speaker. She says, "It's not possible."
+
+The woman's mouth opens and closes as she speaks. Her lips move to form the words. Her eyebrows raise slightly as she talks. Her eyes remain focused on the man.
+
+The woman's right arm is bent with her hand resting on the man's chest. Her left arm is bent with her hand resting on his shoulder. Her torso is angled towards the man. Her hands remain in the same position throughout the clip.
+```
+</details>
+
+<a id='v3-v7'></a>
+# v3 vs v7
+
+On these 188 questions: v3 136, v7 137. Both right 117, both wrong 32; v3 right only 19, v7 right only 20.
 
 ## Tag counts
 
@@ -25,7 +2538,7 @@ clips: 18
 **Fact:** There is a slight smile on the speaker's face.  
 **Correct (A):** The slight smile does not indicate a relaxed and content expression.  
 **Other (B):** The slight smile indicates a relaxed and content expression.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -67,7 +2580,7 @@ The speaker's voice is of a low pitch. The volume is consistent. The pace is mod
 **Fact:** His eyes are slightly crinkled.  
 **Correct (A):** The crinkled eyes do not indicate a genuine smile.  
 **Other (B):** The crinkled eyes indicate a genuine smile.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -109,7 +2622,7 @@ The speaker's voice is of a low pitch. The volume is consistent. The pace is mod
 **Fact:** He has a tense expression on his face.  
 **Correct (A):** The tense expression on his face is a typical sign of anger.  
 **Other (B):** The tense expression on his face is a sign of surprise.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -151,7 +2664,7 @@ The speaker's voice is at a medium pitch. It rises slightly at the end of the se
 **Fact:** The way she stands and the expression on her face.  
 **Correct (A):** The way she stands and the expression on her face indicate that she is likely expressing a strong emotion, possibly related to a disagreement or a challenging situation.  
 **Other (B):** The way she stands and the expression on her face do not indicate that she is likely expressing a strong emotion, possibly related to a disagreement or a challenging situation.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -196,7 +2709,7 @@ The speaker's voice is at a medium pitch. The pitch rises slightly at the end of
 **Fact:** The woman is standing with her hands on her hips.  
 **Correct (B):** This posture is associated with anger or frustration.  
 **Other (A):** This posture is not associated with anger or frustration.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -241,7 +2754,7 @@ The speaker's voice is at a medium pitch. The pitch rises slightly at the end of
 **Fact:** Her hands are clasped together in front of her.  
 **Correct (B):** This can suggest nervousness or anxiety.  
 **Other (A):** This does not suggest nervousness or anxiety.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -283,7 +2796,7 @@ The speaker's voice is at a moderate pitch. It rises slightly at the end of the 
 **Fact:** Her body language includes holding the mug firmly and leaning slightly forward.  
 **Correct (A):** Her body language suggests a strong emotional response, which aligns with the emotion of anger.  
 **Other (B):** Her body language suggests engagement and enthusiasm, which aligns with the emotion of joy.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -325,7 +2838,7 @@ The speaker's voice is at a medium pitch. It rises slightly at the end of the fi
 **Fact:** There is a slight smile on his face.  
 **Correct (B):** The slight smile does not suggest that he is feeling happy or amused.  
 **Other (A):** The slight smile suggests that he is feeling happy or amused.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -367,7 +2880,7 @@ The speaker's voice is at a moderate pitch and level. The pace is moderate, with
 **Fact:** There is a slight smile on the speaker's face.  
 **Correct (A):** The slight smile does not suggest a relaxed and content expression.  
 **Other (B):** The slight smile suggests a relaxed and content expression.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -409,7 +2922,7 @@ The speaker's voice is at a moderate pitch and level. The pace is moderate, with
 **Fact:** The man is smiling.  
 **Correct (A):** His smile indicates that he is enjoying the interaction with the woman.  
 **Other (B):** His smile is a facade to mask his anger.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -451,7 +2964,7 @@ The speaker's voice is low and steady. The pitch is consistent. The pace is mode
 **Fact:** The man is smiling.  
 **Correct (B):** His smile suggests that he is feeling joy.  
 **Other (A):** His smile does not suggest that he is feeling joy.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -493,7 +3006,7 @@ The speaker's voice is low and steady. The pitch is consistent. The pace is mode
 **Fact:** The speaker is gesturing with open hands.  
 **Correct (A):** The open hand gestures do not suggest the speaker is feeling joy.  
 **Other (B):** The open hand gestures suggest the speaker is feeling joy.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -535,7 +3048,7 @@ Her voice is at a medium pitch. It rises and falls. It is spoken at a moderate s
 **Fact:** His mouth is open.  
 **Correct (A):** His mouth being open suggests he is shouting or speaking forcefully.  
 **Other (B):** His mouth being open does not suggest that he is shouting or speaking forcefully.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -577,7 +3090,7 @@ The speaker's voice is low. It rises at the end of the sentence. The pace is mod
 **Fact:** Her mouth movements suggest she is speaking with intensity.  
 **Correct (A):** The mouth movements indicate she is possibly feeling frustration.  
 **Other (B):** The mouth movements do not indicate that she is possibly feeling frustration.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -619,7 +3132,7 @@ The speaker's voice is high-pitched. It rises and falls. The pace is moderate. T
 **Fact:** She is making direct eye contact.  
 **Correct (A):** Making direct eye contact is a common indicator of anger or strong emotion.  
 **Other (B):** Making direct eye contact is a sign of confidence and engagement, often associated with positive emotions like joy.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -661,7 +3174,7 @@ The speaker's voice is high-pitched. It rises and falls. The pace is moderate. T
 **Fact:** Her mouth movements are firm and deliberate.  
 **Correct (A):** Her mouth movements indicate a strong emotional response.  
 **Other (B):** Her mouth movements do not indicate a strong emotional response.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -703,7 +3216,7 @@ The speaker's voice is high. It rises and falls. The pace is moderate. There are
 **Fact:** The man is smiling.  
 **Correct (A):** The smiling indicates a positive and happy emotion.  
 **Other (B):** The smiling is a nervous or anxious response to fear.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -745,7 +3258,7 @@ The speaker's voice is low. The pitch is steady. The loudness is moderate. The s
 **Fact:** She is speaking with a stern and intense expression.  
 **Correct (B):** She appears to be speaking with a stern and intense expression.  
 **Other (A):** She does not appear to be speaking with a stern and intense expression.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -787,7 +3300,7 @@ Her voice is at a medium pitch. It rises slightly at the end of the sentence. Th
 **Fact:** The man has raised eyebrows and a tense posture.  
 **Correct (A):** His body language, including raised eyebrows and a tense posture, suggests that he is upset or frustrated about something.  
 **Other (B):** His body language, including raised eyebrows and a tense posture, does not suggest that he is upset or frustrated about something.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -832,7 +3345,7 @@ The speaker's voice is low and steady. The pace is moderate. There are slight pa
 **Fact:** The man is gesturing with his hands.  
 **Correct (B):** The gesturing suggests he is engaged and passionate about what he is saying.  
 **Other (A):** The gesturing does not suggest he is engaged and passionate about what he is saying.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -874,7 +3387,7 @@ The speaker's voice is of a medium pitch. It is spoken at a moderate speed. Ther
 **Fact:** The woman is smiling.  
 **Correct (A):** Her facial expressions suggest that she is in a cheerful and happy mood.  
 **Other (B):** Her smile is likely masking her feelings of disgust.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -916,7 +3429,7 @@ The speaker's voice is at a moderate pitch. The pace is steady and the volume is
 **Fact:** The speaker appears to be kneeling next to the person on the floor.  
 **Correct (B):** Their body language suggests that they are confrontational and possibly frustrated with the situation involving the person on the floor.  
 **Other (A):** Their body language suggests that they are concerned and possibly worried about the person on the floor.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -958,7 +3471,7 @@ The speaker's voice is high-pitched and loud. She speaks quickly with little pau
 **Fact:** The man is gesturing with his hands.  
 **Correct (A):** His gesturing suggests that he is expressing strong emotions.  
 **Other (B):** His gesturing does not suggest that he is expressing strong emotions.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1000,7 +3513,7 @@ The speaker's voice is low. It rises and falls. It is loud. It is fast. He empha
 **Fact:** The man has an open mouth and direct gaze.  
 **Correct (B):** His open mouth and direct gaze suggest he is making a point or explaining something.  
 **Other (A):** His open mouth and direct gaze do not suggest that he is making a point or explaining something.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1042,7 +3555,7 @@ The speaker's voice is at a medium pitch. It rises slightly at the end of the se
 **Fact:** His eyebrows are often raised.  
 **Correct (B):** The raised eyebrows do not indicate surprise or interest.  
 **Other (A):** The raised eyebrows indicate surprise or interest.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1084,7 +3597,7 @@ The speaker's voice is at a medium pitch. The pitch rises slightly at the end of
 **Fact:** Her mouth is open.  
 **Correct (A):** Her mouth being open does not suggest that she is shouting or expressing strong displeasure.  
 **Other (B):** Her mouth being open suggests she is shouting or expressing strong displeasure.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1126,7 +3639,7 @@ Her voice is high. It rises and falls. It is loud. It is fast. There are no paus
 **Fact:** Her facial expression is downcast.  
 **Correct (B):** The downcast facial expression is not often associated with sadness or disappointment.  
 **Other (A):** The downcast facial expression is often associated with sadness or disappointment.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1168,7 +3681,7 @@ The speaker's voice is at a medium pitch. It rises slightly on the word "favorit
 **Fact:** Her facial expressions include furrowed brows and a stern look.  
 **Correct (B):** Her facial expressions do not align with the emotion of anger.  
 **Other (A):** Her facial expressions align with the emotion of anger.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1210,7 +3723,7 @@ The speaker's voice is at a moderate pitch. It rises slightly at the end of the 
 **Fact:** The intensity of her gaze.  
 **Correct (A):** The intensity of her gaze does not indicate that she is expressing strong emotions, likely frustration or annoyance.  
 **Other (B):** The intensity of her gaze indicates that she is expressing strong emotions, likely frustration or annoyance.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1252,7 +3765,7 @@ Her voice is at a moderate pitch, with a slight rise at the end of the phrase. T
 **Fact:** Her mouth is slightly open.  
 **Correct (B):** Her mouth being slightly open suggests that she is in the middle of speaking.  
 **Other (A):** Her mouth being slightly open does not suggest that she is in the middle of speaking.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1294,7 +3807,7 @@ The speaker's voice is at a medium pitch. It rises slightly at the end of the fi
 **Fact:** Her eyes are focused on the book.  
 **Correct (B):** Her eyes being focused on the book indicates her engagement with the content.  
 **Other (A):** Her eyes being focused on the book suggests she is using it as a distraction from her sadness.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1336,7 +3849,7 @@ Her voice is at a medium pitch. It rises slightly at the end. The pace is modera
 **Fact:** The woman is holding a book and appears to be reading it.  
 **Correct (A):** Her body language suggests that she is engaged and focused on the content of the book.  
 **Other (B):** Her body language does not suggest that she is engaged and focused on the content of the book.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1378,7 +3891,7 @@ Her voice is at a medium pitch. It rises slightly at the end. The pace is modera
 **Fact:** The man's posture is slightly hunched.  
 **Correct (B):** The hunched posture indicates a sense of tension or unease.  
 **Other (A):** The hunched posture does not indicate a sense of tension or unease.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1420,7 +3933,7 @@ The speaker's voice is of a medium pitch. It is steady in loudness and has a mod
 **Fact:** The man is making strong points.  
 **Correct (B):** He is possibly expressing frustration or annoyance.  
 **Other (A):** He is confidently sharing his ideas and feels pleased with the discussion.  
-*Baseline (Neha) was wrong.*
+*baseline was wrong.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1462,7 +3975,7 @@ The speaker's voice is of a medium pitch. It is steady in loudness and has a mod
 **Fact:** The man has wide eyes and a slightly open mouth.  
 **Correct (B):** His facial expressions suggest a combination of fear and anxiety.  
 **Other (A):** His facial expressions suggest a combination of surprise and anger.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1504,7 +4017,7 @@ The speaker's voice is at a medium pitch. It rises slightly at the end of the fi
 **Fact:** There is a slight furrow in her brow and she occasionally looks downwards.  
 **Correct (B):** These do not suggest that she might also be feeling a bit of annoyance or disappointment.  
 **Other (A):** These suggest that she might also be feeling a bit of annoyance or disappointment.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1546,7 +4059,7 @@ The speaker's voice is high-pitched. It rises in pitch. It is loud. It is spoken
 **Fact:** The speaker's body language is open and inviting, with a slight lean forward.  
 **Correct (A):** The open and inviting body language with a slight lean forward indicates engagement and interest in the conversation.  
 **Other (B):** The open and inviting body language with a slight lean forward does not indicate engagement and interest in the conversation.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1588,7 +4101,7 @@ The speaker's voice is of medium pitch. It rises slightly at the end of the sent
 **Fact:** Her facial expression appears to be neutral to slightly concerned.  
 **Correct (A):** The emotion of the speaker can be identified as a combination of concern and seriousness.  
 **Other (B):** The speaker is surprised by the situation, which is reflected in her neutral to slightly concerned facial expression.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
@@ -1630,7 +4143,7 @@ Her voice is at a medium pitch. It rises slightly at the end of the sentence. Th
 **Fact:** His mouth is open.  
 **Correct (B):** The open mouth does not indicate that he is speaking with conviction and determination.  
 **Other (A):** The open mouth indicates that he is speaking with conviction and determination.  
-*Baseline (Neha) was right.*
+*baseline was right.*
 
 | | v3 | v7 |
 | --- | --- | --- |
